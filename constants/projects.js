@@ -19,8 +19,8 @@ export const PROJECTS = [
         title : "Portfolio",
         description : "Developer Portfolio Page build using Next.js",
         images : ["/images/portfolio/1.png","/images/sun_minerals/2.png"],
-        liveUrl : null,
-        repoUrl : null,
+        liveUrl : "https://portfolio-chandresh.vercel.app/",
+        repoUrl : "https://github.com/Chandresh726/Portfolio",
         stack : ["NextJS","Tailwind CSS"]
     },
     {
