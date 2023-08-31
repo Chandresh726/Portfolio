@@ -25,29 +25,18 @@ export function AboutSection() {
 						}}
 					>
 						<p>
-							My name is Vasile. I successfully graduated Technical University of Moldova, computer
-							science faculty.
-						</p>
-						<p>
-							During my university years, I developed a deep passion for web programming, and I
-							consistently engaged in learning new concepts and techniques in this field.
-						</p>
-						<p>So, officially, my programming journey began in 2017 as a WordPress developer.</p>
-						<p className="my-3.5">
-							I enjoy learning technologies that interest me, which is why I dedicated a significant
-							amount of time to working with WordPress.
-						</p>
-						<p>
-							One day, I decided to try something new, and I started learning React. I was so
-							excited to see how fast I can build a website with it, and how easy it is to maintain
-							it. Consequently, I quickly learnt Next.js and I used it to build some company
-							projects working in a team with a backend dev.
+						I'm Chandresh Kumar, a dedicated software engineer with a passion for coding and a strong foundation in programming languages 
+						such as Java, Python, and JavaScript. My journey into the tech world began during my undergraduate studies in Computer Science at 
+						Keshav Memorial Institute of Technology, where I excelled academically with a GPA of 8.0.
 						</p>
 						<p className="my-3.5">
-							In december 2023, I had an opportunity to start working as a React developer for a
-							company with the possibility of transitioning to mobile development. I was skeptical
-							about it at first, but I decided to give it a try, and I don&lsquo;t regret it. Now, I
-							thoroughly enjoy working with Flutter and Dart.
+							Beyond the screen, I'm an avid problem solver and a competitive coder. When I'm not crafting digital solutions, you can find me delving into 
+							outdoor activities and video games or unwinding with a good movie and some music.
+						</p>
+						<p className="my-3.5">
+							With hands-on experience in web development technologies like ReactJS and Flask, and a knack for building seamless CI/CD pipelines 
+							using Jenkins, I'm always ready to take on new challenges in the dynamic world of software engineering. Whether it's crafting 
+							user-friendly web applications or engaging in some friendly coding competition, I'm always up for the next exciting venture.
 						</p>
 					</div>
 				</div>
