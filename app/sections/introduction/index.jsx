@@ -99,7 +99,7 @@ export function WelcomeSection() {
 								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 							}}
 						>
-							Hang out and check out what I've been working on.
+							Hang out and check out what I&apos;ve been working on.
 						</p>
 						<div
 							ref={ref}
