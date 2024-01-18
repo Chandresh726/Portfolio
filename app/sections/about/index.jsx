@@ -25,18 +25,18 @@ export function AboutSection() {
 						}}
 					>
 						<p>
-							I&apos;m Chandresh Kumar, a dedicated software engineer with a passion for coding and a strong foundation in programming languages 
-							such as Java, Python, and JavaScript. My journey into the tech world began during my undergraduate studies in Computer Science at 
-							Keshav Memorial Institute of Technology, where I excelled academically with a GPA of 8.0.
+							I&apos;m Chandresh Kumar, a software engineer with a love for coding and a proficiency in programming languages such as 
+							Java, Python, and JavaScript. My journey into the tech realm commenced during my undergraduate studies in Computer Science at Keshav 
+							Memorial Institute of Technology, where I achieved academic excellence with a GPA of 8.0.
 						</p>
 						<p className="my-3.5">
-							Beyond the screen, I&apos;m an avid problem solver and a competitive coder. When I&apos;m not crafting digital solutions, you can find me 
-							delving into outdoor activities and video games or unwinding with a good movie and some music.
+						Beyond the coding screen, I&apos;m a passionate problem solver and a coder intrigued by the challenges of web3 development. When I&apos;m not 
+						architecting digital solutions, you&apos;ll find me immersing myself in outdoor activities and video games or relaxing with a good movie and some music.
 						</p>
 						<p className="my-3.5">
-							With hands-on experience in web development technologies like ReactJS and Flask, and a knack for building seamless CI/CD pipelines 
-							using Jenkins, I&apos;m always ready to take on new challenges in the dynamic world of software engineering. Whether it&apos;s crafting 
-							user-friendly web applications or engaging in some friendly coding competition, I&apos;m always up for the next exciting venture.
+						With practical experience in web development technologies like ReactJS, Spring Boot, and Jenkins, I&apos;m always prepared to tackle new 
+						challenges in the ever-evolving world of software engineering. Whether it&apos;s creating user-friendly web applications or diving into 
+						the intricacies of web3 development, I&apos;m consistently eager for the next thrilling venture.
 						</p>
 					</div>
 				</div>

@@ -16,7 +16,8 @@ export function WelcomeSection() {
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
-		"am a Software Engineer",
+		"am a Software Developer",
+		"am a Web3 Enthusiast",
 		"am a Gamer"
 	]);
 
@@ -26,7 +27,7 @@ export function WelcomeSection() {
 		let interval = setInterval(() => {
 			setCount(count + 1);
 
-			if (count === 1) {
+			if (count === 2) {
 				setCount(0);
 			}
 		}, 3000);
@@ -50,11 +51,11 @@ export function WelcomeSection() {
 							}}
 						>
 							<p>
-								Hi, I&apos;m <mark>Chandresh Kumar</mark> a <mark>passionate</mark> software developer.
+								Hi, I&apos;m <mark>Chandresh Kumar</mark>
 							</p>
 						</h1>
 
-						<div className="mt-3 relative flex flex-col overflow-hidden">
+						<div className="mt-5 relative flex flex-col overflow-hidden">
 							<p
 								ref={ref}
 								className="text-[17px] md:text-2xl transform-none opacity-100"
@@ -98,7 +99,7 @@ export function WelcomeSection() {
 								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 							}}
 						>
-							Stick around to see some of my work.
+							Hang out and check out what I've been working on.
 						</p>
 						<div
 							ref={ref}
@@ -109,11 +110,10 @@ export function WelcomeSection() {
 							}}
 						>
 							<Link
-								href="#projects"
-								onClick={onClick}
+								href="/resume"
 								tabIndex="0"
 								className="btn"
-								aria-label="Latest projects"
+								aria-label="view resume"
 							>
 								View Resume
 							</Link>
@@ -128,8 +128,8 @@ export function WelcomeSection() {
 }
 
 function TextElement({ element }) {
-	const firstWord = <b>{element.split(" ").at(0)}</b>;
-	const restWords = element.split(" ").slice(1).join(" ");
+	const lastWord = <mark>{element.substring(5)}</mark>;
+	const restWords = element.substring(0,5);
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
 
@@ -144,7 +144,7 @@ function TextElement({ element }) {
 				transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 			}}
 		>
-			{firstWord} {restWords}
+			{restWords} {lastWord}
 		</span>
 	);
 }
