@@ -6,6 +6,7 @@ import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { WelcomeAnimation } from "./IntroAnimation";
 import { useScrollTo } from "hooks";
 import { useMediaQuery } from "utils";
+import GreetingLottie from "./DisplayLottie";
 
 export function WelcomeSection() {
 	const ref = useRef(null);
@@ -120,7 +121,7 @@ export function WelcomeSection() {
 						</div>
 					</div>
 
-					{isTabletUp && <WelcomeAnimation />}
+					{isTabletUp && <GreetingLottie animationPath="/lottie/coding.json" />}
 				</div>
 			</section>
 		</LazyMotion>

@@ -1,4 +1,5 @@
 import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin } from "react-icons/bs";
+import { FaXTwitter } from "react-icons/fa6";
 
 export const SOCIAL_MEDIA = [
 	{
@@ -18,5 +19,11 @@ export const SOCIAL_MEDIA = [
 		icon: <BsFillEnvelopeOpenFill />,
 		title: "Send me an email",
 		url: "mailto://kchandresh726@gmail.com"
+	},
+	{
+		id: "X",
+		icon: <FaXTwitter />,
+		title: "Visit X profile",
+		url: "https://twitter.com/Chandresh_726"
 	}
 ];

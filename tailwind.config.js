@@ -11,7 +11,7 @@ module.exports = {
 			colors: {
 				brand: {
 					light: "#FBF8F3",
-					dark: "#232332",
+					dark: "#161618",
 					purple: "#7928CA",
 					pink: "#FF0080"
 				},
