@@ -28,12 +28,6 @@ export const AppMetadata = {
 		images: [
 			{
 				url: "https://portfolio-chandresh.vercel.app/screenshot.webp",
-				width: 800,
-				height: 600,
-				alt: "My personal portfolio website"
-			},
-			{
-				url: "https://portfolio-chandresh.vercel.app/screenshot.webp",
 				width: 1800,
 				height: 1600,
 				alt: "My personal portfolio website"
