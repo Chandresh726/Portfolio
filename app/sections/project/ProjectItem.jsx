@@ -31,7 +31,7 @@ export function ProjectItem({ project, index }) {
 			}}
 		>
 			<figure>
-				<div className="aspect-[12/9.2] w-full h-full">
+				<div className="aspect-[16/9] w-full h-full">
 					<Suspense fallback={<Loader />}>
 						<ImageGallery
 							items={galleryImages}
@@ -50,7 +50,7 @@ export function ProjectItem({ project, index }) {
 					<h3 tabIndex="0" className="text-2xl font-bold">
 						{title}
 					</h3>
-					<p tabIndex="0" className="leading-7 font-light">
+					<p tabIndex="0" className="leading-7 font-light line-clamp-2">
 						{description}
 					</p>
 				</header>

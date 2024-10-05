@@ -1,7 +1,7 @@
 export const PROJECTS = [
     {
         title : "Samraksha",
-        description : "MERN stack application with QR Code implementation for the management of student's movements in and out of the hostel and man...",
+        description : "MERN stack application with QR Code implementation for the management of student's movements in and out of the hostel and managing attendance.",
         images : ["/images/samraksha/1.png","/images/samraksha/2.png","/images/samraksha/3.png","/images/samraksha/4.png"],
         liveUrl : "https://samraksha-test.onrender.com/",
         repoUrl : "https://github.com/Chandresh726/samraksha",

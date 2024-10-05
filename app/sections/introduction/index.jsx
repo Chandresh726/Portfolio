@@ -3,8 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { WelcomeAnimation } from "./IntroAnimation";
-import { useScrollTo } from "hooks";
 import { useMediaQuery } from "utils";
 import GreetingLottie from "./DisplayLottie";
 
@@ -12,23 +10,21 @@ export function WelcomeSection() {
 	const ref = useRef(null);
 	const introRef = useRef(null);
 	const isInView = useInView(ref, { once: true });
-	const { scrollToEl } = useScrollTo();
 	const isTabletUp = useMediaQuery("min-width: 768px");
 
 	let [count, setCount] = useState(0);
 	const [text] = useState([
-		"am a Software Developer",
-		"am a Web3 Enthusiast",
-		"am a Gamer"
+		"Software Engineer",
+		"Web3 Enthusiast",
+		"Gamer",
+		"Traveller"
 	]);
-
-	const onClick = (e) => scrollToEl(e);
 
 	useEffect(() => {
 		let interval = setInterval(() => {
 			setCount(count + 1);
 
-			if (count === 2) {
+			if (count === 3) {
 				setCount(0);
 			}
 		}, 3000);
@@ -66,7 +62,7 @@ export function WelcomeSection() {
 									transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 								}}
 							>
-								I
+								- 
 								<span
 									className="absolute flex flex-col transition-all duration-500 ease-in-expo"
 									style={{
@@ -129,8 +125,7 @@ export function WelcomeSection() {
 }
 
 function TextElement({ element }) {
-	const lastWord = <mark>{element.substring(5)}</mark>;
-	const restWords = element.substring(0,5);
+	const lastWord = <mark>{element}</mark>;
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
 
@@ -145,7 +140,7 @@ function TextElement({ element }) {
 				transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 			}}
 		>
-			{restWords} {lastWord}
+			{lastWord}
 		</span>
 	);
 }

@@ -1,4 +1,4 @@
-const author = "Chandresh Kumar";
+const author = "Chandresh";
 const description = "";
 const url = "https://portfolio-chandresh.vercel.app/";
 export const AppMetadata = {
