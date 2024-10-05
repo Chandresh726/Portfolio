@@ -4,6 +4,6 @@ export const metadata = {
 
 export default function Page() {
 	return <div className="container-md">
-		<iframe src="https://drive.google.com/file/d/1AAV7DvdCmB1kBKy4Z6AFuB9Jrxg-aQOT/preview" width="100%" height="650px" allow="autoplay"></iframe>
+		<iframe src={process.env.NEXT_PUBLIC_RESUME_URL} width="100%" height="600px" allow="autoplay"></iframe>
 	</div>;
 }
