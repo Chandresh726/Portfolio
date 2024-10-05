@@ -13,7 +13,7 @@ export function AboutSection() {
 		<LazyMotion features={domAnimation}>
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				<div className="pt-10 pb-16 max-w-5xl flex flex-col gap-3">
+				<div className="pt-10 pb-10 max-w-5xl flex flex-col gap-3">
 					<div
 						tabIndex="0"
 						ref={ref}
@@ -25,22 +25,20 @@ export function AboutSection() {
 						}}
 					>
 						<p>
-							I&apos;m Chandresh Kumar, a software engineer with a love for coding and a proficiency in programming languages such as 
-							Java, Python, and JavaScript. My journey into the tech realm commenced during my undergraduate studies in Computer Science at Keshav 
-							Memorial Institute of Technology, where I achieved academic excellence with a GPA of 8.0.
+							I&apos;m Chandresh Kumar, a software engineer who loves coding. I know programming languages like Java, Python, and 
+							JavaScript. My journey in tech began during my Computer Science studies at Keshav Memorial Institute of Technology, 
+							where I earned a GPA of 8.0.
 						</p>
 						<p className="my-3.5">
-						Beyond the coding screen, I&apos;m a passionate problem solver and a coder intrigued by the challenges of web3 development. When I&apos;m not 
-						architecting digital solutions, you&apos;ll find me immersing myself in outdoor activities and video games or relaxing with a good movie and some music.
+							Outside of coding, I enjoy solving problems and am interested in web3 development. When I&apos;m not building digital 
+							solutions, I like to spend time outdoors, play video games, or relax with a good movie and music.
 						</p>
 						<p className="my-3.5">
-						With practical experience in web development technologies like ReactJS, Spring Boot, and Jenkins, I&apos;m always prepared to tackle new 
-						challenges in the ever-evolving world of software engineering. Whether it&apos;s creating user-friendly web applications or diving into 
-						the intricacies of web3 development, I&apos;m consistently eager for the next thrilling venture.
+							I&apos;m always ready to take on new challenges in the fast-changing world of software engineering, whether it&apos;s creating 
+							user-friendly web applications or exploring web3 development.
 						</p>
 					</div>
 				</div>
-
 				{/* <TimeLine /> */}
 			</section>
 		</LazyMotion>
