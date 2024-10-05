@@ -3,7 +3,7 @@ export const PROJECTS = [
         title: "DeTube",
         description: "A Decentralized Video Streaming Platform Powered by Solana Blockchain.",
         images: ["/images/detube/1.png", "/images/detube/2.png", "/images/detube/3.png", "/images/detube/4.png", "/images/detube/5.png"],
-        liveUrl: "https://detube-slope.vercel.app/",
+        liveUrl: "https://detube.slope726.in/",
         repoUrl: "https://github.com/Chandresh726/DeTube",
         stack: ["NextJS", "Tailwind CSS", "AWS", "Solana"]
     },
@@ -11,7 +11,7 @@ export const PROJECTS = [
         title: "Portfolio",
         description: "Developer Portfolio Page build using Next.js",
         images: ["/images/portfolio/1.png", "/images/portfolio/2.png", "/images/portfolio/3.png"],
-        liveUrl: "https://portfolio-chandresh.vercel.app/",
+        liveUrl: "https://portfolio.slope726.in/",
         repoUrl: "https://github.com/Chandresh726/Portfolio",
         stack: ["NextJS", "Tailwind CSS"]
     },

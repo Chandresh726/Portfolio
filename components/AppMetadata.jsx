@@ -1,8 +1,8 @@
 const author = "Chandresh";
 const description = "";
-const url = "https://portfolio-chandresh.vercel.app/";
+const url = "https://portfolio.slope726.in/";
 export const AppMetadata = {
-	metadataBase: new URL("https://portfolio-chandresh.vercel.app/"),
+	metadataBase: new URL("https://portfolio.slope726.in/"),
 	title: {
 		default: `Portfolio | ${author}`,
 		template: `%s | ${author}`
@@ -27,7 +27,7 @@ export const AppMetadata = {
 		siteName: `${author} | Portfolio`,
 		images: [
 			{
-				url: "https://portfolio-chandresh.vercel.app/screenshot.webp",
+				url: "https://portfolio.slope726.in/screenshot.webp",
 				width: 1800,
 				height: 1600,
 				alt: "My personal portfolio website"
