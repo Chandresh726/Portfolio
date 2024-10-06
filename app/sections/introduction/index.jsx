@@ -62,7 +62,7 @@ export function WelcomeSection() {
 									transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
 								}}
 							>
-								- 
+								-
 								<span
 									className="absolute flex flex-col transition-all duration-500 ease-in-expo"
 									style={{
@@ -70,12 +70,12 @@ export function WelcomeSection() {
 											count === 0
 												? "0"
 												: count === 1
-												? "-100%"
-												: count === 2
-												? "-200%"
-												: count === 3
-												? "-300%"
-												: "0",
+													? "-100%"
+													: count === 2
+														? "-200%"
+														: count === 3
+															? "-300%"
+															: "0",
 										left: "13px"
 									}}
 								>
@@ -103,17 +103,19 @@ export function WelcomeSection() {
 							style={{
 								transform: isInView ? "none" : "translateY(50px)",
 								opacity: isInView ? 1 : 0,
-								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+								transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
 							}}
 						>
-							<Link
-								href="/resume"
+							<a
+								href={process.env.NEXT_PUBLIC_RESUME_URL}
+								target="_blank"
+								rel="noopener noreferrer"
 								tabIndex="0"
 								className="btn"
 								aria-label="view resume"
 							>
 								View Resume
-							</Link>
+							</a>
 						</div>
 					</div>
 
