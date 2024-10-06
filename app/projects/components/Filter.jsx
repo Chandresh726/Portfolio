@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { TbBrandJavascript, TbBrandNextjs } from "react-icons/tb";
-import { FaReact } from "react-icons/fa";
+import { TbBrandJavascript, TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
+import { FaReact, FaAws } from "react-icons/fa";
+import { SiSolana } from "react-icons/si";
 import { FilterButton } from "./FilterButton";
 
 export function Filter({ onClick = (f) => f }) {
@@ -36,6 +37,13 @@ export function Filter({ onClick = (f) => f }) {
 						All
 					</FilterButton>
 					<FilterButton
+						onClick={() => handleFilterClick("Javascript")}
+						label="Javascript"
+						active={activeFilter === "Javascript"}
+					>
+						<TbBrandJavascript size="20" />
+					</FilterButton>
+					<FilterButton
 						onClick={() => handleFilterClick("React")}
 						label="React"
 						active={activeFilter === "React"}
@@ -50,11 +58,25 @@ export function Filter({ onClick = (f) => f }) {
 						<TbBrandNextjs size="20" />
 					</FilterButton>
 					<FilterButton
-						onClick={() => handleFilterClick("Javascript")}
-						label="Javascript"
-						active={activeFilter === "Javascript"}
+						onClick={() => handleFilterClick("Typescript")}
+						label="Typescript"
+						active={activeFilter === "Typescript"}
 					>
-						<TbBrandJavascript size="20" />
+						<TbBrandTypescript size="20" />
+					</FilterButton>
+					<FilterButton
+						onClick={() => handleFilterClick("AWS")}
+						label="AWS"
+						active={activeFilter === "AWS"}
+					>
+						<FaAws size="20" />
+					</FilterButton>
+					<FilterButton
+						onClick={() => handleFilterClick("Solana")}
+						label="Solana"
+						active={activeFilter === "Solana"}
+					>
+						<SiSolana size="20" />
 					</FilterButton>
 				</div>
 			</div>

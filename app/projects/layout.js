@@ -40,7 +40,7 @@ export default function Page() {
 								<h3 className="text-2xl">No projects found in {category} category</h3>
 							</div>
 						) : (
-							<Projects projects={PROJECTS} />
+							<Projects projects={PROJECTS} category={category}/>
 						)}
 					</ErrorBoundary>
 				</Suspense>
