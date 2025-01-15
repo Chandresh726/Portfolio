@@ -1,10 +1,11 @@
 import { AiFillHtml5, AiFillGithub } from "react-icons/ai";
-import { SiMongodb, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk   } from "react-icons/si";
+import { SiMongodb, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust   } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { DiCss3, DiVisualstudio } from "react-icons/di";
 import { IoLogoJavascript } from "react-icons/io";
 import { FaReact, FaJava, FaPython, FaNpm, FaAws, FaDocker, FaJenkins, FaYarn } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
+import { TbApi } from "react-icons/tb";
 import JiraIcon from "public/assets/svg/jira.svg";
 
 export const TECHNOLOGIES = [
@@ -16,6 +17,7 @@ export const TECHNOLOGIES = [
 			{ name: "JavaScript", icon: <IoLogoJavascript size={40} /> },
 			{ name: "C++", icon: <SiCplusplus size={40} /> },
 			{ name: "JavaScript", icon: <SiTypescript  size={40} /> },
+			{ name: "Rust", icon: <SiRust  size={40} /> },
 		]
 	},
 	{
@@ -54,7 +56,8 @@ export const TECHNOLOGIES = [
 			{ name: "Github", icon: <AiFillGithub size={40} /> },
 			{ name: "VsCode", icon: <DiVisualstudio size={40} /> },
 			{ name: "Gradle", icon: <SiGradle size={40} /> },
-			{ name: "Splunk", icon: <SiSplunk  size={40} /> }
+			{ name: "Splunk", icon: <SiSplunk  size={40} /> },
+			{ name: "APIGEE", icon: <TbApi  size={40} /> }
 		]
 	}
 ];

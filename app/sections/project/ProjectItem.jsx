@@ -13,10 +13,15 @@ export function ProjectItem({ project, index }) {
 	const cardRef = useRef(null);
 	const isInView = useInView(cardRef, { once: true });
 
-	const galleryImages = images.map((img) => ({
+	let galleryImages = images.map((img) => ({
 		original: img,
 		loading: "lazy"
 	}));
+
+	if(galleryImages.length===0) galleryImages = [{
+		original: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s",
+		loading: "lazy"
+	}];
 
 	return (
 		<article

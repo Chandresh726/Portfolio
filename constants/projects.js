@@ -8,12 +8,12 @@ export const PROJECTS = [
         stack: ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
     },
     {
-        title: "Portfolio",
-        description: "Developer Portfolio Page build using Next.js",
-        images: ["/images/portfolio/1.png", "/images/portfolio/2.png", "/images/portfolio/3.png"],
-        liveUrl: "https://portfolio.slope726.in/",
-        repoUrl: "https://github.com/Chandresh726/Portfolio",
-        stack: ["Next", "Tailwind CSS", "Javascript"]
+        title: "Passm",
+        description: "A CLI password manager",
+        images: ["/images/passm/1.png", "/images/passm/2.png", "/images/passm/3.png"],
+        liveUrl: "https://passm.slope726.in/",
+        repoUrl: "https://github.com/Chandresh726/Passm",
+        stack: ["Next", "Shadcn", "Typescript", "Rust"]
     },
     {
         title: "Samraksha",
@@ -22,6 +22,14 @@ export const PROJECTS = [
         liveUrl: "https://samraksha-test.onrender.com/",
         repoUrl: "https://github.com/Chandresh726/samraksha",
         stack: ["React", "MongoDB", "Express", "Node", "Javascript"]
+    },
+    {
+        title: "Portfolio",
+        description: "Developer Portfolio Page build using Next.js",
+        images: ["/images/portfolio/1.png", "/images/portfolio/2.png", "/images/portfolio/3.png"],
+        liveUrl: "https://portfolio.slope726.in/",
+        repoUrl: "https://github.com/Chandresh726/Portfolio",
+        stack: ["Next", "Tailwind CSS", "Javascript"]
     },
     {
         title: "Sun Minerals",

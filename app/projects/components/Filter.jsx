@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
-import { TbBrandJavascript, TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
+import { TbBrandJavascript, TbBrandNextjs, TbBrandRust, TbBrandTypescript } from "react-icons/tb";
 import { FaReact, FaAws } from "react-icons/fa";
 import { SiSolana } from "react-icons/si";
 import { FilterButton } from "./FilterButton";
@@ -77,6 +77,13 @@ export function Filter({ onClick = (f) => f }) {
 						active={activeFilter === "Solana"}
 					>
 						<SiSolana size="20" />
+					</FilterButton>
+					<FilterButton
+						onClick={() => handleFilterClick("Rust")}
+						label="Rust"
+						active={activeFilter === "Rust"}
+					>
+						<TbBrandRust size="20" />
 					</FilterButton>
 				</div>
 			</div>
