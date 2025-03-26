@@ -1,12 +1,11 @@
 import { AiFillHtml5, AiFillGithub } from "react-icons/ai";
-import { SiMongodb, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust   } from "react-icons/si";
+import { SiMongodb, SiJira, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust   } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { DiCss3, DiVisualstudio } from "react-icons/di";
 import { IoLogoJavascript } from "react-icons/io";
 import { FaReact, FaJava, FaPython, FaNpm, FaAws, FaDocker, FaJenkins, FaYarn } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
 import { TbApi } from "react-icons/tb";
-import JiraIcon from "public/assets/svg/jira.svg";
 
 export const TECHNOLOGIES = [
 	{
@@ -51,7 +50,7 @@ export const TECHNOLOGIES = [
 		category: "Tools",
 		items: [
 			{ name: "NPM", icon: <FaNpm size={40} /> },
-			{ name: "Jira", icon: <JiraIcon width={34} /> },
+			{ name: "Jira", icon: <SiJira size={30} /> },
 			{ name: "Yarn", icon: <FaYarn size={40} /> },
 			{ name: "Github", icon: <AiFillGithub size={40} /> },
 			{ name: "VsCode", icon: <DiVisualstudio size={40} /> },
