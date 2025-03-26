@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { useMediaQuery } from "utils";
 import GreetingLottie from "./DisplayLottie";
@@ -15,6 +14,7 @@ export function WelcomeSection() {
 	let [count, setCount] = useState(0);
 	const [text] = useState([
 		"Software Engineer",
+		"Freelancer",
 		"Web3 Enthusiast",
 		"Gamer",
 		"Traveller"
@@ -24,7 +24,7 @@ export function WelcomeSection() {
 		let interval = setInterval(() => {
 			setCount(count + 1);
 
-			if (count === 3) {
+			if (count === 4) {
 				setCount(0);
 			}
 		}, 3000);

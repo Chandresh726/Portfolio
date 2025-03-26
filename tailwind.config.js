@@ -42,7 +42,6 @@ module.exports = {
 		}
 	},
 	plugins: [
-		require('@tailwindcss/line-clamp'),
 		function ({ addUtilities }) {
 			addUtilities({
 				".flex-center": {
