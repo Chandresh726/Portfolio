@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { HeadingDivider, Loader } from "components";
 import { Filter } from "./components/Filter";
@@ -11,6 +11,10 @@ import { PROJECTS } from "../../constants";
 
 export default function Page() {
 	const [category, setCategory] = useState(undefined);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	const onClick = (catName) => setCategory(catName);
 
