@@ -1,9 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { LazyMotion, domAnimation, useInView } from "framer-motion";
+import { LazyMotion, domAnimation, m, useInView } from "framer-motion";
 import { HeadingDivider } from "components";
-import { TimeLine } from "./TimeLine";
+
+const fadeInLeft = {
+  initial: { x: -200, opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  transition: { duration: 0.9, ease: [0.17, 0.55, 0.55, 1], delay: 0.5 }
+};
 
 export function AboutSection() {
 	const ref = useRef(null);
@@ -14,15 +19,13 @@ export function AboutSection() {
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
 				<div className="pt-10 pb-10 max-w-5xl flex flex-col gap-3">
-					<div
+					<m.div
 						tabIndex="0"
 						ref={ref}
 						className="text-xl font-light leading-relaxed"
-						style={{
-							transform: isInView ? "none" : "translateX(-200px)",
-							opacity: isInView ? 1 : 0,
-							transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-						}}
+						variants={fadeInLeft}
+						initial="initial"
+						animate={isInView ? "animate" : "initial"}
 					>
 						<p>
 							I&apos;m Chandresh Kumar, a software engineer who loves coding. I know programming languages like Java, Python, and 
@@ -37,7 +40,7 @@ export function AboutSection() {
 							I&apos;m always ready to take on new challenges in the fast-changing world of software engineering, whether it&apos;s creating 
 							user-friendly web applications or exploring web3 development.
 						</p>
-					</div>
+					</m.div>
 				</div>
 				{/* <TimeLine /> */}
 			</section>
