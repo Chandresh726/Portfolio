@@ -1,5 +1,5 @@
-import { Suspense, useRef } from "react";
-import { useInView } from "framer-motion";
+import { Suspense } from "react";
+import { m } from "framer-motion";
 import Link from "next/link";
 import ImageGallery from "react-image-gallery";
 import { Loader } from "components";
@@ -8,32 +8,41 @@ import { FiExternalLink } from "react-icons/fi";
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
-export function ProjectItem({ project, index }) {
-	const { description, images, liveUrl, repoUrl, stack, title } = project;
-	const cardRef = useRef(null);
-	const isInView = useInView(cardRef, { once: true });
+const itemVariants = {
+	initial: { 
+		opacity: 0,
+		y: 20
+	},
+	whileInView: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5
+		}
+	}
+};
 
-	let galleryImages = images.map((img) => ({
+export function ProjectItem({ project }) {
+	const { description, images, liveUrl, repoUrl, stack, title } = project;
+
+	let galleryImages = images?.map((img) => ({
 		original: img,
 		loading: "lazy"
-	}));
+	})) || [];
 
-	if(galleryImages.length===0) galleryImages = [{
-		original: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s",
-		loading: "lazy"
-	}];
+	if (galleryImages.length === 0)
+		galleryImages = [
+			{
+				original:
+					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s",
+				loading: "lazy"
+			}
+		];
 
 	return (
-		<article
-			ref={cardRef}
+		<m.article
 			className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark"
-			style={{
-				transform: isInView
-					? "none"
-					: `${index === 0 ? "translateY(250px)" : `translateY(${200 / index}px)`}`,
-				opacity: isInView ? 1 : 0,
-				transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${index === 0 ? 0 : 25 * index}ms`
-			}}
+			variants={itemVariants}
 		>
 			<figure>
 				<div className="aspect-[16/9] w-full h-full">
@@ -50,8 +59,8 @@ export function ProjectItem({ project, index }) {
 				</div>
 			</figure>
 
-			<div className="flex-[2] px-5 py-6 text-center flex flex-col gap-10">
-				<header className="flex-1 flex items-center justify-start flex-col gap-3">
+			<div className="flex-[2] p-6 text-center flex flex-col gap-4">
+				<header className="flex-1 flex items-center justify-start flex-col">
 					<h3 tabIndex="0" className="text-2xl font-bold">
 						{title}
 					</h3>
@@ -60,9 +69,9 @@ export function ProjectItem({ project, index }) {
 					</p>
 				</header>
 
-				<footer className="flex flex-col gap-10">
+				<footer className="flex flex-col gap-4">
 					{!!stack.length && (
-						<div className="flex-center flex-wrap gap-3">
+						<div className="flex-center flex-wrap gap-1">
 							{stack.map((tag) => (
 								<span
 									key={tag}
@@ -101,6 +110,6 @@ export function ProjectItem({ project, index }) {
 					</div>
 				</footer>
 			</div>
-		</article>
+		</m.article>
 	);
 }

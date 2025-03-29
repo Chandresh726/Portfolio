@@ -15,7 +15,7 @@ const techCardVariants = (index) => ({
     y: 0, 
     opacity: 1,
     transition: {
-      duration: 0.9,
+      duration: 0.5,
       ease: [0.17, 0.55, 0.55, 1],
       delay: index === 0 ? 0 : 0.5 * index
     }

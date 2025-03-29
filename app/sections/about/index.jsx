@@ -25,7 +25,7 @@ export function AboutSection() {
 		<LazyMotion features={domAnimation}>
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				<div className="pt-10 pb-10 flex flex-col md:flex-row items-center">
+				<div className="pt-10 flex flex-col md:flex-row items-center">
 					<m.div
 						className="w-full md:w-1/3 flex justify-center"
 						variants={fadeInLeft}

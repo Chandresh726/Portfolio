@@ -2,3 +2,9 @@
 @import "components.css";
 @import "utilities.css";
 @import "gallery.css";
+
+html {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}

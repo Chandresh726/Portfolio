@@ -6,7 +6,7 @@ import { ConnectMedia, ScrollTop } from "components";
 
 export function AppFooter() {
 	const footerRef = useRef(null);
-	const isInView = useInView(footerRef, { 
+	const isInView = useInView(footerRef, {
 		once: true,
 		amount: 0.1 // Only need to see 10% of element
 	});
@@ -21,10 +21,16 @@ export function AppFooter() {
 				animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
 				transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
 			>
-				<div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5">
-					<p className="font-light">Copyright &copy; {year} Chandresh Kumar</p>
-					<ScrollTop />
-					<ConnectMedia />
+				<div className="flex flex-col md:flex-row justify-between items-center md:items-center gap-10 md:gap-0">
+					<div className="w-full md:w-1/3 flex justify-center md:justify-start">
+						<ConnectMedia />
+					</div>
+					<div className="w-full md:w-1/3 flex justify-center md:justify-center">
+						<ScrollTop />
+					</div>
+					<div className="w-full md:w-1/3 flex justify-center md:justify-end">
+						<p className="font-light">Copyright &copy; {year} Chandresh Kumar</p>
+					</div>
 				</div>
 			</m.footer>
 		</LazyMotion>
