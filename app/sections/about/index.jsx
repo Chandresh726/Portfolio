@@ -27,7 +27,7 @@ export function AboutSection() {
 				<HeadingDivider title="About me" />
 				<div className="pt-10 flex flex-col md:flex-row items-center">
 					<m.div
-						className="w-full md:w-1/3 flex justify-center"
+						className="w-full md:w-1/3 flex justify-center mb-10 md:mb-0"
 						variants={fadeInLeft}
 						initial="initial"
 						animate={isInView ? "animate" : "initial"}
