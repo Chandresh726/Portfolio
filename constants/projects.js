@@ -26,7 +26,7 @@ export const PROJECTS = [
     {
         title: "Portfolio",
         description: "Developer Portfolio Page build using Next.js",
-        images: ["/images/portfolio/1.png", "/images/portfolio/2.png", "/images/portfolio/3.png"],
+        images: ["/images/portfolio/1.png", "/images/portfolio/2.png", "/images/portfolio/3.png", "/images/portfolio/4.png"],
         liveUrl: "https://portfolio.slope726.in/",
         repoUrl: "https://github.com/Chandresh726/Portfolio",
         stack: ["Next", "Tailwind CSS", "Javascript"]
