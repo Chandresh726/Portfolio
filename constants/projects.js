@@ -1,5 +1,13 @@
 export const PROJECTS = [
     {
+        title: "TruShield",
+        description: "A landing page for a pen testing service providing startup company",
+        images: ["/images/trushield/1.png", "/images/trushield/2.png", "/images/trushield/3.png", "/images/trushield/4.png"],
+        liveUrl: "https://www.trushield.tech/",
+        repoUrl: null,
+        stack: ["React", "Javascript", "Tailwind CSS"]
+    },
+    {
         title: "DeTube",
         description: "A Decentralized Video Streaming Platform Powered by Solana Blockchain.",
         images: ["/images/detube/1.png", "/images/detube/2.png", "/images/detube/3.png", "/images/detube/4.png", "/images/detube/5.png"],
@@ -46,5 +54,5 @@ export const PROJECTS = [
         liveUrl: null,
         repoUrl: "https://github.com/Chandresh726/Lexicon-Agriculture_Portal",
         stack: ["React", "MongoDB", "Flask", "Javascript"]
-    }
+    }    
 ];
