@@ -1,0 +1,17 @@
+{
+  "name": "Chandresh Kumar | Portfolio",
+  "short_name": "Chandresh Portfolio",
+  "description": "Portfolio website of Chandresh Kumar - Software Developer, Frontend Developer, and Web3 Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    }
+  ]
+}

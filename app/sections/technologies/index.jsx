@@ -28,6 +28,16 @@ export function TechnologiesSection() {
   const isTextInView = useInView(textRef, { once: true });
   const isStackInView = useInView(stackRef, { once: true });
 
+  const technologies = TECHNOLOGIES.map((tech, index) => ({
+    id: `${tech.category}-${index}`,
+    category: tech.category,
+    items: tech.items.map((item, itemIndex) => ({
+      id: `${tech.category}-${item.name}-${itemIndex}`,
+      name: item.name,
+      icon: item.icon
+    }))
+  }));
+
   return (
     <LazyMotion features={domAnimation}>
       <section id="tech" className="section">
@@ -43,11 +53,11 @@ export function TechnologiesSection() {
           I have worked with the following technologies and tools:
         </m.p>
 
-        {!!TECHNOLOGIES.length && (
+        {!!technologies.length && (
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-20">
-            {TECHNOLOGIES.map((tech, index) => (
+            {technologies.map((tech, index) => (
               <m.div
-                key={tech.category}
+                key={tech.id}
                 ref={stackRef}
                 className="flex flex-col gap-4 flex-1 md:flex-auto"
                 variants={techCardVariants(index)}
@@ -59,7 +69,7 @@ export function TechnologiesSection() {
                 </h3>
                 <div className="flex items-center flex-wrap gap-x-5 gap-y-8">
                   {tech.items.map((item) => (
-                    <div key={item.name} className="group relative flex">
+                    <div key={item.id} className="group relative flex">
                       <span tabIndex="0" role="img">
                         {item.icon}
                       </span>
