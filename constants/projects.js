@@ -8,12 +8,12 @@ export const PROJECTS = [
         stack: ["Next", "Typescript", "Shancn", "NestJS", "Postgres", "OpenAI", "Gemini"]
     },
     {
-        title: "TruShield",
-        description: "A landing page for a pen testing service providing startup company",
-        images: ["/images/trushield/1.png", "/images/trushield/2.png", "/images/trushield/3.png", "/images/trushield/4.png"],
-        liveUrl: "https://www.trushield.tech/",
+        title: "Web Crawler",
+        description: "A JavaScript-based web crawler for automated data extraction.",
+        images: ["/images/crawler/1.png", "/images/crawler/2.png", "/images/crawler/3.png", "/images/crawler/4.png"],
+        liveUrl: "https://crawler.trushield.tech/",
         repoUrl: null,
-        stack: ["React", "Javascript", "Tailwind CSS"]
+        stack: ["Javascript", "NodeJS", "Puppeteer", "React"]
     },
     {
         title: "DeTube",
@@ -22,6 +22,14 @@ export const PROJECTS = [
         liveUrl: "https://detube.slope726.in/",
         repoUrl: "https://github.com/Chandresh726/DeTube",
         stack: ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
+    },
+    {
+        title: "TruShield",
+        description: "A landing page for a pen testing service providing startup company",
+        images: ["/images/trushield/1.png", "/images/trushield/2.png", "/images/trushield/3.png", "/images/trushield/4.png"],
+        liveUrl: "https://www.trushield.tech/",
+        repoUrl: null,
+        stack: ["React", "Javascript", "Tailwind CSS"]
     },
     {
         title: "Passm",
