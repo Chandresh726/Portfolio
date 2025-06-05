@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { LazyMotion, domAnimation, useInView } from "framer-motion";
 import { TbBrandJavascript, TbBrandNextjs, TbBrandRust, TbBrandTypescript } from "react-icons/tb";
 import { FaReact, FaAws } from "react-icons/fa";
-import { SiSolana } from "react-icons/si";
+import { SiSolana, SiNestjs, SiOpenai, SiGooglegemini } from "react-icons/si";
 import { FilterButton } from "./FilterButton";
 
 export function Filter({ onClick = (f) => f }) {
@@ -84,6 +84,27 @@ export function Filter({ onClick = (f) => f }) {
 						active={activeFilter === "Rust"}
 					>
 						<TbBrandRust size="20" />
+					</FilterButton>
+					<FilterButton
+						onClick={() => handleFilterClick("NestJS")}
+						label="NestJS"
+						active={activeFilter === "NestJS"}
+					>
+						<SiNestjs size="20" />
+					</FilterButton>
+					<FilterButton
+						onClick={() => handleFilterClick("OpenAI")}
+						label="OpenAI"
+						active={activeFilter === "OpenAI"}
+					>
+						<SiOpenai size="20" />
+					</FilterButton>
+					<FilterButton
+						onClick={() => handleFilterClick("Gemini")}
+						label="Gemini"
+						active={activeFilter === "Gemini"}
+					>
+						<SiGooglegemini  size="20" />
 					</FilterButton>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 import { AiFillHtml5, AiFillGithub } from "react-icons/ai";
-import { SiMongodb, SiJira, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust   } from "react-icons/si";
+import { SiMongodb, SiJira, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust, SiNestjs } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { DiCss3, DiVisualstudio } from "react-icons/di";
 import { IoLogoJavascript } from "react-icons/io";
@@ -31,6 +31,7 @@ export const TECHNOLOGIES = [
 			{ name: "Tailwind", icon: <SiTailwindcss  size={40} /> },
 			{ name: "Flask", icon: <SiFlask size={40} /> },
 			{ name: "Express.js", icon: <SiExpress size={40} /> },
+			{ name: "NestJS", icon: <SiNestjs size={40} /> },
 			
 		]
 	},

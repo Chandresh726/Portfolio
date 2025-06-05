@@ -32,12 +32,16 @@ export function Projects({ projects, limit, category }) {
         variants={containerVariants}
         initial="initial"
         whileInView="whileInView"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: false, margin: "-100px" }}
+        key={category}
       >
         {filteredProjects
           .slice(0, limit || filteredProjects.length)
           .map((project, index) => (
-            <ProjectItem key={project.title || index} project={project} />
+            <ProjectItem 
+              key={`${project.title}-${category}-${index}`} 
+              project={project} 
+            />
           ))}
       </m.div>
     </LazyMotion>

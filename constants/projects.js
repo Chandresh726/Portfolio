@@ -1,5 +1,13 @@
 export const PROJECTS = [
     {
+        title: "Finara",
+        description: "AI-powered financial assistant for personal finance management",
+        images: ["/images/finara/1.png", "/images/finara/2.png", "/images/finara/3.png", "/images/finara/4.png", "/images/finara/5.png", "/images/finara/6.png"],
+        liveUrl: "https://finara.slope726.in/",
+        repoUrl: "https://github.com/Chandresh726/Finara-Frontend",
+        stack: ["Next", "Typescript", "Shancn", "NestJS", "Postgres", "OpenAI", "Gemini"]
+    },
+    {
         title: "TruShield",
         description: "A landing page for a pen testing service providing startup company",
         images: ["/images/trushield/1.png", "/images/trushield/2.png", "/images/trushield/3.png", "/images/trushield/4.png"],
