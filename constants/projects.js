@@ -4,8 +4,8 @@ export const PROJECTS = [
         description: "AI-powered financial assistant for personal finance management",
         images: ["/images/finara/1.png", "/images/finara/2.png", "/images/finara/3.png", "/images/finara/4.png", "/images/finara/5.png", "/images/finara/6.png"],
         liveUrl: "https://finara.slope726.in/",
-        repoUrl: "https://github.com/Chandresh726/Finara-Frontend",
-        stack: ["Next", "Typescript", "Shancn", "NestJS", "Postgres", "OpenAI", "Gemini"]
+        repoUrl: "https://github.com/Chandresh726/Finara-v2",
+        stack: ["Next", "Typescript", "Shancn", "Postgres", "AI SDK", "Tailwind CSS"]
     },
     {
         title: "Web Crawler",

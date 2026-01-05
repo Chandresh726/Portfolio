@@ -1,11 +1,11 @@
 import { AiFillHtml5, AiFillGithub } from "react-icons/ai";
-import { SiMongodb, SiJira, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust, SiNestjs } from "react-icons/si";
+import { SiMongodb, SiVercel , SiJira, SiFlask, SiSpring, SiExpress, SiCplusplus, SiNextdotjs, SiGradle, SiTypescript, SiTailwindcss, SiPostgresql, SiSplunk, SiRust, SiNestjs } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { DiCss3, DiVisualstudio } from "react-icons/di";
 import { IoLogoJavascript } from "react-icons/io";
 import { FaReact, FaJava, FaPython, FaNpm, FaAws, FaDocker, FaJenkins, FaYarn } from "react-icons/fa";
 import { BsBootstrap } from "react-icons/bs";
-import { TbApi } from "react-icons/tb";
+import { TbApi, TbBrandTerraform } from "react-icons/tb";
 
 export const TECHNOLOGIES = [
 	{
@@ -32,7 +32,7 @@ export const TECHNOLOGIES = [
 			{ name: "Flask", icon: <SiFlask size={40} /> },
 			{ name: "Express.js", icon: <SiExpress size={40} /> },
 			{ name: "NestJS", icon: <SiNestjs size={40} /> },
-			
+			{ name: "AI SDK", icon: <SiVercel  size={40} /> },
 		]
 	},
 	{
@@ -44,7 +44,8 @@ export const TECHNOLOGIES = [
 			{ name: "Jenkins", icon: <FaJenkins size={40} /> },
 			{ name: "MySQL", icon: <GrMysql size={40} /> },
 			{ name: "MongoDB", icon: <SiMongodb size={40} /> },
-			{ name: "Postgresql", icon: <SiPostgresql  size={40} /> }
+			{ name: "Postgresql", icon: <SiPostgresql  size={40} /> },
+			{ name: "Terraform", icon: <TbBrandTerraform size={40} /> }
 		]
 	},
 	{
