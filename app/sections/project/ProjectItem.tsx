@@ -45,7 +45,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 
 	return (
 		<motion.article
-			className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+			className="flex flex-col rounded-lg bg-surface-variant shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-outline-variant"
 			variants={itemVariants}
 			whileHover={{ scale: 1.02 }}
 			whileTap={{ scale: 0.98 }}
@@ -82,7 +82,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 								<span
 									key={tag}
 									tabIndex={0}
-									className="px-2 text-sm leading-normal rounded bg-badge-light/50 dark:bg-badge-dark"
+									className="px-2 text-sm leading-normal rounded bg-surface-interactive"
 								>
 									{tag}
 								</span>

@@ -2,24 +2,10 @@
 
 /* Custom theme configuration for Tailwind CSS 4 */
 @theme {
-	/* Brand colors */
-	--color-brand-light: #fbf8f3;
-	--color-brand-dark: #161618;
-	--color-brand-purple: #7928ca;
-	--color-brand-pink: #ff0080;
-
 	/* Blue colors */
 	--color-blue-lighter: #71c5ee;
 	--color-blue-light: #3182ce;
 	--color-blue-normal: #025091;
-
-	/* Card colors */
-	--color-card-dark: rgba(255, 255, 255, 0.04);
-	--color-card-light: rgba(255, 255, 255, 0.8);
-
-	/* Badge colors */
-	--color-badge-dark: rgba(226, 232, 240, 0.16);
-	--color-badge-light: #f8f0e3;
 
 	/* Transition timing functions */
 	--ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
@@ -27,18 +13,42 @@
 
 	/* Default transition duration */
 	--transition-duration: 300ms;
+
+	/* Semantic color tokens - Light mode defaults */
+	--color-surface: #fbf8f3;
+	--color-on-surface: #161618;
+	--color-surface-variant: rgba(255, 255, 255, 0.8);
+	--color-surface-interactive: #f8f0e3;
+	--color-surface-backdrop: rgba(251, 248, 243, 0.9);
+	--color-outline: #e5e7eb;
+	--color-outline-variant: #e5e7eb;
+	--color-divider: #9ca3af;
+	--color-surface-muted: #f3f4f6;
+	--color-text-muted: #6b7280;
+	--color-surface-overlay: #1f2937;
+	--color-on-surface-overlay: #f3f4f6;
+}
+
+/* Dark mode overrides */
+.dark {
+	--color-surface: #161618;
+	--color-on-surface: #fbf8f3;
+	--color-surface-variant: rgba(255, 255, 255, 0.04);
+	--color-surface-interactive: rgba(226, 232, 240, 0.16);
+	--color-surface-backdrop: rgba(22, 22, 24, 0.9);
+	--color-outline: #1f2937;
+	--color-outline-variant: transparent;
+	--color-divider: #6b7280;
+	--color-surface-muted: #1f2937;
+	--color-text-muted: #9ca3af;
+	--color-surface-overlay: #1f2937;
+	--color-on-surface-overlay: #f3f4f6;
 }
 
 /* Base layer styles */
 @layer base {
 	body {
-		@apply bg-brand-light text-brand-dark;
-	}
-
-	.dark body,
-	body.dark,
-	html.dark body {
-		@apply bg-brand-dark text-brand-light;
+		@apply bg-surface text-on-surface;
 	}
 }
 
@@ -56,32 +66,35 @@
 		@apply bg-transparent text-blue-light;
 	}
 
+	.text-primary-color {
+		@apply text-blue-light;
+	}
+
 	.btn {
 		@apply min-h-[40px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal focus:ring-1 focus:ring-blue-normal;
 	}
 
 	.heading-divider {
-		@apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 text-brand-dark dark:text-brand-light;
+		@apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 text-on-surface;
 	}
 
 	.heading-divider::after {
 		content: "";
 		height: 1px;
 		flex: 1;
-		background: currentColor;
-		opacity: 0.2;
+		@apply bg-divider;
 	}
 
 	.icon-link-btn {
-		@apply flex items-center justify-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-light dark:hover:bg-badge-dark;
+		@apply flex items-center justify-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-surface-interactive;
 	}
 
 	.icon-link-btn--outline {
-		@apply border border-badge-dark;
+		@apply border border-outline;
 	}
 
 	.icon-link-btn--active {
-		@apply bg-badge-light dark:bg-badge-dark;
+		@apply bg-surface-interactive;
 	}
 }
 

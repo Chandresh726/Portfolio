@@ -14,11 +14,11 @@ export default function Error({ error, reset }: ErrorProps) {
 			<div className="text-center space-y-4">
 				<div className="text-6xl">!</div>
 				<h1 className="text-3xl font-bold text-red-500">Something went wrong</h1>
-				<p className="text-gray-600 dark:text-gray-400 max-w-md">
+				<p className="text-text-muted max-w-md">
 					We encountered an unexpected error. Please try again or return to the home page.
 				</p>
 				{process.env.NODE_ENV === "development" && (
-					<details className="mt-4 text-left bg-gray-100 dark:bg-gray-800 p-4 rounded-lg max-w-lg mx-auto">
+					<details className="mt-4 text-left bg-surface-muted p-4 rounded-lg max-w-lg mx-auto">
 						<summary className="cursor-pointer text-sm font-medium">Error details</summary>
 						<pre className="mt-2 text-xs overflow-auto text-red-500">
 							{error.message}

@@ -77,7 +77,7 @@ export function WelcomeSection() {
 					<motion.p
 						tabIndex={0}
 						ref={ref}
-						className="mt-3 mb-10 text-gray-500 text-xl"
+						className="mt-3 mb-10 text-text-muted text-xl"
 						{...fadeInLeft}
 					>
 						Hang out and check out what I&apos;ve been working on.
