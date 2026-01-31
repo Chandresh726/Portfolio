@@ -5,5 +5,5 @@ export const metadata = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-	return <div className="container-md">{children}</div>;
+	return <div className="container-md min-h-screen">{children}</div>;
 }

@@ -1,10 +1,15 @@
 import { Suspense } from "react";
 import { Inter } from "next/font/google";
-import { AppHeader, AppFooter, AppMetadata, JsonLd } from "components";
+import { AppFooter, AppMetadata, JsonLd } from "components";
+import { TooltipProvider } from "components/ui/tooltip";
+import { ScrollProgress } from "components/layout/scroll-progress";
+import { DockNav } from "components/layout/dock-nav";
+import { MobileNav } from "components/layout/mobile-nav";
 import Loading from "./loading";
 import "styles/globals.css";
 import { ThemeContext } from "context";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { LayoutProps } from "types";
 
 const inter = Inter({
@@ -21,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps) {
 			<head>
 				<JsonLd />
 			</head>
-			<body className={inter.className}>
+			<body className={`${inter.className} pt-16 md:pt-20`}>
 				<a
 					href="#intro"
 					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-light focus:text-white focus:rounded"
@@ -29,14 +34,19 @@ export default function RootLayout({ children }: LayoutProps) {
 					Skip to content
 				</a>
 				<ThemeContext>
-					<AppHeader />
-					<main className="pt-20">
-						<Suspense fallback={<Loading />}>
-							{children}
-							<Analytics />
-						</Suspense>
-					</main>
-					<AppFooter />
+					<TooltipProvider delayDuration={0}>
+						<ScrollProgress />
+						<main>
+							<Suspense fallback={<Loading />}>
+								{children}
+								<Analytics />
+								<SpeedInsights />
+							</Suspense>
+						</main>
+						<AppFooter />
+						<MobileNav />
+						<DockNav />
+					</TooltipProvider>
 				</ThemeContext>
 			</body>
 		</html>

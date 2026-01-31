@@ -1,29 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import { HeadingDivider } from "components";
 import { TECHNOLOGIES } from "../../../constants";
 import type { TechnologyItem } from "types";
-
-const fadeInLeft = {
-	initial: { x: -200, opacity: 0 },
-	animate: { x: 0, opacity: 1 },
-	transition: { duration: 0.9, ease: [0.17, 0.55, 0.55, 1], delay: 0.5 }
-};
-
-const techCardVariants = (index: number) => ({
-	initial: { y: 250 / (index || 1), opacity: 0 },
-	animate: {
-		y: 0,
-		opacity: 1,
-		transition: {
-			duration: 0.5,
-			ease: [0.17, 0.55, 0.55, 1],
-			delay: index === 0 ? 0 : 0.5 * index
-		}
-	}
-});
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface ProcessedTechnology {
 	id: string;
@@ -31,11 +12,56 @@ interface ProcessedTechnology {
 	items: (TechnologyItem & { id: string })[];
 }
 
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.12,
+			delayChildren: 0.1
+		}
+	}
+};
+
+const categoryVariants = {
+	hidden: { opacity: 0, y: 30 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+			ease: [0.25, 0.1, 0.25, 1]
+		}
+	}
+};
+
+const iconContainerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.05,
+			delayChildren: 0.2
+		}
+	}
+};
+
+const iconVariants = {
+	hidden: { opacity: 0, scale: 0 },
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			type: "spring",
+			stiffness: 200,
+			damping: 15
+		}
+	}
+};
+
 export function TechnologiesSection() {
-	const textRef = useRef(null);
-	const stackRef = useRef(null);
-	const isTextInView = useInView(textRef, { once: true });
-	const isStackInView = useInView(stackRef, { once: true });
+	const ref = useRef<HTMLDivElement>(null);
+	const isInView = useInView(ref, { once: true, margin: "-50px" });
 
 	const technologies: ProcessedTechnology[] = TECHNOLOGIES.map((tech, index) => ({
 		id: `${tech.category}-${index}`,
@@ -51,48 +77,75 @@ export function TechnologiesSection() {
 		<section id="tech" className="section">
 			<HeadingDivider title="Technologies" />
 			<motion.p
-				ref={textRef}
 				tabIndex={0}
-				className="my-5 text-2xl"
-				variants={fadeInLeft}
-				initial="initial"
-				animate={isTextInView ? "animate" : "initial"}
+				className="my-5 text-xl md:text-2xl"
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
+				transition={{ duration: 0.5 }}
 			>
 				I have worked with the following technologies and tools:
 			</motion.p>
 
 			{!!technologies.length && (
-				<div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-20">
-					{technologies.map((tech, index) => (
+				<motion.div
+					ref={ref}
+					className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 md:gap-16"
+					variants={containerVariants}
+					initial="hidden"
+					animate={isInView ? "visible" : "hidden"}
+				>
+					{technologies.map((tech) => (
 						<motion.div
 							key={tech.id}
-							ref={stackRef}
 							className="flex flex-col gap-4 flex-1 md:flex-auto"
-							variants={techCardVariants(index)}
-							initial="initial"
-							animate={isStackInView ? "animate" : "initial"}
+							variants={categoryVariants}
 						>
-							<h3 tabIndex={0} className="text-2xl font-bold">
-								{tech.category}
-							</h3>
-							<div className="flex items-center flex-wrap gap-x-5 gap-y-8">
+							<div className="relative">
+								<h3 tabIndex={0} className="text-xl md:text-2xl font-bold">
+									{tech.category}
+								</h3>
+								{/* Animated underline */}
+								<motion.div
+									className="absolute -bottom-1 left-0 h-0.5 bg-blue-light rounded-full"
+									initial={{ width: 0 }}
+									whileInView={{ width: "50%" }}
+									viewport={{ once: true }}
+									transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+								/>
+							</div>
+							<motion.div
+								className="flex items-center flex-wrap gap-x-5 gap-y-6"
+								variants={iconContainerVariants}
+							>
 								{tech.items.map((item) => (
-									<div key={item.id} className="group relative flex">
+									<motion.div
+										key={item.id}
+										className="group relative flex cursor-pointer"
+										variants={iconVariants}
+										whileHover={{
+											scale: 1.25,
+											rotate: [0, -5, 5, 0],
+											transition: { duration: 0.3 }
+										}}
+										whileTap={{ scale: 0.9 }}
+									>
 										<span tabIndex={0} role="img" aria-label={item.name}>
 											{item.icon}
 										</span>
-										<span
-											className="group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity bg-surface-overlay text-sm text-on-surface-overlay rounded-md absolute left-1/2
-                      -translate-x-1/2 translate-y-full opacity-0 mt-3 mx-auto px-2 w-max"
+										<motion.span
+											className="pointer-events-none absolute left-1/2 -translate-x-1/2 translate-y-full mt-2 px-2 py-1 text-sm bg-surface-overlay text-on-surface-overlay rounded-md whitespace-nowrap z-10"
+											initial={{ opacity: 0, y: -5 }}
+											whileHover={{ opacity: 1, y: 0 }}
 										>
 											{item.name}
-										</span>
-									</div>
+										</motion.span>
+									</motion.div>
 								))}
-							</div>
+							</motion.div>
 						</motion.div>
 					))}
-				</div>
+				</motion.div>
 			)}
 		</section>
 	);

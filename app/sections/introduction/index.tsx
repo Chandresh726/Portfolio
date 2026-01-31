@@ -1,105 +1,71 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import BlurFade from "components/magicui/blur-fade";
+import { AgeCounter } from "components/AgeCounter";
+import { RichText } from "components/RichText";
 import GreetingLottie from "./DisplayLottie";
+import { FileText, Linkedin } from "lucide-react";
+import personalData from "content/personal.json";
 
-const fadeInLeft = {
-	initial: { x: -200, opacity: 0 },
-	animate: { x: 0, opacity: 1 },
-	transition: { duration: 0.9, ease: [0.17, 0.55, 0.55, 1], delay: 0.5 }
-};
-
-const fadeInUp = {
-	initial: { y: 50, opacity: 0 },
-	animate: { y: 0, opacity: 1 },
-	transition: { duration: 0.9, ease: [0.17, 0.55, 0.55, 1], delay: 0.5 }
-};
+const BLUR_FADE_DELAY = 0.02;
 
 export function WelcomeSection() {
-	const ref = useRef(null);
 	const introRef = useRef(null);
-
-	const [count, setCount] = useState(0);
-	const [text] = useState([
-		"Software Engineer",
-		"Freelancer",
-		"Web3 Enthusiast",
-		"Gamer",
-		"Traveller"
-	]);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCount((prev) => (prev === 4 ? 0 : prev + 1));
-		}, 3000);
-
-		return () => clearInterval(interval);
-	}, []);
 
 	return (
 		<section id="intro" className="section" ref={introRef}>
 			<div className="grid grid-cols-1 md:grid-cols-[1fr_0.4fr] lg:grid-cols-[1fr_0.6fr] gap-4 items-center">
 				<div className="py-5 md:py-10">
-					<motion.h1
-						tabIndex={0}
-						ref={ref}
-						className="text-2xl md:text-4xl xl:text-5xl font-bold"
-						{...fadeInLeft}
-					>
-						<p>
-							Hi, I&apos;m <mark>Chandresh Kumar</mark>
+					<BlurFade delay={BLUR_FADE_DELAY}>
+						<h1 tabIndex={0} className="text-3xl md:text-4xl xl:text-5xl font-bold">
+							<p>
+								Hi, I&apos;m <mark>Chandresh Kumar</mark>
+							</p>
+						</h1>
+					</BlurFade>
+
+					<BlurFade delay={BLUR_FADE_DELAY * 2}>
+						<div className="mt-4">
+							<AgeCounter />
+						</div>
+					</BlurFade>
+
+					<BlurFade delay={BLUR_FADE_DELAY * 3}>
+						<p className="mt-3 mb-6 text-text-muted text-lg md:text-xl leading-relaxed">
+							<RichText text={personalData.shortBio} />
 						</p>
-					</motion.h1>
+					</BlurFade>
 
-					<div className="mt-5 relative flex flex-col overflow-hidden">
-						<motion.p
-							ref={ref}
-							className="text-[17px] md:text-2xl transform-none opacity-100"
-							{...fadeInLeft}
-						>
-							-
-							<AnimatePresence mode="wait">
-								<motion.span
-									key={count}
-									initial={{ y: 50, opacity: 0 }}
-									animate={{ y: 0, opacity: 1 }}
-									exit={{ y: -50, opacity: 0 }}
-									transition={{ duration: 0.5, ease: "easeInOut" }}
-									className="absolute left-[13px]"
-								>
-									<mark>{text[count]}</mark>
-								</motion.span>
-							</AnimatePresence>
-						</motion.p>
-					</div>
-
-					<motion.p
-						tabIndex={0}
-						ref={ref}
-						className="mt-3 mb-10 text-text-muted text-xl"
-						{...fadeInLeft}
-					>
-						Hang out and check out what I&apos;ve been working on.
-					</motion.p>
-
-					<motion.div ref={ref} {...fadeInUp}>
-						<a
-							href={process.env.NEXT_PUBLIC_RESUME_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							tabIndex={0}
-							className="btn"
-							aria-label="view resume"
-						>
-							View Resume
-						</a>
-					</motion.div>
+					<BlurFade delay={BLUR_FADE_DELAY * 4}>
+						<div className="flex flex-wrap gap-4">
+							<a
+								href={process.env.NEXT_PUBLIC_RESUME_URL}
+								target="_blank"
+								rel="noopener noreferrer"
+								tabIndex={0}
+								className="btn flex items-center gap-2"
+								aria-label="view resume"
+							>
+								<FileText className="size-4" />
+								View Resume
+							</a>
+							<a
+								href={personalData.linkedinUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="btn-outline flex items-center gap-2"
+							>
+								<Linkedin className="size-4" />
+								LinkedIn
+							</a>
+						</div>
+					</BlurFade>
 				</div>
 
-				<div className="hidden md:block">
+				<BlurFade delay={BLUR_FADE_DELAY * 2} className="hidden md:block">
 					<GreetingLottie animationPath="/lottie/coding.json" />
-				</div>
+				</BlurFade>
 			</div>
 		</section>
 	);

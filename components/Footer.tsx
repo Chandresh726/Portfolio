@@ -27,8 +27,17 @@ export function AppFooter() {
 				<div className="w-full md:w-1/3 flex justify-center md:justify-center">
 					<ScrollTop />
 				</div>
-				<div className="w-full md:w-1/3 flex justify-center md:justify-end">
+				<div className="w-full md:w-1/3 flex flex-col items-center md:items-end gap-2">
 					<p className="font-light">Copyright &copy; {year}</p>
+					<div className="flex gap-4 text-sm text-text-muted">
+						<a href="/sitemap.xml" className="hover:text-on-surface transition-colors">
+							Sitemap
+						</a>
+						<span>•</span>
+						<a href="/rss.xml" className="hover:text-on-surface transition-colors">
+							RSS
+						</a>
+					</div>
 				</div>
 			</div>
 		</motion.footer>
