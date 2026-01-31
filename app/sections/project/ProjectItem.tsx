@@ -45,13 +45,13 @@ export function ProjectItem({ project }: ProjectItemProps) {
 
 	return (
 		<motion.article
-			className="flex flex-col rounded-lg bg-surface-variant shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-outline-variant"
+			className="group flex flex-col rounded-xl bg-surface-variant/60 backdrop-blur-md shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-outline/20 hover:border-blue-light/30 overflow-hidden"
 			variants={itemVariants}
 			whileHover={{ scale: 1.02 }}
 			whileTap={{ scale: 0.98 }}
 		>
-			<figure>
-				<div className="aspect-[16/9] w-full h-full">
+			<figure className="relative overflow-hidden">
+				<div className="aspect-[16/9] w-full h-full transition-transform duration-500 group-hover:scale-105">
 					<Suspense fallback={<Loader />}>
 						<ImageGallery
 							items={galleryImages}
@@ -63,6 +63,8 @@ export function ProjectItem({ project }: ProjectItemProps) {
 						/>
 					</Suspense>
 				</div>
+				{/* Gradient overlay on hover */}
+				<div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 			</figure>
 
 			<div className="flex-[2] p-6 text-center flex flex-col gap-4">
@@ -70,19 +72,19 @@ export function ProjectItem({ project }: ProjectItemProps) {
 					<h3 tabIndex={0} className="text-2xl font-bold">
 						{title}
 					</h3>
-					<p tabIndex={0} className="leading-7 font-light line-clamp-2">
+					<p tabIndex={0} className="leading-7 font-light line-clamp-2 text-text-muted">
 						{description}
 					</p>
 				</header>
 
 				<footer className="flex flex-col gap-4">
 					{!!stack.length && (
-						<div className="flex-center flex-wrap gap-1">
+						<div className="flex-center flex-wrap gap-1.5">
 							{stack.map((tag) => (
 								<span
 									key={tag}
 									tabIndex={0}
-									className="px-2 text-sm leading-normal rounded bg-surface-interactive"
+									className="px-2.5 py-0.5 text-sm leading-normal rounded-md bg-blue-light/10 text-blue-light border border-blue-light/20 transition-colors hover:bg-blue-light/20"
 								>
 									{tag}
 								</span>
@@ -95,10 +97,10 @@ export function ProjectItem({ project }: ProjectItemProps) {
 							<Link
 								href={repoUrl}
 								target="_blank"
-								className="icon-link-btn"
+								className="icon-link-btn group/link"
 								title="Go to Github repository"
 							>
-								<VscSourceControl />
+								<VscSourceControl className="transition-transform group-hover/link:scale-110" />
 								<span>Source</span>
 							</Link>
 						)}
@@ -106,10 +108,10 @@ export function ProjectItem({ project }: ProjectItemProps) {
 							<Link
 								href={liveUrl}
 								target="_blank"
-								className="icon-link-btn"
+								className="icon-link-btn group/link"
 								title="Go to live address"
 							>
-								<FiExternalLink />
+								<FiExternalLink className="transition-transform group-hover/link:scale-110" />
 								<span>Demo</span>
 							</Link>
 						)}

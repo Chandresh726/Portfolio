@@ -15,7 +15,7 @@ export function HeadingDivider({ title = "" }: HeadingDividerProps) {
 				tabIndex={0}
 				initial={{ opacity: 0 }}
 				animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-				transition={{ delay: 1 }}
+				transition={{ delay: 0.05 }}
 				className="heading-divider"
 			>
 				{title}

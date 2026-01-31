@@ -2,19 +2,15 @@
 	"name": "Chandresh Kumar",
 	"firstName": "Chandresh",
 	"lastName": "Kumar",
-	"titles": ["Software Engineer", "Freelancer", "Web3 Enthusiast", "Gamer", "Traveller"],
-	"tagline": "Hang out and check out what I've been working on.",
+	"jobTitle": "Software Engineer",
+	"shortBio": "[blue]Software Engineer[/blue] building scalable, reliable systems with clean code and strong fundamentals - turning ideas into impactful software.",
 	"education": {
 		"institution": "KMIT",
 		"institutionUrl": "https://kmit.in",
 		"degree": "Computer Science",
 		"gpa": "8.0"
 	},
-	"bio": [
-		"I'm Chandresh Kumar, a software engineer who loves coding. My journey in tech began during my Computer Science studies at KMIT, where I earned a GPA of 8.0. Over the years, I've grown into a versatile developer working on both traditional web and blockchain projects.",
-		"As a freelancer, I enjoy working with clients to bring their ideas to life. Whether it's creating user-friendly websites or exploring the exciting world of Web3, I'm always eager to learn and adapt to new challenges. This mix of experiences has taught me to approach problems with creativity and precision.",
-		"Outside of coding, I enjoy solving problems and staying active in the developer community. When I'm not building digital solutions, I like to spend time outdoors, play video games, or relax with a good movie and music."
-	],
-	"expertise": ["traditional web", "blockchain", "Web3"],
-	"resumeUrl": "NEXT_PUBLIC_RESUME_URL"
+	"expertise": ["Web Development", "Cloud Solutions", "Web3", "Blockchain"],
+	"seoDescription": "I'm Chandresh Kumar, a Software Engineer who enjoys writing code and solving problems. I build scalable, reliable systems with clean code and strong fundamentals.",
+	"linkedinUrl": "https://www.linkedin.com/in/kchandresh726/"
 }
