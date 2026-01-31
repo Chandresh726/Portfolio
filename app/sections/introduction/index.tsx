@@ -39,12 +39,12 @@ export function WelcomeSection() {
 
 	return (
 		<section id="intro" className="section" ref={introRef}>
-			<div className="grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4 items-center">
+			<div className="grid grid-cols-1 md:grid-cols-[1fr_0.4fr] lg:grid-cols-[1fr_0.6fr] gap-4 items-center">
 				<div className="py-5 md:py-10">
 					<motion.h1
 						tabIndex={0}
 						ref={ref}
-						className="text-3xl md:text-5xl xl:text-6xl font-bold"
+						className="text-2xl md:text-4xl xl:text-5xl font-bold"
 						{...fadeInLeft}
 					>
 						<p>

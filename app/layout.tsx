@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps) {
 				</a>
 				<ThemeContext>
 					<AppHeader />
-					<main>
+					<main className="pt-20">
 						<Suspense fallback={<Loading />}>
 							{children}
 							<Analytics />
