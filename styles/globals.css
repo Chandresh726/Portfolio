@@ -1,10 +1,204 @@
-@import "base.css";
-@import "components.css";
-@import "utilities.css";
-@import "gallery.css";
+@import "tailwindcss";
 
+/* Custom theme configuration for Tailwind CSS 4 */
+@theme {
+	/* Brand colors */
+	--color-brand-light: #fbf8f3;
+	--color-brand-dark: #161618;
+	--color-brand-purple: #7928ca;
+	--color-brand-pink: #ff0080;
+
+	/* Blue colors */
+	--color-blue-lighter: #71c5ee;
+	--color-blue-light: #3182ce;
+	--color-blue-normal: #025091;
+
+	/* Card colors */
+	--color-card-dark: rgba(255, 255, 255, 0.04);
+	--color-card-light: rgba(255, 255, 255, 0.8);
+
+	/* Badge colors */
+	--color-badge-dark: rgba(226, 232, 240, 0.16);
+	--color-badge-light: #f8f0e3;
+
+	/* Transition timing functions */
+	--ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+	--ease-out-back: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+
+	/* Default transition duration */
+	--transition-duration: 300ms;
+}
+
+/* Base layer styles */
+@layer base {
+	body {
+		@apply bg-brand-light text-brand-dark;
+	}
+
+	.dark body,
+	body.dark,
+	html.dark body {
+		@apply bg-brand-dark text-brand-light;
+	}
+}
+
+/* Component styles */
+@layer components {
+	.section {
+		@apply py-12 md:py-16;
+	}
+
+	.container-md {
+		@apply max-w-7xl mx-auto px-4;
+	}
+
+	mark {
+		@apply bg-transparent text-blue-light;
+	}
+
+	.btn {
+		@apply min-h-[40px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal focus:ring-1 focus:ring-blue-normal;
+	}
+
+	.heading-divider {
+		@apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 text-brand-dark dark:text-brand-light;
+	}
+
+	.heading-divider::after {
+		content: "";
+		height: 1px;
+		flex: 1;
+		background: currentColor;
+		opacity: 0.2;
+	}
+
+	.icon-link-btn {
+		@apply flex items-center justify-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-light dark:hover:bg-badge-dark;
+	}
+
+	.icon-link-btn--outline {
+		@apply border border-badge-dark;
+	}
+
+	.icon-link-btn--active {
+		@apply bg-badge-light dark:bg-badge-dark;
+	}
+}
+
+/* Utility styles */
+@layer utilities {
+	.hide-scroll-bar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.hide-scroll-bar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.flex-center {
+		@apply flex items-center justify-center;
+	}
+}
+
+/* Global styles */
 html {
-  overflow-x: hidden;
-  position: relative;
-  width: 100%;
+	overflow-x: hidden;
+	position: relative;
+	width: 100%;
+	scroll-padding-top: 80px;
+}
+
+/* Focus indicators for accessibility */
+*:focus-visible {
+	outline: 2px solid var(--color-blue-light);
+	outline-offset: 2px;
+}
+
+/* Image gallery styles */
+.gallery-item.image-gallery {
+	width: inherit;
+	height: inherit;
+}
+
+.gallery-item
+	:is(
+		.image-gallery-content,
+		.image-gallery-slide-wrapper,
+		.image-gallery-swipe,
+		.image-gallery-slides,
+		.image-gallery-slide,
+		.image-gallery-slide img
+	) {
+	width: inherit;
+	height: inherit;
+}
+
+.gallery-item .image-gallery-slide {
+	cursor: default;
+}
+
+.gallery-item .image-gallery-slide img {
+	height: inherit;
+	width: inherit;
+	object-fit: cover;
+}
+
+.gallery-item :is(.image-gallery-left-nav, .image-gallery-right-nav) {
+	top: 0;
+	bottom: 0;
+	transform: none;
+	padding-left: 0;
+	padding-right: 0;
+	opacity: 0.1;
+	transition: opacity 0.3s;
+}
+
+.gallery-item .image-gallery-svg {
+	height: 4rem !important;
+}
+
+.gallery-item .image-gallery-fullscreen-button {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 60px;
+	width: calc(100% - 120px);
+	padding: 1.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.gallery-item .image-gallery-fullscreen-button .image-gallery-svg {
+	height: 2rem !important;
+	width: 2rem !important;
+}
+
+.gallery-item:hover .image-gallery-fullscreen-button {
+	opacity: 1;
+	cursor: zoom-in;
+}
+
+.gallery-item .image-gallery-right-nav:hover,
+.gallery-item .image-gallery-left-nav:hover {
+	opacity: 1;
+}
+
+.gallery-item .image-gallery-icon:focus {
+	opacity: 1;
+}
+
+.image-gallery-content.fullscreen .image-gallery-fullscreen-button {
+	display: none;
+}
+
+.image-gallery-content.fullscreen .image-gallery-slide img {
+	object-fit: contain;
+}
+
+#projects .image-gallery-index {
+	display: none;
 }

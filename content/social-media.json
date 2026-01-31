@@ -1,0 +1,26 @@
+[
+	{
+		"id": "linkedin",
+		"title": "Visit LinkedIn profile",
+		"url": "https://www.linkedin.com/in/kchandresh726/",
+		"iconName": "BsLinkedin"
+	},
+	{
+		"id": "github",
+		"title": "Visit Github profile",
+		"url": "https://github.com/Chandresh726",
+		"iconName": "BsGithub"
+	},
+	{
+		"id": "mail",
+		"title": "Send me an email",
+		"url": "mailto://kchandresh726@gmail.com",
+		"iconName": "BsFillEnvelopeOpenFill"
+	},
+	{
+		"id": "X",
+		"title": "Visit X profile",
+		"url": "https://twitter.com/Chandresh_726",
+		"iconName": "FaXTwitter"
+	}
+]
