@@ -6,7 +6,11 @@
 		"location": "Hyderabad",
 		"start": "Oct 2023",
 		"end": "Present",
-		"description": "Migrated 20+ client APIs from APIGEE to AWS API Gateway + Lambda (Golang), reducing latency by ~25%. Built internal AI-powered chat app using RAG and MCP. Managed cloud infrastructure with Terraform and established disaster recovery for 5+ microservices.",
+		"highlights": [
+			"Migrated **20+ client APIs** from APIGEE proxies to **AWS API Gateway + Lambda (Golang)**, improving maintainability, reducing infrastructure cost, and lowering end-to-end API latency by **~25%**",
+			"Built an internal **AI-powered** chat application for engineering teams using **RAG and MCP**, with integrations into enterprise tooling to support knowledge retrieval, automated workflows, and efficient troubleshooting",
+			"Built and managed **cloud infrastructure using Terraform**, enabling consistent provisioning and automated setups. Established **disaster recovery** for 5+ microservices via us-west-2 replication, ensuring high availability"
+		],
 		"technologies": ["AWS", "Golang", "Terraform", "Lambda", "API Gateway", "RAG", "MCP"]
 	},
 	{
@@ -16,7 +20,11 @@
 		"location": "Hyderabad",
 		"start": "Sept 2022",
 		"end": "Sept 2023",
-		"description": "Developed 20+ RESTful APIs using Spring Boot with Spring Batch. Built CI/CD pipelines with Jenkins for AWS ECS microservices, integrating SonarQube, Veracode, and Wiz. Created Splunk and Dynatrace dashboards for monitoring.",
+		"highlights": [
+			"Developed and maintained **20+ RESTful APIs** using **Spring Boot**, integrating **Spring Batch** for scheduled jobs and addressing security vulnerabilities to support stable production releases",
+			"Built **CI/CD pipelines** using **Jenkins** for multiple **AWS ECS** microservices, integrating **SonarQube**, **Veracode**, and **Wiz** for automated quality and security checks",
+			"Created **Splunk** and **Dynatrace** dashboards to monitor application health, logs, and performance in real time"
+		],
 		"technologies": ["Spring Boot", "Jenkins", "AWS ECS", "Splunk", "Dynatrace", "SonarQube"]
 	},
 	{
@@ -26,7 +34,9 @@
 		"location": "Hyderabad",
 		"start": "Sept 2021",
 		"end": "Dec 2021",
-		"description": "Developed ReactJS web solutions for KMIT, NGIT, and KMEC institutions, including modules for attendance, exam results, and live classroom video streaming.",
+		"highlights": [
+			"Developed advanced **ReactJS** web solutions for **KMIT, NGIT, and KMEC** institutions, including modules for attendance, exam results, and live classroom video streaming"
+		],
 		"technologies": ["React", "JavaScript", "Web Development"]
 	}
 ]

@@ -4,7 +4,9 @@ import {
 	WelcomeSection,
 	AboutSection,
 	TechnologiesSection,
-	ProjectsSection
+	ProjectsSection,
+	EducationSection,
+	ContactSection
 } from "app/sections";
 import { ExperienceSection } from "app/sections/experience";
 
@@ -15,7 +17,9 @@ export default function Page() {
 			<ExperienceSection />
 			<ProjectsSection />
 			<AboutSection />
+			<EducationSection />
 			<TechnologiesSection />
+			<ContactSection />
 		</div>
 	);
 }
