@@ -25,6 +25,7 @@ export interface SocialMediaItem {
 export interface TechnologyItem {
 	name: string;
 	icon: ReactNode;
+	color?: string;
 }
 
 export interface TechnologyCategory {

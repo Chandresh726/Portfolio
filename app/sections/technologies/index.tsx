@@ -4,7 +4,7 @@ import { HeadingDivider } from "components";
 import { TECHNOLOGIES } from "../../../constants";
 import type { TechnologyItem } from "types";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface ProcessedTechnology {
 	id: string;
@@ -59,6 +59,39 @@ const iconVariants = {
 	}
 };
 
+function TechIcon({ item }: { item: TechnologyItem & { id: string } }) {
+	const [isHovered, setIsHovered] = useState(false);
+
+	return (
+		<motion.div
+			key={item.id}
+			className="group relative flex cursor-pointer"
+			variants={iconVariants}
+			whileHover={{
+				scale: 1.25,
+				rotate: [0, -5, 5, 0],
+				transition: { duration: 0.3 }
+			}}
+			whileTap={{ scale: 0.9 }}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
+			style={{ color: isHovered && item.color ? item.color : undefined }}
+		>
+			<span tabIndex={0} role="img" aria-label={item.name} className="transition-colors duration-300">
+				{item.icon}
+			</span>
+			<motion.span
+				className="pointer-events-none absolute left-1/2 -translate-x-1/2 translate-y-full mt-2 px-2 py-1 text-sm bg-surface-overlay text-on-surface-overlay rounded-md whitespace-nowrap z-10"
+				initial={{ opacity: 0, y: -5 }}
+				animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: -5 }}
+				transition={{ duration: 0.2 }}
+			>
+				{item.name}
+			</motion.span>
+		</motion.div>
+	);
+}
+
 export function TechnologiesSection() {
 	const ref = useRef<HTMLDivElement>(null);
 	const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -69,7 +102,8 @@ export function TechnologiesSection() {
 		items: tech.items.map((item, itemIndex) => ({
 			id: `${tech.category}-${item.name}-${itemIndex}`,
 			name: item.name,
-			icon: item.icon
+			icon: item.icon,
+			color: item.color
 		}))
 	}));
 
@@ -84,13 +118,13 @@ export function TechnologiesSection() {
 				viewport={{ once: true }}
 				transition={{ duration: 0.5 }}
 			>
-				I have worked with the following technologies and tools:
+				I have worked with the following technologies:
 			</motion.p>
 
 			{!!technologies.length && (
 				<motion.div
 					ref={ref}
-					className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 md:gap-16"
+					className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16"
 					variants={containerVariants}
 					initial="hidden"
 					animate={isInView ? "visible" : "hidden"}
@@ -119,28 +153,7 @@ export function TechnologiesSection() {
 								variants={iconContainerVariants}
 							>
 								{tech.items.map((item) => (
-									<motion.div
-										key={item.id}
-										className="group relative flex cursor-pointer"
-										variants={iconVariants}
-										whileHover={{
-											scale: 1.25,
-											rotate: [0, -5, 5, 0],
-											transition: { duration: 0.3 }
-										}}
-										whileTap={{ scale: 0.9 }}
-									>
-										<span tabIndex={0} role="img" aria-label={item.name}>
-											{item.icon}
-										</span>
-										<motion.span
-											className="pointer-events-none absolute left-1/2 -translate-x-1/2 translate-y-full mt-2 px-2 py-1 text-sm bg-surface-overlay text-on-surface-overlay rounded-md whitespace-nowrap z-10"
-											initial={{ opacity: 0, y: -5 }}
-											whileHover={{ opacity: 1, y: 0 }}
-										>
-											{item.name}
-										</motion.span>
-									</motion.div>
+									<TechIcon key={item.id} item={item} />
 								))}
 							</motion.div>
 						</motion.div>

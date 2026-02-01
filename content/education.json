@@ -1,0 +1,24 @@
+[
+	{
+		"institution": "Keshav Memorial Institute of Technology",
+		"logo": "/images/kmit.png",
+		"degree": "B.Tech",
+		"field": "Computer Science and Engineering",
+		"location": "Hyderabad",
+		"start": "2019",
+		"end": "2023",
+		"grade": "8.0",
+		"gradeType": "GPA"
+	},
+	{
+		"institution": "Narayana Junior College",
+		"logo": "/images/narayana.png",
+		"degree": "Higher Secondary",
+		"field": "MPC",
+		"location": "ECIL, Hyderabad",
+		"start": "2017",
+		"end": "2018",
+		"grade": "96.5",
+		"gradeType": "Percentage"
+	}
+]

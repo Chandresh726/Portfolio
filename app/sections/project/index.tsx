@@ -9,9 +9,8 @@ import { Projects } from "../../projects/components/Projects";
 import { SITE_ROUTES, PROJECTS } from "../../../constants";
 
 const containerVariants = {
-	hidden: { opacity: 0 },
+	hidden: {},
 	visible: {
-		opacity: 1,
 		transition: {
 			staggerChildren: 0.1,
 			delayChildren: 0.1
@@ -50,9 +49,7 @@ export function ProjectsSection() {
 					}
 				>
 					<ErrorBoundary FallbackComponent={ErrorFallback}>
-						<motion.div variants={itemVariants}>
-							<Projects projects={PROJECTS} limit={3} />
-						</motion.div>
+						<Projects projects={PROJECTS} limit={3} />
 					</ErrorBoundary>
 				</Suspense>
 

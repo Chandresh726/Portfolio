@@ -17,13 +17,13 @@
 	/* Semantic color tokens - Light mode defaults */
 	--color-surface: #fbf8f3;
 	--color-on-surface: #161618;
-	--color-surface-variant: rgba(255, 255, 255, 0.8);
-	--color-surface-interactive: #f8f0e3;
+	--color-surface-variant: rgba(0, 0, 0, 0.03);
+	--color-surface-interactive: #f0e9dc;
 	--color-surface-backdrop: rgba(251, 248, 243, 0.9);
-	--color-outline: #e5e7eb;
-	--color-outline-variant: #e5e7eb;
+	--color-outline: #d1d5db;
+	--color-outline-variant: #d1d5db;
 	--color-divider: #9ca3af;
-	--color-surface-muted: #f3f4f6;
+	--color-surface-muted: #edeae5;
 	--color-text-muted: #6b7280;
 	--color-surface-overlay: #1f2937;
 	--color-on-surface-overlay: #f3f4f6;
@@ -55,7 +55,7 @@
 /* Component styles */
 @layer components {
 	.section {
-		@apply py-8 md:py-12 lg:py-16;
+		@apply py-6 md:py-10 lg:py-12;
 	}
 
 	.container-md {

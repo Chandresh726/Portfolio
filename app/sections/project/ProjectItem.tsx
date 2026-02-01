@@ -12,11 +12,11 @@ import type { ProjectItemProps } from "types";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const itemVariants = {
-	initial: {
+	hidden: {
 		opacity: 0,
 		y: 20
 	},
-	whileInView: {
+	visible: {
 		opacity: 1,
 		y: 0,
 		transition: {
@@ -45,9 +45,9 @@ export function ProjectItem({ project }: ProjectItemProps) {
 
 	return (
 		<motion.article
-			className="group flex flex-col rounded-xl bg-surface-variant/60 backdrop-blur-md shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-outline/20 hover:border-blue-light/30 overflow-hidden"
+			className="group flex flex-col rounded-xl bg-surface-variant/60 backdrop-blur-md shadow-md hover:shadow-2xl transition-[shadow,border-color] duration-300 border border-outline/20 hover:border-blue-light/30 overflow-hidden"
 			variants={itemVariants}
-			whileHover={{ scale: 1.02 }}
+			whileHover={{ scale: 1.02, y: -8 }}
 			whileTap={{ scale: 0.98 }}
 		>
 			<figure className="relative overflow-hidden">
