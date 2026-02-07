@@ -12,7 +12,7 @@
 		],
 		"liveUrl": "https://finara.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Finara-v2",
-		"stack": ["Next", "Typescript", "Shancn", "Postgres", "AI SDK", "Tailwind CSS"]
+		"stack": ["Next", "Typescript", "Shancn", "Postgres", "AI SDK"]
 	},
 	{
 		"title": "Web Crawler",
@@ -42,6 +42,14 @@
 		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
 	},
 	{
+		"title": "Passm",
+		"description": "A CLI password manager",
+		"images": ["/images/passm/1.png", "/images/passm/2.png", "/images/passm/3.png"],
+		"liveUrl": "https://passm.slope726.in/",
+		"repoUrl": "https://github.com/Chandresh726/Passm",
+		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
+	},
+	{
 		"title": "TruShield",
 		"description": "A landing page for a pen testing service providing startup company",
 		"images": [
@@ -53,14 +61,6 @@
 		"liveUrl": "https://www.trushield.tech/",
 		"repoUrl": null,
 		"stack": ["React", "Javascript", "Tailwind CSS"]
-	},
-	{
-		"title": "Passm",
-		"description": "A CLI password manager",
-		"images": ["/images/passm/1.png", "/images/passm/2.png", "/images/passm/3.png"],
-		"liveUrl": "https://passm.slope726.in/",
-		"repoUrl": "https://github.com/Chandresh726/Passm",
-		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
 	},
 	{
 		"title": "Samraksha",

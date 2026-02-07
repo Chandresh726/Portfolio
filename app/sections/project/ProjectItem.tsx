@@ -1,15 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import ImageGallery from "react-image-gallery";
-import { Loader } from "components";
+import { ImageCarousel } from "components/ui/image-carousel";
 import { VscSourceControl } from "react-icons/vsc";
 import { FiExternalLink } from "react-icons/fi";
 import type { ProjectItemProps } from "types";
-
-import "react-image-gallery/styles/css/image-gallery.css";
 
 const itemVariants = {
 	hidden: {
@@ -28,20 +24,7 @@ const itemVariants = {
 export function ProjectItem({ project }: ProjectItemProps) {
 	const { description, images, liveUrl, repoUrl, stack, title } = project;
 
-	let galleryImages =
-		images?.map((img) => ({
-			original: img,
-			loading: "lazy" as const
-		})) || [];
-
-	if (galleryImages.length === 0)
-		galleryImages = [
-			{
-				original:
-					"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQppJKxBxJI-9UWLe2VVmzuBd24zsq4_ihxZw&s",
-				loading: "lazy" as const
-			}
-		];
+	const carouselImages = images && images.length > 0 ? images : [];
 
 	return (
 		<motion.article
@@ -52,16 +35,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 		>
 			<figure className="relative overflow-hidden">
 				<div className="aspect-[16/9] w-full h-full transition-transform duration-500 group-hover:scale-105">
-					<Suspense fallback={<Loader />}>
-						<ImageGallery
-							items={galleryImages}
-							showPlayButton={false}
-							showThumbnails={false}
-							showIndex
-							lazyLoad
-							additionalClass="gallery-item"
-						/>
-					</Suspense>
+					<ImageCarousel images={carouselImages} alt={title} />
 				</div>
 				{/* Gradient overlay on hover */}
 				<div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -69,7 +43,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 
 			<div className="flex-[2] p-6 text-center flex flex-col gap-4">
 				<header className="flex-1 flex items-center justify-start flex-col">
-					<h3 tabIndex={0} className="text-2xl font-bold">
+					<h3 tabIndex={0} className="text-2xl font-bold transition-colors group-hover:text-blue-light">
 						{title}
 					</h3>
 					<p tabIndex={0} className="leading-7 font-light line-clamp-2 text-text-muted">

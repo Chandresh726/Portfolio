@@ -49,7 +49,7 @@ export function ProjectsSection() {
 					}
 				>
 					<ErrorBoundary FallbackComponent={ErrorFallback}>
-						<Projects projects={PROJECTS} limit={3} />
+						<Projects projects={PROJECTS} limit={4} />
 					</ErrorBoundary>
 				</Suspense>
 
