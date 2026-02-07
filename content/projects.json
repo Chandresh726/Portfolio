@@ -21,7 +21,9 @@
 			"/images/crawler/1.png",
 			"/images/crawler/2.png",
 			"/images/crawler/3.png",
-			"/images/crawler/4.png"
+			"/images/crawler/4.png",
+			"/images/crawler/5.png",
+			"/images/crawler/6.png"
 		],
 		"liveUrl": "https://crawler.trushield.tech/",
 		"repoUrl": null,
