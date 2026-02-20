@@ -15,6 +15,22 @@
 		"stack": ["Next", "Typescript", "Shancn", "Postgres", "AI SDK"]
 	},
 	{
+		"title": "Switchy",
+		"description": "A local job search command center with an automated scraping engine and scheduler that tracks openings from selected companies, scores role fit against your profile, and helps you apply faster with AI-assisted cover letter and referral message generation.",
+		"images": [
+			"/images/switchy/1.png",
+			"/images/switchy/2.png",
+			"/images/switchy/3.png",
+			"/images/switchy/4.png",
+			"/images/switchy/5.png",
+			"/images/switchy/6.png",
+			"/images/switchy/7.png"
+		],
+		"liveUrl": "https://switchy.slope726.in/",
+		"repoUrl": "https://github.com/Chandresh726/Switchy",
+		"stack": ["Next", "Typescript", "AI SDK", "Shadcn", "SQL Lite"]
+	},
+	{
 		"title": "Web Crawler",
 		"description": "A JavaScript-based web crawler for automated data extraction.",
 		"images": [
