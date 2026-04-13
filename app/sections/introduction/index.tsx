@@ -5,7 +5,8 @@ import BlurFade from "components/magicui/blur-fade";
 import { AgeCounter } from "components/AgeCounter";
 import { RichText } from "components/RichText";
 import GreetingLottie from "./DisplayLottie";
-import { FileText, Linkedin } from "lucide-react";
+import { FileText } from "lucide-react";
+import { BsLinkedin } from "react-icons/bs";
 import personalData from "content/personal.json";
 
 const BLUR_FADE_DELAY = 0.02;
@@ -56,7 +57,7 @@ export function WelcomeSection() {
 								rel="noopener noreferrer"
 								className="btn-outline flex items-center gap-2"
 							>
-								<Linkedin className="size-4" />
+								<BsLinkedin className="size-4" />
 								LinkedIn
 							</a>
 						</div>

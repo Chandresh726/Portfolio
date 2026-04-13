@@ -25,7 +25,7 @@ const textVariants = {
 		filter: "blur(0px)",
 		transition: {
 			duration: 0.6,
-			ease: [0.25, 0.1, 0.25, 1]
+			ease: [0.25, 0.1, 0.25, 1] as const
 		}
 	}
 };
@@ -79,7 +79,7 @@ export function AboutSection() {
 						onMouseMove={handleMouseMove}
 						onMouseLeave={handleMouseLeave}
 						animate={{ x: mousePos.x, y: mousePos.y }}
-						transition={{ type: "spring", stiffness: 150, damping: 15 }}
+						transition={{ type: "spring" as const, stiffness: 150, damping: 15 }}
 					>
 						<Image
 							src="/images/about-pic.jpg"

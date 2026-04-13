@@ -36,7 +36,7 @@ const cardVariants = {
 		y: 0,
 		transition: {
 			duration: 0.5,
-			ease: [0.25, 0.1, 0.25, 1]
+			ease: [0.25, 0.1, 0.25, 1] as const
 		}
 	}
 };
@@ -128,7 +128,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 						initial={{ opacity: 0, height: 0 }}
 						animate={{ opacity: 1, height: "auto" }}
 						exit={{ opacity: 0, height: 0 }}
-						transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+						transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const }}
 						className="overflow-hidden"
 					>
 						<motion.ul

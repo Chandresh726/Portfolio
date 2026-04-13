@@ -49,7 +49,7 @@ const menuVariants = {
 	closed: {
 		x: "100%",
 		transition: {
-			type: "spring",
+			type: "spring" as const,
 			stiffness: 400,
 			damping: 40
 		}
@@ -57,7 +57,7 @@ const menuVariants = {
 	open: {
 		x: 0,
 		transition: {
-			type: "spring",
+			type: "spring" as const,
 			stiffness: 400,
 			damping: 40
 		}
@@ -117,7 +117,7 @@ export function MobileNav() {
 				className="fixed top-0 left-0 right-0 h-16 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline/20"
 				initial={{ y: -100 }}
 				animate={{ y: 0 }}
-				transition={{ type: "spring", stiffness: 100, damping: 20 }}
+				transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
 			>
 				<div className="flex items-center justify-between h-full px-4">
 					<Link

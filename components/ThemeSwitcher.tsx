@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const spring = {
-	type: "spring",
+	type: "spring" as const,
 	stiffness: 700,
 	damping: 30
 };

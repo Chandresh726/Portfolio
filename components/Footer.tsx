@@ -18,7 +18,7 @@ export function AppFooter() {
 			className="container-md py-10 mt-5 relative before:absolute before:top-0 before:left-4 before:w-[calc(100%-16px)] before:h-[1px] before:bg-divider"
 			initial={{ y: 50, opacity: 0 }}
 			animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] as const }}
 		>
 			<div className="flex flex-col md:flex-row justify-between items-center md:items-center gap-10 md:gap-0">
 				<div className="w-full md:w-1/3 flex justify-center md:justify-start">

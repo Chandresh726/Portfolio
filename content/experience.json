@@ -2,10 +2,22 @@
 	{
 		"company": "Experian",
 		"logo": "/images/experian.png",
+		"title": "Senior Software Engineer",
+		"location": "Hyderabad",
+		"start": "Apr 2026",
+		"end": "Present",
+		"highlights": [
+			"Continuing to lead backend and infrastructure initiatives at **Experian**."
+		],
+		"technologies": ["AWS", "Golang", "Terraform", "Lambda", "API Gateway"]
+	},
+	{
+		"company": "Experian",
+		"logo": "/images/experian.png",
 		"title": "Associate Software Engineer",
 		"location": "Hyderabad",
 		"start": "Oct 2023",
-		"end": "Present",
+		"end": "Mar 2026",
 		"highlights": [
 			"Migrated **20+ client APIs** from APIGEE proxies to **AWS API Gateway + Lambda (Golang)**, improving maintainability, reducing infrastructure cost, and lowering end-to-end API latency by **~25%**",
 			"Built an internal **AI-powered** chat application for engineering teams using **RAG and MCP**, with integrations into enterprise tooling to support knowledge retrieval, automated workflows, and efficient troubleshooting",

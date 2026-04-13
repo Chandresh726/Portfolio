@@ -60,7 +60,7 @@ export function DockNav() {
 			className="fixed inset-x-0 top-4 z-40 mx-auto hidden md:flex origin-top h-full max-h-14"
 			initial={{ y: -100, opacity: 0 }}
 			animate={{ y: 0, opacity: 1 }}
-			transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+			transition={{ type: "spring" as const, stiffness: 100, damping: 20, delay: 0.1 }}
 		>
 			<Dock
 				className="z-50 relative mx-auto flex min-h-full h-full items-center px-1

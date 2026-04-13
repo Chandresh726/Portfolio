@@ -24,7 +24,7 @@ const GreetingLottie = ({ animationPath }: GreetingLottieProps) => {
 			initial={{ x: -200, opacity: 0 }}
 			whileInView={{ x: 0, opacity: 1 }}
 			viewport={{ once: true }}
-			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1], delay: 0.2 }}
+			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] as const, delay: 0.2 }}
 		>
 			<Lottie loop autoplay animationData={animationData} />
 		</motion.div>
