@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps) {
 			<head>
 				<JsonLd />
 			</head>
-			<body className={`${inter.className} pt-12 md:pt-14`}>
+			<body className={`${inter.className} pt-12 md:pt-14 flex flex-col min-h-screen`}>
 				<a
 					href="#intro"
 					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-light focus:text-white focus:rounded"
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: LayoutProps) {
 				<ThemeContext>
 					<TooltipProvider delayDuration={0}>
 						<ScrollProgress />
-						<main>
+						<main className="flex-1">
 							<Suspense fallback={<Loading />}>
 								{children}
 								<Analytics />

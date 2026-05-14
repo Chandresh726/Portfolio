@@ -274,9 +274,14 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 					</motion.div>
 				)}
 
-				{/* Dot indicators - bottom center */}
+				{/* Dot indicators - bottom center, visible on hover */}
 				{images.length > 1 && (
-					<div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: isHovered ? 1 : 0 }}
+						transition={{ duration: 0.2 }}
+						className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10"
+					>
 						<div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-surface/80 backdrop-blur-sm">
 							{images.map((_, index) => (
 								<button
@@ -294,7 +299,7 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 								/>
 							))}
 						</div>
-					</div>
+					</motion.div>
 				)}
 			</div>
 

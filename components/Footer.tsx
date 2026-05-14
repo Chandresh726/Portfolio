@@ -15,28 +15,31 @@ export function AppFooter() {
 	return (
 		<motion.footer
 			ref={footerRef}
-			className="container-md py-4 mt-2 relative before:absolute before:top-0 before:left-4 before:right-4 sm:before:left-6 sm:before:right-6 md:before:left-8 md:before:right-8 lg:before:left-10 lg:before:right-10 xl:before:left-0 xl:before:right-0 before:h-[1px] before:bg-divider"
+			className="w-full py-4 mt-2"
 			initial={{ y: 50, opacity: 0 }}
 			animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
 			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] as const }}
 		>
-			<div className="flex flex-col md:flex-row justify-between items-center md:items-center gap-4 md:gap-0">
-				<div className="w-full md:w-1/3 flex justify-center md:justify-start">
-					<ConnectMedia />
-				</div>
-				<div className="w-full md:w-1/3 flex justify-center md:justify-center">
-					<ScrollTop />
-				</div>
-				<div className="w-full md:w-1/3 flex flex-col items-center md:items-end gap-2">
-					<p className="font-light">Copyright &copy; {year}</p>
-					<div className="flex gap-4 text-sm text-text-muted">
-						<a href="/sitemap.xml" className="hover:text-on-surface transition-colors">
-							Sitemap
-						</a>
-						<span>•</span>
-						<a href="/rss.xml" className="hover:text-on-surface transition-colors">
-							RSS
-						</a>
+			<div className="container-md">
+				<div className="border-t border-divider pt-4" />
+				<div className="flex flex-col md:flex-row justify-between items-center md:items-center gap-4 md:gap-0">
+					<div className="w-full md:w-1/3 flex justify-center md:justify-start">
+						<ConnectMedia />
+					</div>
+					<div className="w-full md:w-1/3 flex justify-center md:justify-center">
+						<ScrollTop />
+					</div>
+					<div className="w-full md:w-1/3 flex flex-col items-center md:items-end gap-2">
+						<p className="font-light">Copyright &copy; {year}</p>
+						<div className="flex gap-4 text-sm text-text-muted">
+							<a href="/sitemap.xml" className="hover:text-on-surface transition-colors">
+								Sitemap
+							</a>
+							<span>•</span>
+							<a href="/rss.xml" className="hover:text-on-surface transition-colors">
+								RSS
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>

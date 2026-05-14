@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { ErrorBoundary } from "react-error-boundary";
 import { HeadingDivider, ErrorFallback } from "components";
 import { Filter } from "./components/Filter";
@@ -10,19 +11,19 @@ import { PROJECTS } from "../../constants";
 export default function Page() {
 	const [category, setCategory] = useState<string | undefined>(undefined);
 
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
-	const onClick = (catName: string | undefined) => setCategory(catName);
-
 	return (
-		<section id="projects" className="section">
+		<motion.section
+			id="projects"
+			className="section"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.3 }}
+		>
 			<HeadingDivider title="Projects" />
-			<Filter onClick={onClick} />
+			<Filter onClick={(catName) => setCategory(catName)} />
 			<ErrorBoundary FallbackComponent={ErrorFallback}>
-				<Projects projects={PROJECTS} category={category} />
+				<Projects projects={PROJECTS} category={category} immediate />
 			</ErrorBoundary>
-		</section>
+		</motion.section>
 	);
 }

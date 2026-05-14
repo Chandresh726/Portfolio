@@ -13,6 +13,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 function getIconColor(label: string): string {
 	switch (label) {
@@ -57,6 +58,10 @@ const socialLinks = [
 
 export function DockNav() {
 	const [isMac, setIsMac] = useState(false);
+	const pathname = usePathname();
+	const isHome = pathname === "/";
+
+	const visibleNavItems = isHome ? navItems : [navItems[0]];
 
 	useEffect(() => {
 		setIsMac(navigator.platform.toUpperCase().includes("MAC"));
@@ -83,7 +88,7 @@ export function DockNav() {
         hover:bg-surface/25 hover:border-outline/30
         dark:hover:bg-surface/30 dark:hover:border-outline/15"
 			>
-				{navItems.map((item) => (
+				{visibleNavItems.map((item) => (
 					<DockIcon key={item.href}>
 						<Tooltip>
 							<TooltipTrigger asChild>

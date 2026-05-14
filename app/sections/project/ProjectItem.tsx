@@ -41,7 +41,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 
 			<div className="flex-[2] p-5 lg:p-6 text-center flex flex-col gap-4">
 				<header className="flex-1 flex items-center justify-start flex-col">
-					<h3 tabIndex={0} className="text-xl lg:text-2xl font-bold">
+					<h3 tabIndex={0} className="text-xl lg:text-2xl font-bold transition-colors group-hover:text-blue-light">
 						{title}
 					</h3>
 					<p tabIndex={0} className="text-sm lg:text-base leading-6 lg:leading-7 font-light line-clamp-2 text-text-muted">
