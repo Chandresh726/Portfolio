@@ -34,19 +34,17 @@ export function ProjectItem({ project }: ProjectItemProps) {
 			whileTap={{ scale: 0.98 }}
 		>
 			<figure className="relative overflow-hidden">
-				<div className="aspect-[16/9] w-full h-full transition-transform duration-500 group-hover:scale-105">
+				<div className="aspect-[16/9] w-full h-full">
 					<ImageCarousel images={carouselImages} alt={title} />
 				</div>
-				{/* Gradient overlay on hover */}
-				<div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 			</figure>
 
-			<div className="flex-[2] p-6 text-center flex flex-col gap-4">
+			<div className="flex-[2] p-5 lg:p-6 text-center flex flex-col gap-4">
 				<header className="flex-1 flex items-center justify-start flex-col">
-					<h3 tabIndex={0} className="text-2xl font-bold transition-colors group-hover:text-blue-light">
+					<h3 tabIndex={0} className="text-xl lg:text-2xl font-bold">
 						{title}
 					</h3>
-					<p tabIndex={0} className="leading-7 font-light line-clamp-2 text-text-muted">
+					<p tabIndex={0} className="text-sm lg:text-base leading-6 lg:leading-7 font-light line-clamp-2 text-text-muted">
 						{description}
 					</p>
 				</header>

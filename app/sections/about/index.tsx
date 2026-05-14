@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { HeadingDivider } from "components";
 import Image from "next/image";
 import { blurDataUrl } from "utils/theme-config";
@@ -31,7 +31,6 @@ const textVariants = {
 };
 
 export function AboutSection() {
-	const containerRef = useRef<HTMLDivElement>(null);
 	const textRef = useRef<HTMLDivElement>(null);
 	const isTextInView = useInView(textRef, { once: true, margin: "-100px" });
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -44,13 +43,6 @@ export function AboutSection() {
 		window.addEventListener("resize", checkMobile);
 		return () => window.removeEventListener("resize", checkMobile);
 	}, []);
-
-	const { scrollYProgress } = useScroll({
-		target: containerRef,
-		offset: ["start end", "end start"]
-	});
-
-	const imageY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		if (isMobile) return;
@@ -66,14 +58,10 @@ export function AboutSection() {
 	};
 
 	return (
-		<section id="about" className="section" ref={containerRef}>
+		<section id="about" className="section">
 			<HeadingDivider title="About me" />
-			<div className="pt-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
-				{/* Image with parallax and magnetic hover */}
-				<motion.div
-					className="w-full md:w-1/3 flex justify-center"
-					style={{ y: isMobile ? 0 : imageY }}
-				>
+			<div className="pt-4 flex flex-col md:flex-row items-center gap-5 md:gap-8">
+				<div className="w-full md:w-1/3 flex justify-center">
 					<motion.div
 						className="relative cursor-pointer"
 						onMouseMove={handleMouseMove}
@@ -89,17 +77,17 @@ export function AboutSection() {
 							className="rounded-xl shadow-2xl transition-transform duration-300 md:w-[300px] md:h-[400px]"
 							placeholder="blur"
 							blurDataURL={blurDataUrl}
-							priority
+							preload
 						/>
 						{/* Glow effect */}
 						<div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-blue-light/20 via-transparent to-blue-light/10 opacity-0 hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl" />
 					</motion.div>
-				</motion.div>
+				</div>
 
 				{/* Text with stagger animation */}
 				<motion.div
 					ref={textRef}
-					className="w-full md:w-2/3 text-base md:text-lg font-light leading-relaxed"
+					className="w-full md:w-2/3 text-base lg:text-lg font-light leading-relaxed"
 					variants={containerVariants}
 					initial="hidden"
 					animate={isTextInView ? "visible" : "hidden"}

@@ -149,7 +149,7 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 							fill
 							className="object-contain"
 							sizes="90vw"
-							priority
+							preload
 						/>
 					</motion.div>
 
@@ -244,7 +244,7 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 								fill
 								className="object-cover"
 								sizes="(max-width: 768px) 100vw, 50vw"
-								priority={currentIndex === 0}
+								preload={currentIndex === 0}
 							/>
 						</motion.div>
 					</AnimatePresence>

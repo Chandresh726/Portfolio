@@ -24,14 +24,14 @@ export function AgeCounter() {
 
 	if (years === null) {
 		return (
-			<div className="text-lg md:text-xl font-medium min-h-[28px]">
+			<div className="text-base sm:text-lg lg:text-xl font-medium min-h-[28px]">
 				<span className="tabular-nums opacity-0">been on earth for 00.000000000 years</span>
 			</div>
 		);
 	}
 
 	return (
-		<div className="text-lg md:text-xl font-medium min-h-[28px]">
+		<div className="text-base sm:text-lg lg:text-xl font-medium min-h-[28px]">
 			<span className="tabular-nums">been on earth for {years} years</span>
 		</div>
 	);

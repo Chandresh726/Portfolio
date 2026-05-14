@@ -54,6 +54,7 @@ function EducationCard({ education }: { education: Education }) {
 							src={education.logo}
 							alt={education.institution}
 							fill
+							sizes="(min-width: 768px) 48px, 40px"
 							className="object-cover"
 						/>
 					</div>
@@ -63,7 +64,7 @@ function EducationCard({ education }: { education: Education }) {
 				<div className="flex-1 min-w-0">
 					{/* Row 1: Institution + Timeline */}
 					<div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-4">
-						<h3 className="text-base md:text-lg font-semibold text-on-surface">
+						<h3 className="text-base lg:text-lg font-semibold text-on-surface">
 							{education.institution}
 						</h3>
 						<p className="text-sm text-text-muted tabular-nums whitespace-nowrap">
@@ -72,7 +73,7 @@ function EducationCard({ education }: { education: Education }) {
 					</div>
 					{/* Row 2: Degree/Field/Grade + Location */}
 					<div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4">
-						<p className="text-blue-light font-medium text-sm md:text-base flex items-center gap-2 flex-wrap">
+						<p className="text-blue-light font-medium text-sm lg:text-base flex items-center gap-2 flex-wrap">
 							{education.degree}: {education.field}
 							<span className="text-text-muted">•</span>
 							<span className="text-text-muted font-normal">
@@ -94,7 +95,7 @@ export function EducationSection() {
 		<section id="education" className="section">
 			<HeadingDivider title="Education" />
 			<motion.div
-				className="pt-10 flex flex-col gap-4"
+				className="pt-4 flex flex-col gap-2.5"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"

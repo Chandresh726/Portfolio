@@ -55,16 +55,16 @@
 /* Component styles */
 @layer components {
 	.section {
-		@apply py-6 md:py-10 lg:py-12;
+		@apply py-3 md:py-4 lg:py-5;
 	}
 
 	.container-md {
-		@apply max-w-5xl mx-auto px-3 sm:px-4;
+		@apply max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-0;
 	}
 
 	/* Touch-friendly button targets */
 	.btn {
-		@apply min-h-[44px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal focus:ring-1 focus:ring-blue-normal;
+		@apply min-h-[44px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal focus:ring-1 focus:ring-blue-normal cursor-pointer;
 	}
 
 	.btn-outline {
@@ -82,7 +82,7 @@
 	}
 
 	.heading-divider {
-		@apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 text-on-surface;
+		@apply flex items-center font-extrabold text-2xl sm:text-3xl lg:text-4xl relative w-full uppercase gap-4 text-on-surface;
 	}
 
 	.heading-divider::after {

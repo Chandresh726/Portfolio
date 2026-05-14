@@ -67,8 +67,8 @@ function parseHighlight(text: string): React.ReactNode[] {
 	});
 }
 
-function ExperienceCard({ experience }: { experience: Experience }) {
-	const [isExpanded, setIsExpanded] = useState(false);
+function ExperienceCard({ experience, defaultExpanded = false }: { experience: Experience; defaultExpanded?: boolean }) {
+	const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
 	return (
 		<motion.div
@@ -86,6 +86,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 							src={experience.logo}
 							alt={experience.company}
 							fill
+							sizes="(min-width: 768px) 48px, 40px"
 							className="object-cover"
 						/>
 					</div>
@@ -95,7 +96,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 				<div className="flex-1 min-w-0">
 					{/* Row 1: Title + Date */}
 					<div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-4">
-						<h3 className="text-base md:text-lg font-semibold text-on-surface flex items-center gap-2">
+						<h3 className="text-base lg:text-lg font-semibold text-on-surface flex items-center gap-2">
 							{experience.title}
 							<motion.span
 								animate={{ rotate: isExpanded ? 90 : 0 }}
@@ -111,7 +112,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 					</div>
 					{/* Row 2: Company + Location */}
 					<div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4">
-						<p className="text-blue-light font-medium text-sm md:text-base">
+						<p className="text-blue-light font-medium text-sm lg:text-base">
 							{experience.company}
 						</p>
 						<p className="text-text-muted text-sm whitespace-nowrap">
@@ -148,7 +149,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
 								<motion.li
 									key={index}
 									variants={bulletVariants}
-									className="relative pl-5 text-text-muted text-sm md:text-base leading-relaxed before:absolute before:left-0 before:top-[0.6em] before:size-1.5 before:rounded-full before:bg-blue-light"
+									className="relative pl-5 text-text-muted text-sm lg:text-base leading-relaxed before:absolute before:left-0 before:top-[0.6em] before:size-1.5 before:rounded-full before:bg-blue-light"
 								>
 									{parseHighlight(highlight)}
 								</motion.li>
@@ -166,7 +167,7 @@ export function ExperienceSection() {
 		<section id="experience" className="section">
 			<HeadingDivider title="Work Experience" />
 			<motion.div
-				className="pt-10 flex flex-col gap-4"
+				className="pt-4 flex flex-col gap-2.5"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"
@@ -176,6 +177,7 @@ export function ExperienceSection() {
 					<ExperienceCard
 						key={`${experience.company}-${experience.title}-${index}`}
 						experience={experience}
+						defaultExpanded={index === 0}
 					/>
 				))}
 			</motion.div>

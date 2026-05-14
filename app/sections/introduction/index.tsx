@@ -17,9 +17,9 @@ export function WelcomeSection() {
 	return (
 		<section id="intro" className="section" ref={introRef}>
 			<div className="grid grid-cols-1 md:grid-cols-[1fr_0.4fr] lg:grid-cols-[1fr_0.6fr] gap-4 items-center">
-				<div className="py-5 md:py-10">
+				<div className="py-2 md:py-3">
 					<BlurFade delay={BLUR_FADE_DELAY}>
-						<h1 tabIndex={0} className="text-3xl md:text-4xl xl:text-5xl font-bold">
+						<h1 tabIndex={0} className="text-3xl lg:text-4xl xl:text-5xl font-bold">
 							<p>
 								Hi, I&apos;m <mark>Chandresh Kumar</mark>
 							</p>
@@ -33,7 +33,7 @@ export function WelcomeSection() {
 					</BlurFade>
 
 					<BlurFade delay={BLUR_FADE_DELAY * 3}>
-						<p className="mt-3 mb-6 text-text-muted text-lg md:text-xl leading-relaxed">
+						<p className="mt-3 mb-4 text-text-muted text-base sm:text-lg lg:text-xl leading-relaxed">
 							<RichText text={personalData.shortBio} />
 						</p>
 					</BlurFade>

@@ -47,7 +47,7 @@ export function ProjectsSection() {
 		<section id="projects" className="section">
 			<HeadingDivider title="Featured Projects" />
 			<motion.div
-				className="flex flex-col items-center gap-8 md:gap-14 pt-10"
+				className="flex flex-col items-center gap-4 md:gap-6 pt-4"
 				variants={containerVariants}
 				initial="hidden"
 				whileInView="visible"

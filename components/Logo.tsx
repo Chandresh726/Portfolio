@@ -14,7 +14,7 @@ export function Logo() {
 
 	return (
 		<motion.h3
-			className="text-xl md:text-2xl font-bold cursor-pointer"
+			className="text-xl lg:text-2xl font-bold cursor-pointer"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}

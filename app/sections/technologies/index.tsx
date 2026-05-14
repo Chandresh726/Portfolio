@@ -112,7 +112,7 @@ export function TechnologiesSection() {
 			<HeadingDivider title="Technologies" />
 			<motion.p
 				tabIndex={0}
-				className="my-5 text-xl md:text-2xl"
+				className="my-2 text-lg sm:text-xl lg:text-2xl"
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
@@ -124,7 +124,7 @@ export function TechnologiesSection() {
 			{!!technologies.length && (
 				<motion.div
 					ref={ref}
-					className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16"
+					className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
 					variants={containerVariants}
 					initial="hidden"
 					animate={isInView ? "visible" : "hidden"}
@@ -136,7 +136,7 @@ export function TechnologiesSection() {
 							variants={categoryVariants}
 						>
 							<div className="relative">
-								<h3 tabIndex={0} className="text-xl md:text-2xl font-bold">
+								<h3 tabIndex={0} className="text-xl lg:text-2xl font-bold">
 									{tech.category}
 								</h3>
 								{/* Animated underline */}

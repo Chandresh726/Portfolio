@@ -24,8 +24,8 @@ export function ContactSection() {
 				whileInView="visible"
 				viewport={{ once: true, margin: "-50px" }}
 			>
-				<div className="rounded-2xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-8 md:p-12 text-center w-full">
-					<p className="text-lg md:text-xl text-text-muted italic mb-6">
+				<div className="rounded-2xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-5 md:p-6 text-center w-full">
+					<p className="text-base sm:text-lg lg:text-xl text-text-muted italic mb-4">
 						I&apos;d love to hear from you.
 					</p>
 					<a
@@ -37,6 +37,7 @@ export function ContactSection() {
 								src="/favicon.png"
 								alt="Chandresh Kumar"
 								fill
+								sizes="32px"
 								className="object-cover"
 							/>
 						</div>
