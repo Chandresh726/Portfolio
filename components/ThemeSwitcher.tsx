@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { BsMoon, BsSun } from "react-icons/bs";
-import { type ButtonHTMLAttributes, useCallback, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { type MouseEventHandler, useCallback, useEffect, useState } from "react";
+import { type HTMLMotionProps, motion } from "framer-motion";
 import { cn } from "utils/cn";
 
 const spring = {
@@ -12,8 +12,9 @@ const spring = {
 	damping: 30
 };
 
-type ThemeSwitcherProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ThemeSwitcherProps = Omit<HTMLMotionProps<"button">, "children" | "onClick"> & {
 	enableShortcut?: boolean;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const isEditableTarget = (target: EventTarget | null) => {
