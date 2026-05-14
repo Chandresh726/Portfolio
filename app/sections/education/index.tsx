@@ -44,7 +44,7 @@ function EducationCard({ education }: { education: Education }) {
 	return (
 		<motion.div
 			variants={cardVariants}
-			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-4 md:p-6 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
+			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
 		>
 			<div className="flex items-start gap-4">
 				{/* Logo */}
@@ -63,7 +63,7 @@ function EducationCard({ education }: { education: Education }) {
 				{/* Content */}
 				<div className="flex-1 min-w-0">
 					{/* Row 1: Institution + Timeline */}
-					<div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-4">
+					<div className="flex items-start justify-between gap-4">
 						<h3 className="text-base lg:text-lg font-semibold text-on-surface">
 							{education.institution}
 						</h3>
@@ -72,7 +72,7 @@ function EducationCard({ education }: { education: Education }) {
 						</p>
 					</div>
 					{/* Row 2: Degree/Field/Grade + Location */}
-					<div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4">
+					<div className="flex items-center justify-between gap-2 md:gap-4">
 						<p className="text-blue-light font-medium text-sm lg:text-base flex items-center gap-2 flex-wrap">
 							{education.degree}: {education.field}
 							<span className="text-text-muted">•</span>

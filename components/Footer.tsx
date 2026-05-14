@@ -22,16 +22,16 @@ export function AppFooter() {
 		>
 			<div className="container-md">
 				<div className="border-t border-divider pt-4" />
-				<div className="flex flex-col md:flex-row justify-between items-center md:items-center gap-4 md:gap-0">
-					<div className="w-full md:w-1/3 flex justify-center md:justify-start">
+				<div className="flex flex-row justify-between items-center">
+					<div className="flex-1 flex justify-start">
 						<ConnectMedia />
 					</div>
-					<div className="w-full md:w-1/3 flex justify-center md:justify-center">
+					<div className="hidden md:flex flex-1 justify-center">
 						<ScrollTop />
 					</div>
-					<div className="w-full md:w-1/3 flex flex-col items-center md:items-end gap-2">
+					<div className="flex-1 flex flex-col items-end gap-2">
 						<p className="font-light">Copyright &copy; {year}</p>
-						<div className="flex gap-4 text-sm text-text-muted">
+						<div className="hidden md:flex gap-4 text-sm text-text-muted">
 							<a href="/sitemap.xml" className="hover:text-on-surface transition-colors">
 								Sitemap
 							</a>

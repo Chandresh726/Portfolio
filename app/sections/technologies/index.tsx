@@ -135,13 +135,13 @@ export function TechnologiesSection() {
 							className="flex flex-col gap-4 flex-1 md:flex-auto"
 							variants={categoryVariants}
 						>
-							<div className="relative">
+							<div className="relative sm:text-left text-center">
 								<h3 tabIndex={0} className="text-xl lg:text-2xl font-bold">
 									{tech.category}
 								</h3>
 								{/* Animated underline */}
 								<motion.div
-									className="absolute -bottom-1 left-0 h-0.5 bg-blue-light rounded-full"
+									className="absolute -bottom-1 left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 h-0.5 bg-blue-light rounded-full"
 									initial={{ width: 0 }}
 									whileInView={{ width: "50%" }}
 									viewport={{ once: true }}
@@ -149,7 +149,7 @@ export function TechnologiesSection() {
 								/>
 							</div>
 							<motion.div
-								className="flex items-center flex-wrap gap-x-5 gap-y-6"
+								className="flex items-center justify-center sm:justify-start flex-wrap gap-x-5 gap-y-6"
 								variants={iconContainerVariants}
 							>
 								{tech.items.map((item) => (

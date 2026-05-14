@@ -9,6 +9,7 @@
 		"highlights": [
 			"Continuing to lead backend and infrastructure initiatives at **Experian**."
 		],
+		"descriptionType": "paragraph",
 		"technologies": ["AWS", "Golang", "Terraform", "Lambda", "API Gateway"]
 	},
 	{
@@ -47,8 +48,9 @@
 		"start": "Sept 2021",
 		"end": "Dec 2021",
 		"highlights": [
-			"Developed advanced **ReactJS** web solutions for **KMIT, NGIT, and KMEC** institutions, including modules for attendance, exam results, and live classroom video streaming"
+			"Developed advanced **ReactJS** web solutions for **KMIT, NGIT, and KMEC** institutions, including modules for attendance, exam results, and live classroom video streaming."
 		],
+		"descriptionType": "paragraph",
 		"technologies": ["React", "JavaScript", "Web Development"]
 	}
 ]

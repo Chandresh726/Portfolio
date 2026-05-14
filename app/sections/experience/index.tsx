@@ -16,6 +16,7 @@ interface Experience {
 	end: string;
 	highlights: string[];
 	technologies: string[];
+	descriptionType?: "points" | "paragraph";
 }
 
 const containerVariants = {
@@ -73,7 +74,7 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 	return (
 		<motion.div
 			variants={cardVariants}
-			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-4 md:p-6 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
+			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
 		>
 			<div
 				className="flex items-start gap-4 cursor-pointer"
@@ -95,7 +96,7 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 				{/* Content */}
 				<div className="flex-1 min-w-0">
 					{/* Row 1: Title + Date */}
-					<div className="flex flex-col md:flex-row md:items-start md:justify-between md:gap-4">
+					<div className="flex items-start justify-between gap-4">
 						<h3 className="text-base lg:text-lg font-semibold text-on-surface flex items-center gap-2">
 							{experience.title}
 							<motion.span
@@ -111,7 +112,7 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 						</p>
 					</div>
 					{/* Row 2: Company + Location */}
-					<div className="flex flex-col md:flex-row md:items-center md:justify-between md:gap-4">
+					<div className="flex items-center justify-between gap-4">
 						<p className="text-blue-light font-medium text-sm lg:text-base">
 							{experience.company}
 						</p>
@@ -122,7 +123,7 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 				</div>
 			</div>
 
-			{/* Expandable Description with Bullet Points */}
+			{/* Expandable Description */}
 			<AnimatePresence initial={false}>
 				{isExpanded && (
 					<motion.div
@@ -132,29 +133,42 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 						transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const }}
 						className="overflow-hidden"
 					>
-						<motion.ul
-							className="mt-4 ml-14 md:ml-16 space-y-3"
-							initial="hidden"
-							animate="visible"
-							variants={{
-								visible: {
-									transition: {
-										staggerChildren: 0.1,
-										delayChildren: 0.1
-									}
-								}
-							}}
-						>
-							{experience.highlights.map((highlight, index) => (
-								<motion.li
-									key={index}
+						<div className="mt-3 border-t border-divider pt-3">
+							{experience.descriptionType === "paragraph" ? (
+								<motion.p
+									initial="hidden"
+									animate="visible"
 									variants={bulletVariants}
-									className="relative pl-5 text-text-muted text-sm lg:text-base leading-relaxed before:absolute before:left-0 before:top-[0.6em] before:size-1.5 before:rounded-full before:bg-blue-light"
+									className="text-text-muted text-sm lg:text-base leading-relaxed"
 								>
-									{parseHighlight(highlight)}
-								</motion.li>
-							))}
-						</motion.ul>
+									{parseHighlight(experience.highlights.join(" "))}
+								</motion.p>
+							) : (
+								<motion.ul
+									className="space-y-2.5"
+									initial="hidden"
+									animate="visible"
+									variants={{
+										visible: {
+											transition: {
+												staggerChildren: 0.1,
+												delayChildren: 0.1
+											}
+										}
+									}}
+								>
+									{experience.highlights.map((highlight, index) => (
+										<motion.li
+											key={index}
+											variants={bulletVariants}
+											className="relative pl-5 text-text-muted text-sm lg:text-base leading-relaxed before:absolute before:left-0 before:top-[0.6em] before:size-1.5 before:rounded-full before:bg-blue-light"
+										>
+											{parseHighlight(highlight)}
+										</motion.li>
+									))}
+								</motion.ul>
+							)}
+						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>

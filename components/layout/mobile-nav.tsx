@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeSwitcher } from "components/ThemeSwitcher";
 import { cn } from "utils/cn";
 import Link from "next/link";
-import { Home, Briefcase, FolderOpen, User, Code } from "lucide-react";
+import Image from "next/image";
+import { Home, Briefcase, FolderOpen, User, Code, X } from "lucide-react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
@@ -122,10 +123,18 @@ export function MobileNav() {
 				<div className="flex items-center justify-between h-full px-4">
 					<Link
 						href="/"
-						className="text-lg font-bold text-on-surface"
+						className="flex items-center"
 						onClick={closeMenu}
 					>
-						Chandresh
+						<div className="relative size-9 rounded-full overflow-hidden">
+							<Image
+								src="/favicon.png"
+								alt="Chandresh Kumar"
+								fill
+								sizes="36px"
+								className="object-cover"
+							/>
+						</div>
 					</Link>
 
 					{/* Hamburger Button */}
@@ -191,7 +200,17 @@ export function MobileNav() {
 						animate="open"
 						exit="closed"
 					>
-						<div className="flex flex-col h-full pt-20 pb-8 px-6">
+						<div className="flex flex-col h-full pt-4 pb-8 px-6">
+							{/* Close Button */}
+							<div className="mb-4">
+								<button
+									onClick={closeMenu}
+									className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-interactive transition-colors"
+									aria-label="Close menu"
+								>
+									<X className="size-5 text-on-surface" />
+								</button>
+							</div>
 							{/* Navigation Links */}
 							<div className="flex-1">
 								<nav className="space-y-1">

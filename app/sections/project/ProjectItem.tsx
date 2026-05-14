@@ -39,24 +39,24 @@ export function ProjectItem({ project }: ProjectItemProps) {
 				</div>
 			</figure>
 
-			<div className="flex-[2] p-5 lg:p-6 text-center flex flex-col gap-4">
-				<header className="flex-1 flex items-center justify-start flex-col">
-					<h3 tabIndex={0} className="text-xl lg:text-2xl font-bold transition-colors group-hover:text-blue-light">
+			<div className="flex-[2] px-4 py-3 lg:px-5 lg:py-3.5 text-center flex flex-col gap-2.5">
+				<header className="flex-1 flex items-center justify-start flex-col gap-0.5">
+					<h3 tabIndex={0} className="text-lg lg:text-xl font-bold transition-colors group-hover:text-blue-light">
 						{title}
 					</h3>
-					<p tabIndex={0} className="text-sm lg:text-base leading-6 lg:leading-7 font-light line-clamp-2 text-text-muted">
+					<p tabIndex={0} className="text-sm lg:text-base leading-5 lg:leading-6 font-light line-clamp-2 text-text-muted">
 						{description}
 					</p>
 				</header>
 
-				<footer className="flex flex-col gap-4">
+				<footer className="flex flex-col gap-2.5">
 					{!!stack.length && (
 						<div className="flex-center flex-wrap gap-1.5">
 							{stack.map((tag) => (
 								<span
 									key={tag}
 									tabIndex={0}
-									className="px-2.5 py-0.5 text-sm leading-normal rounded-md bg-blue-light/10 text-blue-light border border-blue-light/20 transition-colors hover:bg-blue-light/20"
+									className="px-2 py-0.5 text-xs leading-normal rounded-md bg-blue-light/10 text-blue-light border border-blue-light/20 transition-colors hover:bg-blue-light/20"
 								>
 									{tag}
 								</span>
