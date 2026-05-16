@@ -8,8 +8,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Projects } from "../../projects/components/Projects";
 import { SITE_ROUTES, PROJECTS } from "../../../constants";
 
-const FEATURED_PROJECT_ORDER = ["Switchy", "Finara", "DeTube", "Web Crawler"] as const;
-
 const containerVariants = {
 	hidden: {},
 	visible: {
@@ -33,15 +31,7 @@ const itemVariants = {
 };
 
 export function ProjectsSection() {
-	const orderedFeaturedProjects = FEATURED_PROJECT_ORDER.map((title) =>
-		PROJECTS.find((project) => project.title === title)
-	).filter((project): project is (typeof PROJECTS)[number] => Boolean(project));
-
-	const remainingProjects = PROJECTS.filter(
-		(project) => !FEATURED_PROJECT_ORDER.includes(project.title as (typeof FEATURED_PROJECT_ORDER)[number])
-	);
-
-	const featuredProjects = [...orderedFeaturedProjects, ...remainingProjects].slice(0, 4);
+	const featuredProjects = PROJECTS.slice(0, 4);
 
 	return (
 		<section id="projects" className="section">

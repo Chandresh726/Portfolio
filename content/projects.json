@@ -1,20 +1,5 @@
 [
 	{
-		"title": "Finara",
-		"description": "AI-powered financial assistant for personal finance management",
-		"images": [
-			"/images/finara/1.png",
-			"/images/finara/2.png",
-			"/images/finara/3.png",
-			"/images/finara/4.png",
-			"/images/finara/5.png",
-			"/images/finara/6.png"
-		],
-		"liveUrl": "https://finara.slope726.in/",
-		"repoUrl": "https://github.com/Chandresh726/Finara-v2",
-		"stack": ["Next", "Typescript", "Shancn", "Postgres", "AI SDK"]
-	},
-	{
 		"title": "Switchy",
 		"description": "A local job search command center with an automated scraping engine and scheduler that tracks openings from selected companies, scores role fit against your profile, and helps you apply faster with AI-assisted cover letter and referral message generation.",
 		"images": [
@@ -28,22 +13,34 @@
 		],
 		"liveUrl": "https://switchy.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Switchy",
-		"stack": ["Next", "Typescript", "AI SDK", "Shadcn", "SQL Lite"]
+		"stack": [
+			"Next",
+			"Typescript",
+			"AI SDK",
+			"Shadcn",
+			"SQL Lite"
+		]
 	},
 	{
-		"title": "Web Crawler",
-		"description": "A JavaScript-based web crawler for automated data extraction.",
+		"title": "Finara",
+		"description": "AI-powered financial assistant for personal finance management",
 		"images": [
-			"/images/crawler/1.png",
-			"/images/crawler/2.png",
-			"/images/crawler/3.png",
-			"/images/crawler/4.png",
-			"/images/crawler/5.png",
-			"/images/crawler/6.png"
+			"/images/finara/2.png",
+			"/images/finara/1.png",
+			"/images/finara/3.png",
+			"/images/finara/4.png",
+			"/images/finara/5.png",
+			"/images/finara/6.png"
 		],
-		"liveUrl": "https://crawler.trushield.tech/",
-		"repoUrl": null,
-		"stack": ["Javascript", "NodeJS", "Puppeteer", "React"]
+		"liveUrl": "https://finara.slope726.in/",
+		"repoUrl": "https://github.com/Chandresh726/Finara-v2",
+		"stack": [
+			"Next",
+			"Typescript",
+			"Shancn",
+			"Postgres",
+			"AI SDK"
+		]
 	},
 	{
 		"title": "DeTube",
@@ -57,15 +54,50 @@
 		],
 		"liveUrl": "https://detube.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/DeTube",
-		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
+		"stack": [
+			"Next",
+			"Typescript",
+			"AWS",
+			"Solana",
+			"Tailwind CSS"
+		]
+	},
+	{
+		"title": "Web Crawler",
+		"description": "A JavaScript-based web crawler for automated data extraction.",
+		"images": [
+			"/images/crawler/3.png",
+			"/images/crawler/2.png",
+			"/images/crawler/1.png",
+			"/images/crawler/4.png",
+			"/images/crawler/5.png",
+			"/images/crawler/6.png"
+		],
+		"liveUrl": "https://crawl-viewer.vercel.app/",
+		"repoUrl": null,
+		"stack": [
+			"Javascript",
+			"NodeJS",
+			"Puppeteer",
+			"React"
+		]
 	},
 	{
 		"title": "Passm",
 		"description": "A CLI password manager",
-		"images": ["/images/passm/1.png", "/images/passm/2.png", "/images/passm/3.png"],
+		"images": [
+			"/images/passm/1.png",
+			"/images/passm/2.png",
+			"/images/passm/3.png"
+		],
 		"liveUrl": "https://passm.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Passm",
-		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
+		"stack": [
+			"Next",
+			"Shadcn",
+			"Typescript",
+			"Rust"
+		]
 	},
 	{
 		"title": "TruShield",
@@ -76,9 +108,13 @@
 			"/images/trushield/3.png",
 			"/images/trushield/4.png"
 		],
-		"liveUrl": "https://www.trushield.tech/",
+		"liveUrl": "https://trushield.vercel.app/",
 		"repoUrl": null,
-		"stack": ["React", "Javascript", "Tailwind CSS"]
+		"stack": [
+			"React",
+			"Javascript",
+			"Tailwind CSS"
+		]
 	},
 	{
 		"title": "Samraksha",
@@ -91,7 +127,13 @@
 		],
 		"liveUrl": "https://samraksha-test.onrender.com/",
 		"repoUrl": "https://github.com/Chandresh726/samraksha",
-		"stack": ["React", "MongoDB", "Express", "Node", "Javascript"]
+		"stack": [
+			"React",
+			"MongoDB",
+			"Express",
+			"Node",
+			"Javascript"
+		]
 	},
 	{
 		"title": "Portfolio",
@@ -104,7 +146,11 @@
 		],
 		"liveUrl": "https://portfolio.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Portfolio",
-		"stack": ["Next", "Tailwind CSS", "Javascript"]
+		"stack": [
+			"Next",
+			"Tailwind CSS",
+			"Javascript"
+		]
 	},
 	{
 		"title": "Sun Minerals",
@@ -116,7 +162,10 @@
 		],
 		"liveUrl": "https://coal-site.vercel.app/",
 		"repoUrl": "https://github.com/Chandresh726/CoalSite",
-		"stack": ["React", "Javascript"]
+		"stack": [
+			"React",
+			"Javascript"
+		]
 	},
 	{
 		"title": "KISAN",
@@ -124,6 +173,11 @@
 		"images": [],
 		"liveUrl": null,
 		"repoUrl": "https://github.com/Chandresh726/Lexicon-Agriculture_Portal",
-		"stack": ["React", "MongoDB", "Flask", "Javascript"]
+		"stack": [
+			"React",
+			"MongoDB",
+			"Flask",
+			"Javascript"
+		]
 	}
 ]

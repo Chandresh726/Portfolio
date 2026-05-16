@@ -12,11 +12,10 @@ interface Experience {
 	logo: string;
 	title: string;
 	location: string;
+	jobType: string;
 	start: string;
 	end: string;
-	highlights: string[];
-	technologies: string[];
-	descriptionType?: "points" | "paragraph";
+	description: string[];
 }
 
 const containerVariants = {
@@ -118,6 +117,8 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 						</p>
 						<p className="text-text-muted text-sm whitespace-nowrap">
 							{experience.location}
+							<span className="mx-1.5 text-text-muted/60">|</span>
+							{experience.jobType}
 						</p>
 					</div>
 				</div>
@@ -134,14 +135,14 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 						className="overflow-hidden"
 					>
 						<div className="mt-3 border-t border-divider pt-3">
-							{experience.descriptionType === "paragraph" ? (
+							{experience.description.length === 1 ? (
 								<motion.p
 									initial="hidden"
 									animate="visible"
 									variants={bulletVariants}
 									className="text-text-muted text-sm lg:text-base leading-relaxed"
 								>
-									{parseHighlight(experience.highlights.join(" "))}
+									{parseHighlight(experience.description[0])}
 								</motion.p>
 							) : (
 								<motion.ul
@@ -157,13 +158,13 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 										}
 									}}
 								>
-									{experience.highlights.map((highlight, index) => (
+									{experience.description.map((item, index) => (
 										<motion.li
 											key={index}
 											variants={bulletVariants}
 											className="relative pl-5 text-text-muted text-sm lg:text-base leading-relaxed before:absolute before:left-0 before:top-[0.6em] before:size-1.5 before:rounded-full before:bg-blue-light"
 										>
-											{parseHighlight(highlight)}
+											{parseHighlight(item)}
 										</motion.li>
 									))}
 								</motion.ul>
