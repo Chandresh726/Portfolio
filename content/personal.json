@@ -3,7 +3,7 @@
 	"firstName": "Chandresh",
 	"lastName": "Kumar",
 	"jobTitle": "Software Engineer",
-	"shortBio": "[blue]Software Engineer[/blue] building scalable, reliable systems with clean code and strong fundamentals - turning ideas into software.",
+	"shortBio": "[blue]Software Engineer[/blue] building scalable, reliable software with clean and thoughtful engineering - Focused on creating products that are simple, fast, and dependable.",
 	"education": {
 		"institution": "KMIT",
 		"institutionUrl": "https://kmit.in"
@@ -12,3 +12,5 @@
 	"seoDescription": "I'm Chandresh Kumar, a Software Engineer who enjoys writing code and solving problems. I build scalable, reliable systems with clean code and strong fundamentals.",
 	"linkedinUrl": "https://www.linkedin.com/in/kchandresh726/"
 }
+
+
