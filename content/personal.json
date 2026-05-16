@@ -6,9 +6,7 @@
 	"shortBio": "[blue]Software Engineer[/blue] building scalable, reliable systems with clean code and strong fundamentals - turning ideas into software.",
 	"education": {
 		"institution": "KMIT",
-		"institutionUrl": "https://kmit.in",
-		"degree": "Computer Science",
-		"gpa": "8.0"
+		"institutionUrl": "https://kmit.in"
 	},
 	"expertise": ["Web Development", "Cloud Solutions", "Web3", "Blockchain"],
 	"seoDescription": "I'm Chandresh Kumar, a Software Engineer who enjoys writing code and solving problems. I build scalable, reliable systems with clean code and strong fundamentals.",

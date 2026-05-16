@@ -8,7 +8,9 @@ import {
 	SiNextdotjs,
 	SiTypescript,
 	SiTailwindcss,
-	SiPostgresql
+	SiPostgresql,
+	SiSqlite,
+	SiShadcnui
 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { DiCss3 } from "react-icons/di";
@@ -45,9 +47,10 @@ export const TECHNOLOGIES: TechnologyCategory[] = [
 			{ name: "Next", icon: <SiNextdotjs size={40} />, color: "#808080" },
 			{ name: "Spring Boot", icon: <SiSpring size={40} />, color: "#6DB33F" },
 			{ name: "Tailwind", icon: <SiTailwindcss size={40} />, color: "#06B6D4" },
+			{ name: "Shadcn/UI", icon: <SiShadcnui size={40} />, color: "#23328dff" },
 			{ name: "Flask", icon: <SiFlask size={40} />, color: "#808080" },
 			{ name: "Express.js", icon: <SiExpress size={40} />, color: "#808080" },
-			{ name: "AI SDK", icon: <SiVercel size={40} />, color: "#808080" }
+			{ name: "Vercel AI SDK", icon: <SiVercel size={40} />, color: "#808080" }
 		]
 	},
 	{
@@ -55,11 +58,12 @@ export const TECHNOLOGIES: TechnologyCategory[] = [
 		items: [
 			{ name: "AWS", icon: <FaAws size={40} />, color: "#FF9900" },
 			{ name: "Docker", icon: <FaDocker size={40} />, color: "#2496ED" },
+			{ name: "Terraform", icon: <TbBrandTerraform size={40} />, color: "#844FBA" },
 			{ name: "Jenkins", icon: <FaJenkins size={40} />, color: "#D24939" },
-			{ name: "MySQL", icon: <GrMysql size={40} />, color: "#4479A1" },
 			{ name: "MongoDB", icon: <SiMongodb size={40} />, color: "#47A248" },
+			{ name: "MySQL", icon: <GrMysql size={40} />, color: "#4479A1" },
 			{ name: "Postgresql", icon: <SiPostgresql size={40} />, color: "#4169E1" },
-			{ name: "Terraform", icon: <TbBrandTerraform size={40} />, color: "#844FBA" }
+			{ name: "SQLite", icon: <SiSqlite size={40} />, color: "#003364" }
 		]
 	}
 ];

@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from "next";
+import seoData from "@/content/seo.json";
+import personalData from "@/content/personal.json";
 
-const author = "Chandresh";
-const description =
-	"Portfolio website of Chandresh Kumar - Software Developer, Frontend Developer, and Web3 Developer";
-const url = "https://portfolio.slope726.in/";
+const author = seoData.author;
+const description = seoData.description;
+const url = seoData.siteUrl;
 
 export const viewport: Viewport = {
 	colorScheme: "dark"
 };
 
 export const AppMetadata: Metadata = {
-	metadataBase: new URL("https://portfolio.slope726.in/"),
+	metadataBase: new URL(url),
 	title: {
 		default: `Portfolio | ${author}`,
 		template: `%s | ${author}`
@@ -20,16 +21,9 @@ export const AppMetadata: Metadata = {
 		icon: "/favicon.png"
 	},
 	manifest: "/manifest.json",
-	keywords: [
-		"Chandresh Kumar",
-		"Software Developer",
-		"Frontend developer",
-		"Portfolio website",
-		"Freelancer",
-		"Web3 Developer"
-	],
+	keywords: seoData.keywords,
 	creator: author,
-	authors: [{ name: author, url: url }],
+	authors: [{ name: personalData.name, url: url }],
 	robots: {
 		index: true,
 		follow: true,
@@ -51,7 +45,7 @@ export const AppMetadata: Metadata = {
 		siteName: `${author} | Portfolio`,
 		images: [
 			{
-				url: "https://portfolio.slope726.in/screenshot.webp",
+				url: seoData.socialImage,
 				width: 1800,
 				height: 1600,
 				alt: "My personal portfolio website",
@@ -67,10 +61,10 @@ export const AppMetadata: Metadata = {
 		description: description,
 		images: [
 			{
-				url: "https://portfolio.slope726.in/screenshot.webp",
+				url: seoData.socialImage,
 				alt: "My personal portfolio website"
 			}
 		],
-		creator: `@${author}`
+		creator: seoData.twitterHandle
 	}
 };
