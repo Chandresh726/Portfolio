@@ -46,7 +46,7 @@ function EducationCard({ education }: { education: Education }) {
 			variants={cardVariants}
 			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
 		>
-			<div className="flex items-start gap-4">
+			<div className="flex items-center gap-4">
 				{/* Logo */}
 				<div className="flex-shrink-0">
 					<div className="relative size-10 md:size-12 rounded-xl overflow-hidden bg-surface-muted border border-outline/20">
@@ -62,16 +62,16 @@ function EducationCard({ education }: { education: Education }) {
 
 				{/* Content */}
 				<div className="flex-1 min-w-0">
-					{/* Row 1: Institution + Timeline */}
+					{/* Row 1: Institution (+ Timeline on sm+) */}
 					<div className="flex items-start justify-between gap-4">
 						<h3 className="text-base lg:text-lg font-semibold text-on-surface">
 							{education.institution}
 						</h3>
-						<p className="text-sm text-text-muted tabular-nums whitespace-nowrap">
+						<p className="hidden sm:block text-sm text-text-muted tabular-nums whitespace-nowrap">
 							{education.start} - {education.end}
 						</p>
 					</div>
-					{/* Row 2: Degree/Field/Grade + Location */}
+					{/* Row 2: Degree/Field/Grade (+ Location on sm+) */}
 					<div className="flex items-center justify-between gap-2 md:gap-4">
 						<p className="text-blue-light font-medium text-sm lg:text-base flex items-center gap-2 flex-wrap">
 							{education.degree}: {education.field}
@@ -80,9 +80,16 @@ function EducationCard({ education }: { education: Education }) {
 								{education.gradeType}: {education.grade}
 							</span>
 						</p>
-						<p className="text-text-muted text-sm whitespace-nowrap">
+						<p className="hidden sm:block text-text-muted text-sm whitespace-nowrap">
 							{education.location}
 						</p>
+					</div>
+					{/* Row 3: Timeline + Location — small screens only */}
+					<div className="flex sm:hidden items-center justify-between gap-4">
+						<p className="text-sm text-text-muted tabular-nums whitespace-nowrap">
+							{education.start} - {education.end}
+						</p>
+						<p className="text-text-muted text-sm whitespace-nowrap">{education.location}</p>
 					</div>
 				</div>
 			</div>
@@ -102,10 +109,7 @@ export function EducationSection() {
 				viewport={{ once: true, margin: "-50px" }}
 			>
 				{(educationData as Education[]).map((education, index) => (
-					<EducationCard
-						key={`${education.institution}-${index}`}
-						education={education}
-					/>
+					<EducationCard key={`${education.institution}-${index}`} education={education} />
 				))}
 			</motion.div>
 		</section>

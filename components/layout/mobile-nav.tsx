@@ -6,7 +6,7 @@ import { ThemeSwitcher } from "components/ThemeSwitcher";
 import { cn } from "utils/cn";
 import Link from "next/link";
 import Image from "next/image";
-import { Home, Briefcase, FolderOpen, User, Code, X } from "lucide-react";
+import { Home, Briefcase, FolderOpen, User, Code } from "lucide-react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
@@ -48,7 +48,7 @@ const socialLinks = [
 
 const menuVariants = {
 	closed: {
-		x: "100%",
+		x: "-100%",
 		transition: {
 			type: "spring" as const,
 			stiffness: 400,
@@ -63,11 +63,6 @@ const menuVariants = {
 			damping: 40
 		}
 	}
-};
-
-const backdropVariants = {
-	closed: { opacity: 0 },
-	open: { opacity: 1 }
 };
 
 const navItemVariants = {
@@ -121,11 +116,7 @@ export function MobileNav() {
 				transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
 			>
 				<div className="flex items-center justify-between h-full px-4">
-					<Link
-						href="/"
-						className="flex items-center"
-						onClick={closeMenu}
-					>
+					<Link href="/" className="flex items-center" onClick={closeMenu}>
 						<div className="relative size-9 rounded-full overflow-hidden">
 							<Image
 								src="/favicon.png"
@@ -176,41 +167,17 @@ export function MobileNav() {
 				</div>
 			</motion.header>
 
-			{/* Backdrop */}
-			<AnimatePresence>
-				{isOpen && (
-					<motion.div
-						className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
-						variants={backdropVariants}
-						initial="closed"
-						animate="open"
-						exit="closed"
-						onClick={closeMenu}
-					/>
-				)}
-			</AnimatePresence>
-
 			{/* Slide-in Menu Panel */}
 			<AnimatePresence>
 				{isOpen && (
 					<motion.nav
-						className="fixed top-0 right-0 bottom-0 z-50 w-80 max-w-[85vw] bg-surface border-l border-outline/20 shadow-2xl"
+						className="fixed top-16 left-0 right-0 bottom-0 z-40 w-full bg-surface"
 						variants={menuVariants}
 						initial="closed"
 						animate="open"
 						exit="closed"
 					>
-						<div className="flex flex-col h-full pt-4 pb-8 px-6">
-							{/* Close Button */}
-							<div className="mb-4">
-								<button
-									onClick={closeMenu}
-									className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-interactive transition-colors"
-									aria-label="Close menu"
-								>
-									<X className="size-5 text-on-surface" />
-								</button>
-							</div>
+						<div className="flex flex-col h-full pt-6 pb-6 px-6">
 							{/* Navigation Links */}
 							<div className="flex-1">
 								<nav className="space-y-1">
@@ -268,10 +235,7 @@ export function MobileNav() {
 													"transition-colors min-h-[44px]"
 												)}
 											>
-												<item.icon
-													className="size-5"
-													style={{ color: item.color }}
-												/>
+												<item.icon className="size-5" style={{ color: item.color }} />
 												<span className="text-sm">{item.label}</span>
 											</a>
 										))}
@@ -281,16 +245,14 @@ export function MobileNav() {
 
 							{/* Theme Switcher at bottom */}
 							<motion.div
-								className="pt-6 border-t border-outline/30"
+								className="pt-4 border-t border-outline/30"
 								variants={navItemVariants}
 								initial="closed"
 								animate="open"
 								custom={navItems.length + 1}
 							>
-								<div className="flex items-center justify-between px-4 py-2">
-									<span className="text-sm text-text-muted font-medium">
-										Theme
-									</span>
+								<div className="flex items-center justify-between px-4 py-1">
+									<span className="text-sm text-text-muted font-medium">Theme</span>
 									<ThemeSwitcher />
 								</div>
 							</motion.div>

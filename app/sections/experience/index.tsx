@@ -67,7 +67,13 @@ function parseHighlight(text: string): React.ReactNode[] {
 	});
 }
 
-function ExperienceCard({ experience, defaultExpanded = false }: { experience: Experience; defaultExpanded?: boolean }) {
+function ExperienceCard({
+	experience,
+	defaultExpanded = false
+}: {
+	experience: Experience;
+	defaultExpanded?: boolean;
+}) {
 	const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
 	return (
@@ -76,7 +82,7 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
 		>
 			<div
-				className="flex items-start gap-4 cursor-pointer"
+				className="flex items-center gap-4 cursor-pointer"
 				onClick={() => setIsExpanded(!isExpanded)}
 			>
 				{/* Logo */}
@@ -95,7 +101,7 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 				{/* Content */}
 				<div className="flex-1 min-w-0">
 					{/* Row 1: Title + Date */}
-					<div className="flex items-start justify-between gap-4">
+					<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-0.5 sm:gap-4">
 						<h3 className="text-base lg:text-lg font-semibold text-on-surface flex items-center gap-2">
 							{experience.title}
 							<motion.span
@@ -106,15 +112,13 @@ function ExperienceCard({ experience, defaultExpanded = false }: { experience: E
 								<ChevronRight className="size-4" />
 							</motion.span>
 						</h3>
-						<p className="text-sm text-text-muted tabular-nums whitespace-nowrap">
+						<p className="text-sm text-text-muted tabular-nums sm:whitespace-nowrap">
 							{experience.start} - {experience.end}
 						</p>
 					</div>
 					{/* Row 2: Company + Location */}
 					<div className="flex items-center justify-between gap-4">
-						<p className="text-blue-light font-medium text-sm lg:text-base">
-							{experience.company}
-						</p>
+						<p className="text-blue-light font-medium text-sm lg:text-base">{experience.company}</p>
 						<p className="text-text-muted text-sm whitespace-nowrap">
 							{experience.location}
 							<span className="mx-1.5 text-text-muted/60">|</span>
