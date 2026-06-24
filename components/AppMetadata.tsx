@@ -1,14 +1,10 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import seoData from "@/content/seo.json";
 import personalData from "@/content/personal.json";
 
 const author = seoData.author;
 const description = seoData.description;
 const url = seoData.siteUrl;
-
-export const viewport: Viewport = {
-	colorScheme: "dark"
-};
 
 export const AppMetadata: Metadata = {
 	metadataBase: new URL(url),

@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { PropsWithChildren, useRef, useEffect, useState } from "react";
 
-export interface DockProps extends VariantProps<typeof dockVariants> {
+interface DockProps extends VariantProps<typeof dockVariants> {
 	className?: string;
 	magnification?: number;
 	distance?: number;
@@ -18,7 +18,16 @@ const DEFAULT_DISTANCE = 140;
 const dockVariants = cva("mx-auto w-max h-full p-2 flex items-end rounded-full border");
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
-	({ className, children, magnification = DEFAULT_MAGNIFICATION, distance = DEFAULT_DISTANCE, ...props }, ref) => {
+	(
+		{
+			className,
+			children,
+			magnification = DEFAULT_MAGNIFICATION,
+			distance = DEFAULT_DISTANCE,
+			...props
+		},
+		ref
+	) => {
 		const mousex = useMotionValue(Infinity);
 		const [isMobile, setIsMobile] = useState(false);
 
@@ -73,7 +82,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 
 Dock.displayName = "Dock";
 
-export interface DockIconProps {
+interface DockIconProps {
 	size?: number;
 	magnification?: number;
 	distance?: number;
@@ -112,7 +121,10 @@ const DockIcon = ({
 		<motion.div
 			ref={ref}
 			style={{ width }}
-			className={cn("flex aspect-square cursor-pointer items-center justify-center rounded-full", className)}
+			className={cn(
+				"flex aspect-square cursor-pointer items-center justify-center rounded-full",
+				className
+			)}
 			{...props}
 		>
 			{children}
@@ -122,4 +134,4 @@ const DockIcon = ({
 
 DockIcon.displayName = "DockIcon";
 
-export { Dock, DockIcon, dockVariants };
+export { Dock, DockIcon };

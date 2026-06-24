@@ -3,8 +3,6 @@ export { AppFooter } from "./Footer";
 export { Loader } from "./Loader";
 export { ConnectMedia } from "./ConnectMedia";
 export { HeadingDivider } from "./HeadingDivider";
-export { Logo } from "./Logo";
 export { ScrollTop } from "./ScrollTop";
-export { ThemeSwitcher } from "./ThemeSwitcher";
 export { ErrorFallback } from "./ErrorFallback";
 export { JsonLd } from "./JsonLd";

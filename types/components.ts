@@ -10,10 +10,6 @@ export interface LoaderProps {
 	textClassNames?: string;
 }
 
-export interface MenuProps {
-	onClick?: () => void;
-}
-
 export interface FilterButtonProps {
 	onClick: () => void;
 	label: string;

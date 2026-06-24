@@ -9,12 +9,6 @@ export interface Project {
 	stack: string[];
 }
 
-export interface MenuItem {
-	id: string;
-	name: string;
-	url: string;
-}
-
 export interface SocialMediaItem {
 	id: string;
 	icon: ReactNode;
@@ -31,13 +25,6 @@ export interface TechnologyItem {
 export interface TechnologyCategory {
 	category: string;
 	items: TechnologyItem[];
-}
-
-export interface SiteStrings {
-	textLogo: string;
-	backToMainPageTitle: string;
-	goToMainPageTitle: string;
-	backToMainText: string;
 }
 
 export interface SiteRoutes {
