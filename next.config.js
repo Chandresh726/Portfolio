@@ -15,12 +15,16 @@ const nextConfig = {
 				source: "/:path*",
 				headers: [
 					{
+						key: "Strict-Transport-Security",
+						value: "max-age=63072000; includeSubDomains; preload"
+					},
+					{
 						key: "X-DNS-Prefetch-Control",
 						value: "on"
 					},
 					{
 						key: "X-XSS-Protection",
-						value: "1; mode=block"
+						value: "0"
 					},
 					{
 						key: "X-Frame-Options",
@@ -35,20 +39,20 @@ const nextConfig = {
 						value: "strict-origin-when-cross-origin"
 					},
 					{
+						key: "X-Permitted-Cross-Domain-Policies",
+						value: "none"
+					},
+					{
+						key: "Cross-Origin-Opener-Policy",
+						value: "same-origin"
+					},
+					{
 						key: "Permissions-Policy",
 						value: "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 					}
 				]
 			}
 		];
-	},
-	webpack(config) {
-		config.module.rules.push({
-			test: /\.svg$/i,
-			issuer: /\.[jt]sx?$/,
-			use: ["@svgr/webpack"]
-		});
-		return config;
 	}
 };
 

@@ -41,10 +41,16 @@ export function ProjectItem({ project }: ProjectItemProps) {
 
 			<div className="flex-[2] px-4 py-3 lg:px-5 lg:py-3.5 text-center flex flex-col gap-2.5">
 				<header className="flex-1 flex items-center justify-start flex-col gap-0.5">
-					<h3 tabIndex={0} className="text-lg lg:text-xl font-bold transition-colors group-hover:text-blue-light">
+					<h3
+						tabIndex={0}
+						className="text-lg lg:text-xl font-bold transition-colors group-hover:text-blue-light"
+					>
 						{title}
 					</h3>
-					<p tabIndex={0} className="text-sm lg:text-base leading-5 lg:leading-6 font-light line-clamp-2 text-text-muted">
+					<p
+						tabIndex={0}
+						className="text-sm lg:text-base leading-5 lg:leading-6 font-light line-clamp-2 text-text-muted"
+					>
 						{description}
 					</p>
 				</header>
@@ -69,6 +75,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 							<Link
 								href={repoUrl}
 								target="_blank"
+								rel="noopener noreferrer"
 								className="icon-link-btn group/link"
 								title="Go to Github repository"
 							>
@@ -80,6 +87,7 @@ export function ProjectItem({ project }: ProjectItemProps) {
 							<Link
 								href={liveUrl}
 								target="_blank"
+								rel="noopener noreferrer"
 								className="icon-link-btn group/link"
 								title="Go to live address"
 							>
