@@ -14,7 +14,12 @@ const containerVariants = {
 	}
 };
 
-export function Projects({ projects, limit, category, immediate }: ProjectsProps & { immediate?: boolean }) {
+export function Projects({
+	projects,
+	limit,
+	category,
+	immediate
+}: ProjectsProps & { immediate?: boolean }) {
 	const filteredProjects = category
 		? projects?.filter((project) => project.stack.includes(category))
 		: projects;
@@ -29,7 +34,11 @@ export function Projects({ projects, limit, category, immediate }: ProjectsProps
 
 	const animationProps = immediate
 		? { initial: "hidden" as const, animate: "visible" as const }
-		: { initial: "hidden" as const, whileInView: "visible" as const, viewport: { once: true, margin: "-50px" } };
+		: {
+				initial: "hidden" as const,
+				whileInView: "visible" as const,
+				viewport: { once: true, margin: "-50px" }
+			};
 
 	return (
 		<AnimatePresence mode="wait">

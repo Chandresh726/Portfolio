@@ -1,66 +1,18 @@
-"use client";
-
-import { Suspense } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { HeadingDivider, Loader, ErrorFallback } from "components";
-import { ErrorBoundary } from "react-error-boundary";
-import { Projects } from "../../projects/components/Projects";
-import { SITE_ROUTES, PROJECTS } from "../../../constants";
-
-const containerVariants = {
-	hidden: {},
-	visible: {
-		transition: {
-			staggerChildren: 0.1,
-			delayChildren: 0.1
-		}
-	}
-};
-
-const itemVariants = {
-	hidden: { opacity: 0, y: 30 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.5,
-			ease: [0.25, 0.1, 0.25, 1] as const
-		}
-	}
-};
+import { HeadingDivider } from "components/HeadingDivider";
+import { PROJECTS, SITE_ROUTES } from "@/constants";
+import { FeaturedProjects } from "./FeaturedProjects";
 
 export function ProjectsSection() {
-	const featuredProjects = PROJECTS.slice(0, 4);
-
 	return (
 		<section id="projects" className="section">
 			<HeadingDivider title="Featured Projects" />
-			<motion.div
-				className="flex flex-col items-center gap-4 md:gap-6 pt-4"
-				variants={containerVariants}
-				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, margin: "-50px" }}
-			>
-				<Suspense
-					fallback={
-						<div className="flex-center">
-							<Loader />
-						</div>
-					}
-				>
-					<ErrorBoundary FallbackComponent={ErrorFallback}>
-						<Projects projects={featuredProjects} />
-					</ErrorBoundary>
-				</Suspense>
-
-				<motion.div variants={itemVariants}>
-					<Link href={SITE_ROUTES.projects} className="btn" aria-label="See more projects">
-						More projects
-					</Link>
-				</motion.div>
-			</motion.div>
+			<div className="flex flex-col items-center gap-4 md:gap-6 pt-4 animate-section-in">
+				<FeaturedProjects projects={PROJECTS.slice(0, 4)} />
+				<Link href={SITE_ROUTES.projects} className="btn" aria-label="See more projects">
+					More projects
+				</Link>
+			</div>
 		</section>
 	);
 }

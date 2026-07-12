@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ComponentType, CSSProperties, ReactNode, SVGProps } from "react";
 
 export interface Project {
 	title: string;
@@ -11,12 +11,21 @@ export interface Project {
 
 export interface SocialMediaItem {
 	id: string;
-	icon: ReactNode;
+	icon: ComponentType<{ className?: string; style?: CSSProperties }>;
 	title: string;
-	url: string;
+	href: string;
+	label: string;
+	color: string;
+	external: boolean;
 }
 
-export interface TechnologyItem {
+export interface NavigationItem {
+	href: string;
+	icon: ComponentType<SVGProps<SVGSVGElement>>;
+	label: string;
+}
+
+interface TechnologyItem {
 	name: string;
 	icon: ReactNode;
 	color?: string;

@@ -15,14 +15,7 @@ import {
 import { GrMysql } from "react-icons/gr";
 import { DiCss3 } from "react-icons/di";
 import { IoLogoJavascript } from "react-icons/io";
-import {
-	FaReact,
-	FaJava,
-	FaPython,
-	FaAws,
-	FaDocker,
-	FaJenkins
-} from "react-icons/fa";
+import { FaReact, FaJava, FaPython, FaAws, FaDocker, FaJenkins } from "react-icons/fa";
 import { TbBrandTerraform } from "react-icons/tb";
 import type { TechnologyCategory } from "types";
 import { FaGolang } from "react-icons/fa6";

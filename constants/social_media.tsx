@@ -1,30 +1,44 @@
-import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMail } from "react-icons/hi";
 import type { SocialMediaItem } from "types";
+import personalData from "content/personal.json";
 
 export const SOCIAL_MEDIA: SocialMediaItem[] = [
 	{
 		id: "linkedin",
-		icon: <BsLinkedin />,
+		icon: BsLinkedin,
 		title: "Visit LinkedIn profile",
-		url: "https://www.linkedin.com/in/kchandresh726/"
+		label: "LinkedIn",
+		href: personalData.linkedinUrl,
+		color: "#0A66C2",
+		external: true
 	},
 	{
 		id: "github",
-		icon: <BsGithub />,
+		icon: BsGithub,
 		title: "Visit Github profile",
-		url: "https://github.com/Chandresh726"
+		label: "GitHub",
+		href: personalData.githubUrl,
+		color: "#2DBA4E",
+		external: true
 	},
 	{
 		id: "mail",
-		icon: <BsFillEnvelopeOpenFill />,
+		icon: HiOutlineMail,
 		title: "Send me an email",
-		url: "mailto://kchandresh726@gmail.com"
+		label: "Email",
+		href: `mailto:${personalData.email}`,
+		color: "#E4405F",
+		external: false
 	},
 	{
-		id: "X",
-		icon: <FaXTwitter />,
+		id: "x",
+		icon: FaXTwitter,
 		title: "Visit X profile",
-		url: "https://twitter.com/Chandresh_726"
+		label: "X",
+		href: personalData.xUrl,
+		color: "#1DA1F2",
+		external: true
 	}
 ];
