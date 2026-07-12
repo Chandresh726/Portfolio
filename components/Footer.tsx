@@ -1,25 +1,11 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { ConnectMedia, ScrollTop } from "components";
+import { ConnectMedia } from "components/ConnectMedia";
+import { ScrollTop } from "components/ScrollTop";
 
 export function AppFooter() {
-	const footerRef = useRef(null);
-	const isInView = useInView(footerRef, {
-		once: true,
-		amount: 0.1
-	});
 	const year = new Date().getFullYear();
 
 	return (
-		<motion.footer
-			ref={footerRef}
-			className="w-full py-4 mt-2"
-			initial={{ y: 50, opacity: 0 }}
-			animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] as const }}
-		>
+		<footer className="w-full py-4 mt-2 animate-section-in">
 			<div className="container-md">
 				<div className="border-t border-divider pt-4" />
 				<div className="flex flex-row justify-between items-center">
@@ -43,6 +29,6 @@ export function AppFooter() {
 					</div>
 				</div>
 			</div>
-		</motion.footer>
+		</footer>
 	);
 }

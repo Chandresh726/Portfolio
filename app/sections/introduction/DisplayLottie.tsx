@@ -1,34 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Lottie from "lottie-react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import type { GreetingLottieProps } from "types";
 
-const GreetingLottie = ({ animationPath }: GreetingLottieProps) => {
-	const [animationData, setAnimationData] = useState<object | null>(null);
+const DESKTOP_QUERY = "(min-width: 768px)";
+const LottiePlayer = lazy(() => import("./LottiePlayer"));
+
+export default function GreetingLottie(props: GreetingLottieProps) {
+	const [isDesktop, setIsDesktop] = useState(false);
 
 	useEffect(() => {
-		fetch(animationPath)
-			.then((response) => response.json())
-			.then((data) => setAnimationData(data))
-			.catch((error) => console.error("Failed to load Lottie animation:", error));
-	}, [animationPath]);
+		const mediaQuery = window.matchMedia(DESKTOP_QUERY);
+		const updateMatch = () => setIsDesktop(mediaQuery.matches);
+		updateMatch();
+		mediaQuery.addEventListener("change", updateMatch);
+		return () => mediaQuery.removeEventListener("change", updateMatch);
+	}, []);
 
-	if (!animationData) {
-		return null;
-	}
+	if (!isDesktop) return null;
 
 	return (
-		<motion.div
-			initial={{ x: -200, opacity: 0 }}
-			whileInView={{ x: 0, opacity: 1 }}
-			viewport={{ once: true }}
-			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] as const, delay: 0.2 }}
-		>
-			<Lottie loop autoplay animationData={animationData} />
-		</motion.div>
+		<Suspense fallback={null}>
+			<LottiePlayer {...props} />
+		</Suspense>
 	);
-};
-
-export default GreetingLottie;
+}

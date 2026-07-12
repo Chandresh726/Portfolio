@@ -6,45 +6,7 @@ import { ThemeSwitcher } from "components/ThemeSwitcher";
 import { cn } from "utils/cn";
 import Link from "next/link";
 import Image from "next/image";
-import { Home, Briefcase, FolderOpen, User, Code } from "lucide-react";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaXTwitter } from "react-icons/fa6";
-import { HiOutlineMail } from "react-icons/hi";
-
-const navItems = [
-	{ href: "/#intro", icon: Home, label: "Home" },
-	{ href: "/#experience", icon: Briefcase, label: "Experience" },
-	{ href: "/#projects", icon: FolderOpen, label: "Projects" },
-	{ href: "/#about", icon: User, label: "About" },
-	{ href: "/#tech", icon: Code, label: "Tech" }
-];
-
-const socialLinks = [
-	{
-		href: "https://github.com/Chandresh726",
-		icon: BsGithub,
-		label: "GitHub",
-		color: "#2DBA4E"
-	},
-	{
-		href: "https://www.linkedin.com/in/kchandresh726/",
-		icon: BsLinkedin,
-		label: "LinkedIn",
-		color: "#0A66C2"
-	},
-	{
-		href: "https://twitter.com/Chandresh_726",
-		icon: FaXTwitter,
-		label: "Twitter",
-		color: "#1DA1F2"
-	},
-	{
-		href: "mailto:kchandresh726@gmail.com",
-		icon: HiOutlineMail,
-		label: "Email",
-		color: "#E4405F"
-	}
-];
+import { NAVIGATION_ITEMS, SOCIAL_MEDIA } from "@/constants";
 
 const menuVariants = {
 	closed: {
@@ -84,8 +46,10 @@ export function MobileNav() {
 
 	// Handle ESC key
 	useEffect(() => {
+		if (!isOpen) return;
+
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape" && isOpen) {
+			if (e.key === "Escape") {
 				closeMenu();
 			}
 		};
@@ -96,13 +60,12 @@ export function MobileNav() {
 
 	// Prevent body scroll when menu is open
 	useEffect(() => {
-		if (isOpen) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "";
-		}
+		if (!isOpen) return;
+
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = "hidden";
 		return () => {
-			document.body.style.overflow = "";
+			document.body.style.overflow = previousOverflow;
 		};
 	}, [isOpen]);
 
@@ -181,7 +144,7 @@ export function MobileNav() {
 							{/* Navigation Links */}
 							<div className="flex-1">
 								<nav className="space-y-1">
-									{navItems.map((item, i) => (
+									{NAVIGATION_ITEMS.map((item, i) => (
 										<motion.div
 											key={item.href}
 											variants={navItemVariants}
@@ -215,18 +178,18 @@ export function MobileNav() {
 									variants={navItemVariants}
 									initial="closed"
 									animate="open"
-									custom={navItems.length}
+									custom={NAVIGATION_ITEMS.length}
 								>
 									<p className="px-4 py-2 text-sm text-text-muted font-medium uppercase tracking-wide">
 										Connect
 									</p>
 									<div className="grid grid-cols-2 gap-2">
-										{socialLinks.map((item) => (
+										{SOCIAL_MEDIA.map((item) => (
 											<a
 												key={item.href}
 												href={item.href}
-												target="_blank"
-												rel="noopener noreferrer"
+												target={item.external ? "_blank" : undefined}
+												rel={item.external ? "noopener noreferrer" : undefined}
 												onClick={closeMenu}
 												className={cn(
 													"flex items-center gap-3 px-4 py-3 rounded-xl",
@@ -249,7 +212,7 @@ export function MobileNav() {
 								variants={navItemVariants}
 								initial="closed"
 								animate="open"
-								custom={navItems.length + 1}
+								custom={NAVIGATION_ITEMS.length + 1}
 							>
 								<div className="flex items-center justify-between px-4 py-1">
 									<span className="text-sm text-text-muted font-medium">Theme</span>

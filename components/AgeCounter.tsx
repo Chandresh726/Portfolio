@@ -6,26 +6,34 @@ const calculateYears = () => {
 	const birthDate = new Date("2002-05-08T00:00:00");
 	const now = new Date();
 	const ageInYears = (now.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-	return ageInYears.toFixed(9);
+	return ageInYears.toFixed(8);
 };
+
+const UPDATE_INTERVAL_MS = 1_000;
 
 export function AgeCounter() {
 	const [years, setYears] = useState<string | null>(null);
 
 	useEffect(() => {
-		setYears(calculateYears());
+		const updateYears = () => setYears(calculateYears());
+		const handleVisibilityChange = () => {
+			if (document.visibilityState === "visible") updateYears();
+		};
 
-		const interval = setInterval(() => {
-			setYears(calculateYears());
-		}, 100);
+		updateYears();
+		const interval = setInterval(updateYears, UPDATE_INTERVAL_MS);
+		document.addEventListener("visibilitychange", handleVisibilityChange);
 
-		return () => clearInterval(interval);
+		return () => {
+			clearInterval(interval);
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
+		};
 	}, []);
 
 	if (years === null) {
 		return (
 			<div className="text-base sm:text-lg lg:text-xl font-medium min-h-[28px]">
-				<span className="tabular-nums opacity-0">been on earth for 00.000000000 years</span>
+				<span className="tabular-nums opacity-0">been on earth for 00.00000000 years</span>
 			</div>
 		);
 	}

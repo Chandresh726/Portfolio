@@ -13,13 +13,7 @@
 		],
 		"liveUrl": "https://switchy.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Switchy",
-		"stack": [
-			"Next",
-			"Typescript",
-			"AI SDK",
-			"Shadcn",
-			"SQL Lite"
-		]
+		"stack": ["Next", "Typescript", "AI SDK", "Shadcn", "SQLite"]
 	},
 	{
 		"title": "Finara",
@@ -34,13 +28,7 @@
 		],
 		"liveUrl": "https://finara.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Finara-v2",
-		"stack": [
-			"Next",
-			"Typescript",
-			"Shancn",
-			"Postgres",
-			"AI SDK"
-		]
+		"stack": ["Next", "Typescript", "Shadcn", "Postgres", "AI SDK"]
 	},
 	{
 		"title": "DeTube",
@@ -54,13 +42,7 @@
 		],
 		"liveUrl": "https://detube.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/DeTube",
-		"stack": [
-			"Next",
-			"Typescript",
-			"AWS",
-			"Solana",
-			"Tailwind CSS"
-		]
+		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
 	},
 	{
 		"title": "Web Crawler",
@@ -75,29 +57,15 @@
 		],
 		"liveUrl": "https://crawl-viewer.vercel.app/",
 		"repoUrl": null,
-		"stack": [
-			"Javascript",
-			"NodeJS",
-			"Puppeteer",
-			"React"
-		]
+		"stack": ["Javascript", "Node.js", "Puppeteer", "React"]
 	},
 	{
 		"title": "Passm",
 		"description": "A CLI password manager",
-		"images": [
-			"/images/passm/1.png",
-			"/images/passm/2.png",
-			"/images/passm/3.png"
-		],
+		"images": ["/images/passm/1.png", "/images/passm/2.png", "/images/passm/3.png"],
 		"liveUrl": "https://passm.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Passm",
-		"stack": [
-			"Next",
-			"Shadcn",
-			"Typescript",
-			"Rust"
-		]
+		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
 	},
 	{
 		"title": "TruShield",
@@ -110,11 +78,7 @@
 		],
 		"liveUrl": "https://trushield.vercel.app/",
 		"repoUrl": null,
-		"stack": [
-			"React",
-			"Javascript",
-			"Tailwind CSS"
-		]
+		"stack": ["React", "Javascript", "Tailwind CSS"]
 	},
 	{
 		"title": "Samraksha",
@@ -127,13 +91,7 @@
 		],
 		"liveUrl": "https://samraksha-test.onrender.com/",
 		"repoUrl": "https://github.com/Chandresh726/samraksha",
-		"stack": [
-			"React",
-			"MongoDB",
-			"Express",
-			"Node",
-			"Javascript"
-		]
+		"stack": ["React", "MongoDB", "Express", "Node.js", "Javascript"]
 	},
 	{
 		"title": "Portfolio",
@@ -146,11 +104,7 @@
 		],
 		"liveUrl": "https://portfolio.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Portfolio",
-		"stack": [
-			"Next",
-			"Tailwind CSS",
-			"Javascript"
-		]
+		"stack": ["Next", "Tailwind CSS", "Javascript"]
 	},
 	{
 		"title": "Sun Minerals",
@@ -162,10 +116,7 @@
 		],
 		"liveUrl": "https://coal-site.vercel.app/",
 		"repoUrl": "https://github.com/Chandresh726/CoalSite",
-		"stack": [
-			"React",
-			"Javascript"
-		]
+		"stack": ["React", "Javascript"]
 	},
 	{
 		"title": "KISAN",
@@ -173,11 +124,6 @@
 		"images": [],
 		"liveUrl": null,
 		"repoUrl": "https://github.com/Chandresh726/Lexicon-Agriculture_Portal",
-		"stack": [
-			"React",
-			"MongoDB",
-			"Flask",
-			"Javascript"
-		]
+		"stack": ["React", "MongoDB", "Flask", "Javascript"]
 	}
 ]

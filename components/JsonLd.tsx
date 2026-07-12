@@ -10,7 +10,7 @@ const personSchema = {
 	jobTitle: personalData.jobTitle,
 	description: personalData.seoDescription,
 	url: seoData.siteUrl,
-	sameAs: ["https://github.com/Chandresh726", "https://linkedin.com/in/chandresh726"],
+	sameAs: [personalData.githubUrl, personalData.linkedinUrl, personalData.xUrl],
 	knowsAbout: personalData.expertise,
 	alumniOf: {
 		"@type": "EducationalOrganization",

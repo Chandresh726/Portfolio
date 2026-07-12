@@ -7,61 +7,19 @@ import { Separator } from "components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "components/ui/tooltip";
 import { cn } from "utils/cn";
 import Link from "next/link";
-import { Home, Briefcase, FolderOpen, User, Code } from "lucide-react";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaXTwitter } from "react-icons/fa6";
-import { HiOutlineMail } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-function getIconColor(label: string): string {
-	switch (label) {
-		case "GitHub": return "#2DBA4E";
-		case "LinkedIn": return "#0A66C2";
-		case "Twitter": return "#1DA1F2";
-		case "Email": return "#E4405F";
-		default: return "currentColor";
-	}
-}
-
-const navItems = [
-	{ href: "/#intro", icon: Home, label: "Home" },
-	{ href: "/#experience", icon: Briefcase, label: "Experience" },
-	{ href: "/#projects", icon: FolderOpen, label: "Projects" },
-	{ href: "/#about", icon: User, label: "About" },
-	{ href: "/#tech", icon: Code, label: "Tech" }
-];
-
-const socialLinks = [
-	{
-		href: "https://github.com/Chandresh726",
-		icon: BsGithub,
-		label: "GitHub"
-	},
-	{
-		href: "https://www.linkedin.com/in/kchandresh726/",
-		icon: BsLinkedin,
-		label: "LinkedIn"
-	},
-	{
-		href: "https://twitter.com/Chandresh_726",
-		icon: FaXTwitter,
-		label: "Twitter"
-	},
-	{
-		href: "mailto:kchandresh726@gmail.com",
-		icon: HiOutlineMail,
-		label: "Email"
-	}
-];
+import { NAVIGATION_ITEMS, SOCIAL_MEDIA } from "@/constants";
+import type { CSSProperties } from "react";
 
 export function DockNav() {
 	const [isMac, setIsMac] = useState(false);
 	const pathname = usePathname();
 	const isHome = pathname === "/";
 
-	const visibleNavItems = isHome ? navItems : [navItems[0]];
+	const visibleNavItems = isHome ? NAVIGATION_ITEMS : [NAVIGATION_ITEMS[0]];
 
 	useEffect(() => {
 		setIsMac(navigator.platform.toUpperCase().includes("MAC"));
@@ -112,20 +70,19 @@ export function DockNav() {
 
 				<Separator orientation="vertical" className="h-full opacity-30 mx-1" />
 
-				{socialLinks.map((item) => (
+				{SOCIAL_MEDIA.map((item) => (
 					<DockIcon key={item.href}>
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<a
 									href={item.href}
-									target="_blank"
-									rel="noopener noreferrer"
+									target={item.external ? "_blank" : undefined}
+									rel={item.external ? "noopener noreferrer" : undefined}
 									className={cn(
 										buttonVariants({ variant: "ghost", size: "icon" }),
-										"relative size-12 transition-[background-color] duration-300 hover:bg-surface-interactive"
+										"relative size-12 transition-colors duration-300 hover:bg-surface-interactive hover:text-[var(--hover-color)]"
 									)}
-									onMouseEnter={(e) => e.currentTarget.style.color = getIconColor(item.label)}
-									onMouseLeave={(e) => e.currentTarget.style.color = ""}
+									style={{ "--hover-color": item.color } as CSSProperties}
 								>
 									<item.icon className="size-4" />
 									<span className="sr-only">{item.label}</span>
