@@ -61,6 +61,6 @@ export const AppMetadata: Metadata = {
 				alt: "My personal portfolio website"
 			}
 		],
-		creator: seoData.twitterHandle
+		creator: personalData.xHandle
 	}
 };

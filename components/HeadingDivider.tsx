@@ -1,25 +1,11 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import type { HeadingDividerProps } from "types";
 
 export function HeadingDivider({ title = "" }: HeadingDividerProps) {
-	const ref = useRef(null);
-	const isInView = useInView(ref, { once: true });
-
 	return (
 		<header className="flex items-center">
-			<motion.h2
-				ref={ref}
-				tabIndex={0}
-				initial={{ opacity: 0 }}
-				animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-				transition={{ delay: 0.05 }}
-				className="heading-divider"
-			>
+			<h2 tabIndex={0} className="heading-divider animate-section-in">
 				{title}
-			</motion.h2>
+			</h2>
 		</header>
 	);
 }

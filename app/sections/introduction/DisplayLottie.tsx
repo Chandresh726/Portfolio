@@ -1,34 +1,75 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
+import type { ComponentType } from "react";
 import type { GreetingLottieProps } from "types";
 
-const GreetingLottie = ({ animationPath }: GreetingLottieProps) => {
-	const [animationData, setAnimationData] = useState<object | null>(null);
+const DESKTOP_QUERY = "(min-width: 768px)";
+
+interface PlayerProps {
+	animationData: object;
+}
+
+interface ReadyPlayer {
+	Component: ComponentType<PlayerProps>;
+	animationData: object;
+}
+
+export default function GreetingLottie({ animationPath }: GreetingLottieProps) {
+	const [player, setPlayer] = useState<ReadyPlayer | null>(null);
 
 	useEffect(() => {
-		fetch(animationPath)
-			.then((response) => response.json())
-			.then((data) => setAnimationData(data))
-			.catch((error) => console.error("Failed to load Lottie animation:", error));
+		const mediaQuery = window.matchMedia(DESKTOP_QUERY);
+		let active = true;
+		let requestId = 0;
+		let controller: AbortController | null = null;
+
+		const updateMatch = () => {
+			requestId += 1;
+			const currentRequest = requestId;
+			controller?.abort();
+			controller = null;
+
+			if (!mediaQuery.matches) {
+				setPlayer(null);
+				return;
+			}
+
+			controller = new AbortController();
+			const signal = controller.signal;
+
+			void Promise.all([
+				import("./LottiePlayer"),
+				fetch(animationPath, { signal }).then((response) => {
+					if (!response.ok) {
+						throw new Error(`Animation request failed: ${response.status}`);
+					}
+					return response.json() as Promise<object>;
+				})
+			])
+				.then(([module, animationData]) => {
+					if (!active || currentRequest !== requestId) return;
+					setPlayer({ Component: module.default, animationData });
+				})
+				.catch((error: unknown) => {
+					if (error instanceof DOMException && error.name === "AbortError") return;
+					console.error("Failed to load Lottie animation");
+				});
+		};
+
+		updateMatch();
+		mediaQuery.addEventListener("change", updateMatch);
+
+		return () => {
+			active = false;
+			requestId += 1;
+			controller?.abort();
+			mediaQuery.removeEventListener("change", updateMatch);
+		};
 	}, [animationPath]);
 
-	if (!animationData) {
-		return null;
-	}
+	if (!player) return null;
 
-	return (
-		<motion.div
-			initial={{ x: -200, opacity: 0 }}
-			whileInView={{ x: 0, opacity: 1 }}
-			viewport={{ once: true }}
-			transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] as const, delay: 0.2 }}
-		>
-			<Lottie loop autoplay animationData={animationData} />
-		</motion.div>
-	);
-};
-
-export default GreetingLottie;
+	const { Component, animationData } = player;
+	return <Component animationData={animationData} />;
+}

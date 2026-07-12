@@ -1,7 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { HeadingDivider } from "components";
+import { HeadingDivider } from "components/HeadingDivider";
 import Image from "next/image";
 import educationData from "content/education.json";
 
@@ -17,35 +14,9 @@ interface Education {
 	gradeType: string;
 }
 
-const containerVariants = {
-	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.15,
-			delayChildren: 0.1
-		}
-	}
-};
-
-const cardVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 0.5,
-			ease: [0.25, 0.1, 0.25, 1] as const
-		}
-	}
-};
-
 function EducationCard({ education }: { education: Education }) {
 	return (
-		<motion.div
-			variants={cardVariants}
-			className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg"
-		>
+		<div className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg animate-section-in">
 			<div className="flex items-center gap-4">
 				{/* Logo */}
 				<div className="flex-shrink-0">
@@ -93,7 +64,7 @@ function EducationCard({ education }: { education: Education }) {
 					</div>
 				</div>
 			</div>
-		</motion.div>
+		</div>
 	);
 }
 
@@ -101,17 +72,11 @@ export function EducationSection() {
 	return (
 		<section id="education" className="section">
 			<HeadingDivider title="Education" />
-			<motion.div
-				className="pt-4 flex flex-col gap-2.5"
-				variants={containerVariants}
-				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, margin: "-50px" }}
-			>
+			<div className="pt-4 flex flex-col gap-2.5">
 				{(educationData as Education[]).map((education, index) => (
 					<EducationCard key={`${education.institution}-${index}`} education={education} />
 				))}
-			</motion.div>
+			</div>
 		</section>
 	);
 }

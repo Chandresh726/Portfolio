@@ -10,6 +10,7 @@ import { MdFullscreen } from "react-icons/md";
 interface ImageCarouselProps {
 	images: string[];
 	alt?: string;
+	preload?: boolean;
 }
 
 const imageVariants = {
@@ -30,7 +31,11 @@ const imageVariants = {
 	}
 };
 
-export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselProps) {
+export function ImageCarousel({
+	images,
+	alt = "Project image",
+	preload = false
+}: ImageCarouselProps) {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isHovered, setIsHovered] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
@@ -67,11 +72,12 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 			if (e.key === "ArrowLeft") prevImage();
 		};
 
+		const previousOverflow = document.body.style.overflow;
 		document.body.style.overflow = "hidden";
 		window.addEventListener("keydown", handleKeyDown);
 
 		return () => {
-			document.body.style.overflow = "";
+			document.body.style.overflow = previousOverflow;
 			window.removeEventListener("keydown", handleKeyDown);
 		};
 	}, [isFullscreen, nextImage, prevImage]);
@@ -149,7 +155,7 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 							fill
 							className="object-contain"
 							sizes="90vw"
-							preload
+							preload={preload}
 						/>
 					</motion.div>
 
@@ -244,7 +250,7 @@ export function ImageCarousel({ images, alt = "Project image" }: ImageCarouselPr
 								fill
 								className="object-cover"
 								sizes="(max-width: 768px) 100vw, 50vw"
-								preload={currentIndex === 0}
+								preload={preload && currentIndex === 0}
 							/>
 						</motion.div>
 					</AnimatePresence>

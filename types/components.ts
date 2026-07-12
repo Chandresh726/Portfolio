@@ -18,6 +18,7 @@ export interface FilterButtonProps {
 }
 
 export interface FilterProps {
+	projects: Project[];
 	onClick?: (category: string | undefined) => void;
 }
 
