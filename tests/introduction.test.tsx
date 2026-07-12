@@ -9,6 +9,12 @@ vi.mock("app/sections/introduction/DisplayLottie", () => ({
 afterEach(() => vi.unstubAllEnvs());
 
 describe("WelcomeSection", () => {
+	it("renders the staged intro entrance and a layout-stable Lottie stage", () => {
+		const { container } = render(<WelcomeSection />);
+		expect(container.querySelector("h1")).toHaveClass("intro-reveal", "intro-reveal--1");
+		expect(container.querySelector(".intro-lottie-stage")).toBeInTheDocument();
+	});
+
 	it("renders the configured resume destination", () => {
 		vi.stubEnv("NEXT_PUBLIC_RESUME_URL", "https://example.com/resume.pdf");
 		render(<WelcomeSection />);

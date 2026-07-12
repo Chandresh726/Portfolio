@@ -7,9 +7,11 @@ const lazyPlayer = vi.hoisted(() => ({ moduleEvaluations: vi.fn(), renders: vi.f
 vi.mock("app/sections/introduction/LottiePlayer", () => {
 	lazyPlayer.moduleEvaluations();
 	return {
-		default: () => {
+		default: ({ animationData }: { animationData: object }) => {
 			lazyPlayer.renders();
-			return <div data-testid="deferred-lottie-player" />;
+			return (
+				<div data-testid="deferred-lottie-player" data-animation={JSON.stringify(animationData)} />
+			);
 		}
 	};
 });
@@ -42,25 +44,43 @@ function createMediaQuery(initialMatches: boolean) {
 afterEach(() => vi.restoreAllMocks());
 
 describe("GreetingLottie", () => {
-	it("defers the player module until desktop, removes it on downshift, and cleans the media listener", async () => {
+	it("loads the player and animation together only on desktop, then cleans up", async () => {
 		const controller = createMediaQuery(false);
 		vi.spyOn(window, "matchMedia").mockReturnValue(
 			controller.mediaQuery as unknown as MediaQueryList
 		);
+		const animationData = { layers: [{ name: "coding" }] };
+		let requestSignal: AbortSignal | undefined;
+		const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((_input, init) => {
+			requestSignal = init?.signal ?? undefined;
+			return Promise.resolve({
+				ok: true,
+				json: async () => animationData
+			} as Response);
+		});
 		const { unmount } = render(<GreetingLottie animationPath="/lottie/coding.json" />);
 
 		expect(lazyPlayer.moduleEvaluations).not.toHaveBeenCalled();
+		expect(fetchMock).not.toHaveBeenCalled();
 		expect(screen.queryByTestId("deferred-lottie-player")).not.toBeInTheDocument();
 
 		controller.setMatches(true);
 		await waitFor(() => expect(screen.getByTestId("deferred-lottie-player")).toBeInTheDocument());
 		expect(lazyPlayer.moduleEvaluations).toHaveBeenCalledTimes(1);
 		expect(lazyPlayer.renders).toHaveBeenCalled();
+		expect(fetchMock).toHaveBeenCalledWith("/lottie/coding.json", {
+			signal: expect.any(AbortSignal)
+		});
+		expect(screen.getByTestId("deferred-lottie-player")).toHaveAttribute(
+			"data-animation",
+			JSON.stringify(animationData)
+		);
 
 		controller.setMatches(false);
 		await waitFor(() =>
 			expect(screen.queryByTestId("deferred-lottie-player")).not.toBeInTheDocument()
 		);
+		expect(requestSignal?.aborted).toBe(true);
 
 		const registeredListener = controller.getChangeListener();
 		unmount();
