@@ -17,13 +17,14 @@ jobs:
       NEXT_PUBLIC_RESUME_URL: https://example.com/resume.pdf
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
+          check-latest: true
       - name: Enable pnpm
         run: corepack enable && corepack prepare pnpm@11.9.0 --activate
       - name: Install dependencies
