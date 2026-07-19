@@ -26,20 +26,31 @@ const CANONICAL_STACK = new Set([
 ]);
 
 describe("portfolio content contract", () => {
-	it("has unique project titles and valid URLs", () => {
+	it("has stable project identities, meaningful content and valid URLs", () => {
 		const titles = PROJECTS.map((project) => project.title);
+		const slugs = PROJECTS.map((project) => project.slug);
 		expect(new Set(titles).size).toBe(titles.length);
+		expect(new Set(slugs).size).toBe(slugs.length);
+
 		for (const project of PROJECTS) {
+			expect(project.slug).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+			expect(project.description.length).toBeGreaterThan(80);
+			expect(new Date(`${project.updatedAt}T00:00:00Z`).toISOString().slice(0, 10)).toBe(
+				project.updatedAt
+			);
 			for (const url of [project.liveUrl, project.repoUrl].filter(Boolean)) {
 				expect(() => new URL(url as string)).not.toThrow();
 			}
 		}
 	});
 
-	it("references existing local images and canonical stack spelling", () => {
+	it("references optimized local images with contextual alternatives", () => {
 		for (const project of PROJECTS) {
 			for (const image of project.images) {
-				expect(existsSync(path.join(process.cwd(), "public", image))).toBe(true);
+				expect(image.src).toMatch(/\.webp$/);
+				expect(image.alt.length).toBeGreaterThan(20);
+				expect(image.alt).not.toMatch(/(?:project image|image \d+)$/i);
+				expect(existsSync(path.join(process.cwd(), "public", image.src))).toBe(true);
 			}
 			for (const technology of project.stack) expect(CANONICAL_STACK.has(technology)).toBe(true);
 		}

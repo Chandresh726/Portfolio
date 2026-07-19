@@ -149,7 +149,7 @@ html {
 @keyframes section-in {
 	from {
 		opacity: 0;
-		transform: translateY(10px);
+		transform: translateY(14px);
 	}
 	to {
 		opacity: 1;
@@ -158,40 +158,27 @@ html {
 }
 
 .animate-section-in {
-	animation: section-in 400ms ease-out both;
+	animation: section-in 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes intro-reveal {
+@keyframes hero-copy-reveal {
 	from {
 		opacity: 0;
-		filter: blur(6px);
-		transform: translateY(6px);
+		transform: translateY(16px) scale(0.992);
 	}
 	to {
 		opacity: 1;
-		filter: blur(0);
-		transform: translateY(0);
+		transform: translateY(0) scale(1);
 	}
 }
 
-.intro-reveal {
-	animation: intro-reveal 400ms ease-out both;
+.hero-copy-motion,
+.hero-visual-motion {
+	opacity: 0;
 }
 
-.intro-reveal--1 {
-	animation-delay: 60ms;
-}
-
-.intro-reveal--2 {
-	animation-delay: 80ms;
-}
-
-.intro-reveal--3 {
-	animation-delay: 100ms;
-}
-
-.intro-reveal--4 {
-	animation-delay: 120ms;
+.hero-motion--ready .hero-copy-motion {
+	animation: hero-copy-reveal 950ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both;
 }
 
 .intro-lottie-stage {
@@ -199,10 +186,10 @@ html {
 	place-items: center;
 }
 
-@keyframes intro-lottie-reveal {
+@keyframes hero-visual-reveal {
 	from {
 		opacity: 0;
-		transform: translateX(-200px);
+		transform: translateX(-36px);
 	}
 	to {
 		opacity: 1;
@@ -210,16 +197,105 @@ html {
 	}
 }
 
-.intro-lottie-reveal {
-	width: 100%;
-	animation: intro-lottie-reveal 900ms cubic-bezier(0.17, 0.55, 0.55, 1) 200ms both;
+.hero-motion--ready .hero-visual-motion {
+	animation: hero-visual-reveal 950ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both;
+}
+
+@keyframes mobile-menu-in {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes mobile-menu-out {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+.mobile-menu-panel[data-state="open"] {
+	animation: mobile-menu-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobile-menu-panel[data-state="closed"] {
+	animation: mobile-menu-out 220ms ease-in both;
+}
+
+@keyframes mobile-menu-item-in {
+	from {
+		opacity: 0;
+		transform: translateX(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.mobile-menu-panel[data-state="open"] .mobile-menu-item {
+	animation: mobile-menu-item-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-delay: calc(80ms + var(--menu-item-index, 0) * 40ms);
+}
+
+.experience-detail-item {
+	opacity: 0;
+	transform: translateX(-6px);
+}
+
+@keyframes experience-detail-in {
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+[data-state="open"] .experience-detail-item {
+	animation: experience-detail-in 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation-delay: calc(50ms + var(--experience-item-index, 0) * 50ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.motion-reveal,
+	.motion-reveal-item,
+	.project-motion-card {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+	}
+
 	.animate-section-in,
-	.intro-reveal,
-	.intro-lottie-reveal {
+	.hero-copy-motion,
+	.hero-visual-motion,
+	.mobile-menu-panel,
+	.mobile-menu-item {
 		animation: none;
+		opacity: 1;
+		transform: none;
+	}
+
+	.experience-detail-item {
+		animation: none;
+		opacity: 1;
+		transform: none;
 	}
 }
 

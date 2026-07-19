@@ -1,12 +1,30 @@
 import type { ComponentType, CSSProperties, ReactNode, SVGProps } from "react";
 
+export interface ProjectImage {
+	src: string;
+	alt: string;
+}
+
 export interface Project {
+	slug: string;
 	title: string;
 	description: string;
-	images: string[];
+	updatedAt: string;
+	images: ProjectImage[];
 	liveUrl: string | null;
 	repoUrl: string | null;
 	stack: string[];
+}
+
+export interface Experience {
+	company: string;
+	logo: string;
+	title: string;
+	location: string;
+	jobType: string;
+	start: string;
+	end: string;
+	description: string[];
 }
 
 export interface SocialMediaItem {

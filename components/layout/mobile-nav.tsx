@@ -1,228 +1,179 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ThemeSwitcher } from "components/ThemeSwitcher";
-import { cn } from "utils/cn";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { ThemeSwitcher } from "components/ThemeSwitcher";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogTitle,
+	DialogTrigger
+} from "components/ui/dialog";
+import { cn } from "utils/cn";
 import { NAVIGATION_ITEMS, SOCIAL_MEDIA } from "@/constants";
 
-const menuVariants = {
-	closed: {
-		x: "-100%",
-		transition: {
-			type: "spring" as const,
-			stiffness: 400,
-			damping: 40
-		}
-	},
-	open: {
-		x: 0,
-		transition: {
-			type: "spring" as const,
-			stiffness: 400,
-			damping: 40
-		}
-	}
-};
+function HamburgerIcon({ open }: { open: boolean }) {
+	return (
+		<span className="relative block w-6 h-5" aria-hidden="true">
+			<span
+				className={`absolute left-0 top-0 h-0.5 w-6 rounded-full bg-on-surface transition-transform duration-200 ${
+					open ? "translate-y-[9px] rotate-45" : ""
+				}`}
+			/>
+			<span
+				className={`absolute left-0 top-[9px] h-0.5 w-6 rounded-full bg-on-surface transition-[opacity,transform] duration-200 ${
+					open ? "opacity-0 scale-x-0" : ""
+				}`}
+			/>
+			<span
+				className={`absolute left-0 bottom-0 h-0.5 w-6 rounded-full bg-on-surface transition-transform duration-200 ${
+					open ? "-translate-y-[9px] -rotate-45" : ""
+				}`}
+			/>
+		</span>
+	);
+}
 
-const navItemVariants = {
-	closed: { x: 20, opacity: 0 },
-	open: (i: number) => ({
-		x: 0,
-		opacity: 1,
-		transition: {
-			delay: i * 0.05,
-			duration: 0.3
-		}
-	})
-};
+function MobileHeader({ open, closeButton = false }: { open: boolean; closeButton?: boolean }) {
+	const button = (
+		<button
+			className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-interactive transition-colors"
+			aria-label={open ? "Close menu" : "Open menu"}
+		>
+			<HamburgerIcon open={open} />
+		</button>
+	);
+
+	const homeLink = (
+		<Link href="/" className="flex items-center" aria-label="Chandresh Kumar home">
+			<span className="relative size-9 rounded-full overflow-hidden">
+				<Image src="/avatar.webp" alt="" fill sizes="36px" className="object-cover" />
+			</span>
+		</Link>
+	);
+
+	return (
+		<header className="h-16 bg-surface/90 backdrop-blur-xl border-b border-outline/20">
+			<div className="flex items-center justify-between h-full px-4">
+				{closeButton ? <DialogClose asChild>{homeLink}</DialogClose> : homeLink}
+				{closeButton ? (
+					<DialogClose asChild>{button}</DialogClose>
+				) : (
+					<DialogTrigger asChild>{button}</DialogTrigger>
+				)}
+			</div>
+		</header>
+	);
+}
 
 export function MobileNav() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [open, setOpen] = useState(false);
+	const firstLinkRef = useRef<HTMLAnchorElement>(null);
+	const pathname = usePathname();
 
-	const closeMenu = useCallback(() => setIsOpen(false), []);
+	useEffect(() => setOpen(false), [pathname]);
 
-	// Handle ESC key
 	useEffect(() => {
-		if (!isOpen) return;
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				closeMenu();
-			}
+		const mediaQuery = window.matchMedia("(min-width: 768px)");
+		const closeOnDesktop = () => {
+			if (mediaQuery.matches) setOpen(false);
 		};
-
-		document.addEventListener("keydown", handleKeyDown);
-		return () => document.removeEventListener("keydown", handleKeyDown);
-	}, [isOpen, closeMenu]);
-
-	// Prevent body scroll when menu is open
-	useEffect(() => {
-		if (!isOpen) return;
-
-		const previousOverflow = document.body.style.overflow;
-		document.body.style.overflow = "hidden";
-		return () => {
-			document.body.style.overflow = previousOverflow;
-		};
-	}, [isOpen]);
+		closeOnDesktop();
+		mediaQuery.addEventListener("change", closeOnDesktop);
+		return () => mediaQuery.removeEventListener("change", closeOnDesktop);
+	}, []);
 
 	return (
 		<div className="md:hidden">
-			{/* Fixed Top Navbar */}
-			<motion.header
-				className="fixed top-0 left-0 right-0 h-16 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline/20"
-				initial={{ y: -100 }}
-				animate={{ y: 0 }}
-				transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
-			>
-				<div className="flex items-center justify-between h-full px-4">
-					<Link href="/" className="flex items-center" onClick={closeMenu}>
-						<div className="relative size-9 rounded-full overflow-hidden">
-							<Image
-								src="/favicon.png"
-								alt="Chandresh Kumar"
-								fill
-								sizes="36px"
-								className="object-cover"
-							/>
-						</div>
-					</Link>
-
-					{/* Hamburger Button */}
-					<button
-						onClick={() => setIsOpen(!isOpen)}
-						className="relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-interactive transition-colors"
-						aria-label={isOpen ? "Close menu" : "Open menu"}
-						aria-expanded={isOpen}
-					>
-						<div className="w-6 h-5 relative flex flex-col justify-between">
-							<motion.span
-								className="absolute w-6 h-0.5 bg-on-surface rounded-full"
-								animate={{
-									top: isOpen ? "50%" : "0%",
-									rotate: isOpen ? 45 : 0,
-									translateY: isOpen ? "-50%" : "0%"
-								}}
-								transition={{ duration: 0.3 }}
-							/>
-							<motion.span
-								className="absolute top-1/2 -translate-y-1/2 w-6 h-0.5 bg-on-surface rounded-full"
-								animate={{
-									opacity: isOpen ? 0 : 1,
-									scaleX: isOpen ? 0 : 1
-								}}
-								transition={{ duration: 0.2 }}
-							/>
-							<motion.span
-								className="absolute w-6 h-0.5 bg-on-surface rounded-full"
-								animate={{
-									bottom: isOpen ? "50%" : "0%",
-									rotate: isOpen ? -45 : 0,
-									translateY: isOpen ? "50%" : "0%"
-								}}
-								transition={{ duration: 0.3 }}
-							/>
-						</div>
-					</button>
+			<Dialog open={open} onOpenChange={setOpen}>
+				<div className="fixed top-0 left-0 right-0 h-16 z-50">
+					<MobileHeader open={open} />
 				</div>
-			</motion.header>
 
-			{/* Slide-in Menu Panel */}
-			<AnimatePresence>
-				{isOpen && (
-					<motion.nav
-						className="fixed top-16 left-0 right-0 bottom-0 z-40 w-full bg-surface"
-						variants={menuVariants}
-						initial="closed"
-						animate="open"
-						exit="closed"
-					>
-						<div className="flex flex-col h-full pt-6 pb-6 px-6">
-							{/* Navigation Links */}
+				<DialogContent
+					aria-modal="true"
+					className="mobile-menu-panel left-0 top-0 h-dvh w-screen translate-x-0 translate-y-0 bg-surface text-on-surface flex flex-col"
+					onOpenAutoFocus={(event) => {
+						event.preventDefault();
+						firstLinkRef.current?.focus();
+					}}
+				>
+					<DialogTitle className="sr-only">Primary navigation</DialogTitle>
+					<DialogDescription className="sr-only">
+						Navigate portfolio sections, social profiles and theme settings.
+					</DialogDescription>
+					<MobileHeader open closeButton />
+					<div className="flex-1 overflow-y-auto overscroll-contain pt-6 px-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+						<nav aria-label="Primary" className="flex min-h-full flex-col">
 							<div className="flex-1">
-								<nav className="space-y-1">
-									{NAVIGATION_ITEMS.map((item, i) => (
-										<motion.div
+								<div className="space-y-1">
+									{NAVIGATION_ITEMS.map((item, index) => (
+										<Link
 											key={item.href}
-											variants={navItemVariants}
-											initial="closed"
-											animate="open"
-											custom={i}
+											ref={index === 0 ? firstLinkRef : undefined}
+											href={item.href}
+											onClick={() => setOpen(false)}
+											className={cn(
+												"flex items-center gap-4 px-4 py-3 rounded-xl",
+												"text-on-surface font-medium",
+												"hover:bg-surface-interactive active:bg-surface-interactive",
+												"mobile-menu-item transition-colors min-h-11"
+											)}
+											style={{ "--menu-item-index": index } as CSSProperties}
 										>
-											<Link
-												href={item.href}
-												onClick={closeMenu}
-												className={cn(
-													"flex items-center gap-4 px-4 py-3 rounded-xl",
-													"text-on-surface font-medium",
-													"hover:bg-surface-interactive active:bg-surface-interactive",
-													"transition-colors min-h-[44px]"
-												)}
-											>
-												<item.icon className="size-5 text-blue-light" />
-												<span>{item.label}</span>
-											</Link>
-										</motion.div>
+											<item.icon className="size-5 text-blue-light" />
+											<span>{item.label}</span>
+										</Link>
 									))}
-								</nav>
+								</div>
 
-								{/* Divider */}
 								<div className="my-6 h-px bg-outline/30" />
-
-								{/* Social Links */}
-								<motion.div
-									className="space-y-1"
-									variants={navItemVariants}
-									initial="closed"
-									animate="open"
-									custom={NAVIGATION_ITEMS.length}
-								>
-									<p className="px-4 py-2 text-sm text-text-muted font-medium uppercase tracking-wide">
-										Connect
-									</p>
-									<div className="grid grid-cols-2 gap-2">
-										{SOCIAL_MEDIA.map((item) => (
-											<a
-												key={item.href}
-												href={item.href}
-												target={item.external ? "_blank" : undefined}
-												rel={item.external ? "noopener noreferrer" : undefined}
-												onClick={closeMenu}
-												className={cn(
-													"flex items-center gap-3 px-4 py-3 rounded-xl",
-													"text-on-surface",
-													"hover:bg-surface-interactive active:bg-surface-interactive",
-													"transition-colors min-h-[44px]"
-												)}
-											>
-												<item.icon className="size-5" style={{ color: item.color }} />
-												<span className="text-sm">{item.label}</span>
-											</a>
-										))}
-									</div>
-								</motion.div>
+								<p className="px-4 py-2 text-sm text-text-muted font-medium uppercase tracking-wide">
+									Connect
+								</p>
+								<div className="grid grid-cols-2 gap-2">
+									{SOCIAL_MEDIA.map((item, index) => (
+										<a
+											key={item.href}
+											href={item.href}
+											target={item.external ? "_blank" : undefined}
+											rel={item.external ? "noopener noreferrer" : undefined}
+											onClick={() => setOpen(false)}
+											className="mobile-menu-item flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface hover:bg-surface-interactive active:bg-surface-interactive transition-colors min-h-11"
+											style={
+												{
+													"--menu-item-index": NAVIGATION_ITEMS.length + index
+												} as CSSProperties
+											}
+										>
+											<item.icon className="size-5" style={{ color: item.color }} />
+											<span className="text-sm">{item.label}</span>
+										</a>
+									))}
+								</div>
 							</div>
 
-							{/* Theme Switcher at bottom */}
-							<motion.div
-								className="pt-4 border-t border-outline/30"
-								variants={navItemVariants}
-								initial="closed"
-								animate="open"
-								custom={NAVIGATION_ITEMS.length + 1}
+							<div
+								className="mobile-menu-item pt-4 mt-6 border-t border-outline/30"
+								style={
+									{
+										"--menu-item-index": NAVIGATION_ITEMS.length + SOCIAL_MEDIA.length
+									} as CSSProperties
+								}
 							>
 								<div className="flex items-center justify-between px-4 py-1">
 									<span className="text-sm text-text-muted font-medium">Theme</span>
 									<ThemeSwitcher />
 								</div>
-							</motion.div>
-						</div>
-					</motion.nav>
-				)}
-			</AnimatePresence>
+							</div>
+						</nav>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 }

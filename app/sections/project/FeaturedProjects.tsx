@@ -1,14 +1,16 @@
-"use client";
-
-import { ErrorBoundary } from "react-error-boundary";
-import { ErrorFallback } from "components/ErrorFallback";
-import { Projects } from "../../projects/components/Projects";
 import type { Project } from "types";
+import { RevealGroup } from "components/motion/reveal";
+import { ProjectItem } from "./ProjectItem";
 
 export function FeaturedProjects({ projects }: { projects: Project[] }) {
 	return (
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
-			<Projects projects={projects} />
-		</ErrorBoundary>
+		<RevealGroup
+			className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full"
+			columns={{ base: 1, md: 2 }}
+		>
+			{projects.map((project) => (
+				<ProjectItem key={project.slug} project={project} />
+			))}
+		</RevealGroup>
 	);
 }

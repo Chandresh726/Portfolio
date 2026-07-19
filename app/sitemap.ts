@@ -1,18 +1,18 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import seoData from "content/seo.json";
+import { absoluteUrl } from "utils/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const baseUrl = "https://portfolio.slope726.in";
-
 	return [
 		{
-			url: baseUrl,
-			lastModified: new Date(),
+			url: absoluteUrl("/"),
+			lastModified: seoData.homepageUpdatedAt,
 			changeFrequency: "monthly",
 			priority: 1
 		},
 		{
-			url: `${baseUrl}/projects`,
-			lastModified: new Date(),
+			url: absoluteUrl("/projects"),
+			lastModified: seoData.projectsUpdatedAt,
 			changeFrequency: "monthly",
 			priority: 0.8
 		}

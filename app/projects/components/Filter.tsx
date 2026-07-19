@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
 import { TbBrandJavascript, TbBrandNextjs, TbBrandRust, TbBrandTypescript } from "react-icons/tb";
 import { FaReact, FaAws } from "react-icons/fa";
 import { SiSolana } from "react-icons/si";
 import { FilterButton } from "./FilterButton";
+import { Reveal } from "components/motion/reveal";
 import type { FilterProps } from "types";
 
 const FILTER_OPTIONS = [
@@ -22,39 +22,33 @@ export function getAvailableProjectFilters(projects: FilterProps["projects"]) {
 	return FILTER_OPTIONS.filter((option) => stacks.has(option.label));
 }
 
-export function Filter({ projects, onClick = () => {} }: FilterProps) {
-	const [activeFilter, setActiveFilter] = useState<string | undefined>(undefined);
+export function Filter({ projects, activeFilter, onClick }: FilterProps) {
 	const availableFilters = getAvailableProjectFilters(projects);
 
-	const handleFilterClick = (filter: string | undefined) => {
-		onClick(filter);
-		setActiveFilter(filter);
-	};
-
 	return (
-		<div className="flex items-start flex-col sm:flex-row sm:items-center gap-4 my-10 animate-section-in">
-			<h3 aria-label="Filter projects" tabIndex={0} className="font-bold text-xl">
-				Filter by:
-			</h3>
-			<div className="flex items-center gap-4 flex-wrap">
-				<FilterButton
-					onClick={() => handleFilterClick(undefined)}
-					label="All"
-					active={activeFilter === undefined}
-				>
-					All
-				</FilterButton>
-				{availableFilters.map(({ label, icon: Icon }) => (
+		<Reveal>
+			<fieldset className="flex w-full min-w-0 items-start flex-col sm:flex-row sm:items-center gap-4 my-10">
+				<legend className="font-bold text-xl sm:float-left sm:mr-4">Filter by:</legend>
+				<div className="flex w-full min-w-0 items-center gap-4 flex-wrap sm:w-auto">
 					<FilterButton
-						key={label}
-						onClick={() => handleFilterClick(label)}
-						label={label}
-						active={activeFilter === label}
+						onClick={() => onClick(undefined)}
+						label="All"
+						active={activeFilter === undefined}
 					>
-						<Icon size="20" />
+						All
 					</FilterButton>
-				))}
-			</div>
-		</div>
+					{availableFilters.map(({ label, icon: Icon }) => (
+						<FilterButton
+							key={label}
+							onClick={() => onClick(label)}
+							label={label}
+							active={activeFilter === label}
+						>
+							<Icon size="20" />
+						</FilterButton>
+					))}
+				</div>
+			</fieldset>
+		</Reveal>
 	);
 }

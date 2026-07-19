@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
-import { FallbackProps } from "react-error-boundary";
 import { Project } from "./content";
 
 export interface HeadingDividerProps {
 	title?: string;
+	as?: "h1" | "h2";
+	id?: string;
 }
 
 export interface LoaderProps {
@@ -19,13 +20,8 @@ export interface FilterButtonProps {
 
 export interface FilterProps {
 	projects: Project[];
-	onClick?: (category: string | undefined) => void;
-}
-
-export interface ProjectsProps {
-	projects: Project[];
-	limit?: number;
-	category?: string;
+	activeFilter?: string;
+	onClick: (category: string | undefined) => void;
 }
 
 export interface ProjectItemProps {
@@ -40,8 +36,6 @@ export interface ErrorProps {
 	error: Error & { digest?: string };
 	reset: () => void;
 }
-
-export type ErrorFallbackProps = FallbackProps;
 
 export interface ThemeContextProps {
 	children: ReactNode;

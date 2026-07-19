@@ -50,6 +50,9 @@ describe("PortraitTilt", () => {
 		);
 		const { unmount } = render(<PortraitTilt />);
 
+		expect(window.matchMedia).toHaveBeenCalledWith(
+			"(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
+		);
 		expect(screen.getByRole("img", { name: "About me image" })).toBeInTheDocument();
 		expect(lazyMotion.moduleEvaluations).not.toHaveBeenCalled();
 

@@ -1,11 +1,8 @@
-import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import { AppFooter, AppMetadata, JsonLd } from "components";
-import { TooltipProvider } from "components/ui/tooltip";
 import { ScrollProgress } from "components/layout/scroll-progress";
-import { DockNav } from "components/layout/dock-nav";
-import { MobileNav } from "components/layout/mobile-nav";
-import Loading from "./loading";
+import { Navigation } from "components/layout/navigation";
+import { RouteScrollReset } from "components/layout/route-scroll-reset";
 import "styles/globals.css";
 import { ThemeContext } from "context";
 import { Analytics } from "@vercel/analytics/react";
@@ -18,40 +15,37 @@ const inter = Inter({
 	variable: "--font-inter"
 });
 
-export const metadata = { ...AppMetadata };
+export const metadata = AppMetadata;
 
 export default function RootLayout({ children }: LayoutProps) {
 	return (
-		<html
-			lang="en"
-			suppressHydrationWarning
-			className={inter.variable}
-			data-scroll-behavior="smooth"
-		>
+		<html lang="en" suppressHydrationWarning className={inter.variable}>
 			<head>
 				<JsonLd />
+				<script
+					dangerouslySetInnerHTML={{
+						__html:
+							'if("scrollRestoration" in history){history.scrollRestoration="manual"}scrollTo(0,0)'
+					}}
+				/>
 			</head>
 			<body className={`${inter.className} pt-16 md:pt-14 flex flex-col min-h-screen`}>
 				<a
-					href="#intro"
+					href="#main-content"
 					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-light focus:text-white focus:rounded"
 				>
 					Skip to content
 				</a>
 				<ThemeContext>
-					<TooltipProvider delayDuration={0}>
-						<ScrollProgress />
-						<main className="flex-1">
-							<Suspense fallback={<Loading />}>
-								{children}
-								<Analytics />
-								<SpeedInsights />
-							</Suspense>
-						</main>
-						<AppFooter />
-						<MobileNav />
-						<DockNav />
-					</TooltipProvider>
+					<RouteScrollReset />
+					<ScrollProgress />
+					<main id="main-content" tabIndex={-1} className="flex-1">
+						{children}
+					</main>
+					<AppFooter />
+					<Navigation />
+					<Analytics />
+					<SpeedInsights />
 				</ThemeContext>
 			</body>
 		</html>

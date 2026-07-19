@@ -1,4 +1,5 @@
 import { HeadingDivider } from "components/HeadingDivider";
+import { RevealGroup } from "components/motion/reveal";
 import Image from "next/image";
 import educationData from "content/education.json";
 
@@ -16,7 +17,7 @@ interface Education {
 
 function EducationCard({ education }: { education: Education }) {
 	return (
-		<div className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-all duration-300 hover:border-blue-light/40 hover:shadow-lg animate-section-in">
+		<div className="group rounded-xl border border-outline/30 bg-surface-variant/50 backdrop-blur-sm p-3 md:p-4 transition-[border-color,box-shadow] duration-300 hover:border-blue-light/40 hover:shadow-lg">
 			<div className="flex items-center gap-4">
 				{/* Logo */}
 				<div className="flex-shrink-0">
@@ -70,13 +71,13 @@ function EducationCard({ education }: { education: Education }) {
 
 export function EducationSection() {
 	return (
-		<section id="education" className="section">
-			<HeadingDivider title="Education" />
-			<div className="pt-4 flex flex-col gap-2.5">
+		<section id="education" aria-labelledby="education-heading" className="section">
+			<HeadingDivider id="education-heading" title="Education" />
+			<RevealGroup className="pt-4 flex flex-col gap-2.5">
 				{(educationData as Education[]).map((education, index) => (
 					<EducationCard key={`${education.institution}-${index}`} education={education} />
 				))}
-			</div>
+			</RevealGroup>
 		</section>
 	);
 }

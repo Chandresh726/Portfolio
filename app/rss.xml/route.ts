@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import projectsData from "@/content/projects.json";
+import projectsData from "content/projects.json";
+import seoData from "content/seo.json";
+import { absoluteUrl, SITE_URL } from "utils/site-url";
+
+export const dynamic = "force-static";
 
 function escapeXml(value: string) {
 	return value.replace(/[<>&'"]/g, (character) => {
@@ -20,32 +24,46 @@ function escapeXml(value: string) {
 	});
 }
 
-export async function GET() {
-	const baseUrl = "https://portfolio.slope726.in";
+function rssDate(date: string) {
+	return new Date(`${date}T00:00:00Z`).toUTCString();
+}
+
+export function GET() {
+	const feedUrl = absoluteUrl("/rss.xml");
+	const newestProjectDate = projectsData.reduce(
+		(latest, project) => (project.updatedAt > latest ? project.updatedAt : latest),
+		seoData.projectsUpdatedAt
+	);
 
 	const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Chandresh Kumar - Portfolio</title>
-    <link>${baseUrl}</link>
-    <description>Portfolio projects and updates from Chandresh Kumar</description>
+    <title>Chandresh Kumar - Portfolio Projects</title>
+    <link>${escapeXml(SITE_URL)}</link>
+    <description>${escapeXml(seoData.projectsDescription)}</description>
+    <language>en-US</language>
+    <generator>Next.js</generator>
+    <lastBuildDate>${rssDate(newestProjectDate)}</lastBuildDate>
+    <atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml" />
     ${projectsData
-			.map(
-				(project) => `
-    <item>
+			.map((project) => {
+				const projectUrl = absoluteUrl(`/projects#project-${project.slug}`);
+				return `<item>
       <title>${escapeXml(project.title)}</title>
       <description>${escapeXml(project.description)}</description>
-      <link>${escapeXml(project.liveUrl || baseUrl)}</link>
-    </item>`
-			)
-			.join("")}
+      <link>${escapeXml(projectUrl)}</link>
+      <guid isPermaLink="false">urn:portfolio:project:${escapeXml(project.slug)}</guid>
+      <pubDate>${rssDate(project.updatedAt)}</pubDate>
+    </item>`;
+			})
+			.join("\n    ")}
   </channel>
 </rss>`;
 
 	return new NextResponse(rss, {
 		headers: {
 			"Content-Type": "application/rss+xml; charset=utf-8",
-			"Cache-Control": "public, max-age=3600, stale-while-revalidate=86400"
+			"Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
 		}
 	});
 }

@@ -2,17 +2,18 @@
 
 import { useTheme } from "next-themes";
 import { BsMoon, BsSun } from "react-icons/bs";
-import { type MouseEventHandler, useCallback, useEffect, useState } from "react";
-import { type HTMLMotionProps, motion } from "framer-motion";
+import {
+	type ComponentPropsWithoutRef,
+	type MouseEventHandler,
+	useCallback,
+	useEffect
+} from "react";
 import { cn } from "utils/cn";
 
-const spring = {
-	type: "spring" as const,
-	stiffness: 700,
-	damping: 30
-};
+const switcherClassName =
+	"relative flex size-12 shrink-0 items-center justify-center rounded-full text-on-surface transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-light";
 
-type ThemeSwitcherProps = Omit<HTMLMotionProps<"button">, "children" | "onClick"> & {
+type ThemeSwitcherProps = Omit<ComponentPropsWithoutRef<"button">, "children" | "onClick"> & {
 	enableShortcut?: boolean;
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 };
@@ -37,7 +38,6 @@ export const ThemeSwitcher = ({
 	disabled,
 	...props
 }: ThemeSwitcherProps) => {
-	const [mounted, setMounted] = useState(false);
 	const { theme, setTheme, systemTheme } = useTheme();
 
 	const currentTheme = theme === "system" ? systemTheme : theme;
@@ -45,10 +45,6 @@ export const ThemeSwitcher = ({
 	const toggleTheme = useCallback(() => {
 		setTheme(currentTheme === "dark" ? "light" : "dark");
 	}, [currentTheme, setTheme]);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
 
 	useEffect(() => {
 		if (!enableShortcut) {
@@ -70,14 +66,11 @@ export const ThemeSwitcher = ({
 		return () => document.removeEventListener("keydown", handleKeyDown);
 	}, [enableShortcut, toggleTheme]);
 
-	if (!mounted) {
-		return null;
-	}
-
 	return (
-		<motion.button
+		<button
 			className={cn(
-				"relative flex size-12 items-center justify-center rounded-full text-on-surface transition-colors hover:bg-surface-interactive focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-light disabled:pointer-events-none disabled:opacity-50",
+				switcherClassName,
+				"hover:bg-surface-interactive disabled:pointer-events-none disabled:opacity-50",
 				className
 			)}
 			onClick={(event) => {
@@ -88,21 +81,14 @@ export const ThemeSwitcher = ({
 				}
 			}}
 			disabled={disabled}
-			whileHover={{ scale: 1.1 }}
-			whileTap={{ scale: 0.9 }}
-			transition={spring}
 			aria-label="Toggle theme"
 			aria-keyshortcuts={enableShortcut ? "Meta+D Control+D" : undefined}
 			{...props}
 		>
-			<motion.div
-				className="flex size-5 shrink-0 items-center justify-center"
-				initial={{ rotate: 0 }}
-				animate={{ rotate: currentTheme === "dark" ? 360 : 0 }}
-				transition={spring}
-			>
-				{currentTheme === "dark" ? <BsSun size={20} /> : <BsMoon size={20} />}
-			</motion.div>
-		</motion.button>
+			<span className="flex size-5 shrink-0 items-center justify-center" aria-hidden="true">
+				<BsSun size={20} className="hidden dark:block" />
+				<BsMoon size={20} className="block dark:hidden" />
+			</span>
+		</button>
 	);
 };

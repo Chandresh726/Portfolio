@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { ImageCarousel } from "components/ui/image-carousel";
@@ -10,10 +10,18 @@ vi.mock("next/image", () => ({
 	)
 }));
 
+const images = [
+	{ src: "/one.webp", alt: "Project dashboard overview" },
+	{ src: "/two.webp", alt: "Project analytics report" }
+];
+
 describe("image loading and carousel lifecycle", () => {
 	it("does not preload carousel or About images by default", () => {
-		const { unmount } = render(<ImageCarousel images={["/one.png"]} alt="Project" />);
-		expect(screen.getByRole("img", { name: "Project 1" })).toHaveAttribute("data-preload", "false");
+		const { unmount } = render(<ImageCarousel images={[images[0]]} projectTitle="Project" />);
+		expect(screen.getByRole("img", { name: images[0].alt })).toHaveAttribute(
+			"data-preload",
+			"false"
+		);
 		unmount();
 		render(<PortraitTilt />);
 		expect(screen.getByRole("img", { name: "About me image" })).toHaveAttribute(
@@ -24,28 +32,45 @@ describe("image loading and carousel lifecycle", () => {
 
 	it("only preloads the first carousel image when explicitly enabled", async () => {
 		const user = userEvent.setup();
-		render(<ImageCarousel images={["/one.png", "/two.png"]} alt="Project" preload />);
-		expect(screen.getByRole("img", { name: "Project 1" })).toHaveAttribute("data-preload", "true");
+		render(<ImageCarousel images={images} projectTitle="Project" preload />);
+		expect(screen.getByRole("img", { name: images[0].alt })).toHaveAttribute(
+			"data-preload",
+			"true"
+		);
 
 		await user.click(screen.getByRole("button", { name: "Go to image 2" }));
 		await waitFor(() =>
-			expect(screen.getByRole("img", { name: "Project 2" })).toHaveAttribute(
+			expect(screen.getByRole("img", { name: images[1].alt })).toHaveAttribute(
 				"data-preload",
 				"false"
 			)
 		);
 	});
 
-	it("wraps carousel boundaries and cleans global fullscreen state", async () => {
+	it("keeps desktop indicators compact while retaining touch-sized targets", () => {
+		render(<ImageCarousel images={images} projectTitle="Project" />);
+		const indicator = screen.getByRole("button", { name: "Go to image 1" });
+		const inactiveIndicator = screen.getByRole("button", { name: "Go to image 2" });
+
+		expect(indicator).toHaveClass("size-8", "[@media(hover:none)]:size-11");
+		expect(indicator.firstElementChild).toHaveClass("h-2", "w-5", "rounded-full");
+		expect(inactiveIndicator.firstElementChild).toHaveClass("size-2", "rounded-full");
+	});
+
+	it("wraps boundaries in an accessible fullscreen dialog and restores focus", async () => {
 		const user = userEvent.setup();
-		const removeSpy = vi.spyOn(window, "removeEventListener");
-		const { unmount } = render(<ImageCarousel images={["/one.png", "/two.png"]} alt="Project" />);
-		await user.click(screen.getByRole("button", { name: "View fullscreen" }));
-		expect(document.body.style.overflow).toBe("hidden");
+		render(<ImageCarousel images={images} projectTitle="Project" />);
+		const trigger = screen.getByRole("button", { name: "View Project screenshots fullscreen" });
+		await user.click(trigger);
+
+		const dialog = await screen.findByRole("dialog", { name: "Project screenshots" });
+		expect(dialog).toHaveAttribute("aria-modal", "true");
+		expect(screen.getByRole("button", { name: "Close Project gallery" })).toHaveFocus();
 		await user.click(screen.getByRole("button", { name: "Previous image" }));
-		expect(screen.getAllByText("2 / 2").length).toBeGreaterThan(0);
-		unmount();
-		expect(document.body.style.overflow).toBe("");
-		expect(removeSpy).toHaveBeenCalledWith("keydown", expect.any(Function));
+		expect(within(dialog).getByText("2 / 2")).toBeInTheDocument();
+
+		await user.keyboard("{Escape}");
+		await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+		expect(trigger).toHaveFocus();
 	});
 });

@@ -1,126 +1,276 @@
 [
 	{
+		"slug": "switchy",
 		"title": "Switchy",
-		"description": "A local job search command center with an automated scraping engine and scheduler that tracks openings from selected companies, scores role fit against your profile, and helps you apply faster with AI-assisted cover letter and referral message generation.",
+		"description": "A local-first job search command center that scrapes selected companies, scores role fit against a resume, tracks applications, and generates AI-assisted cover letters and referral messages.",
+		"updatedAt": "2026-02-20",
 		"images": [
-			"/images/switchy/1.png",
-			"/images/switchy/2.png",
-			"/images/switchy/3.png",
-			"/images/switchy/4.png",
-			"/images/switchy/5.png",
-			"/images/switchy/6.png",
-			"/images/switchy/7.png"
+			{
+				"src": "/images/switchy/1.webp",
+				"alt": "Switchy landing page introducing the local-first job search command center"
+			},
+			{
+				"src": "/images/switchy/2.webp",
+				"alt": "Switchy workflow showing company tracking, resume upload, AI matching and application steps"
+			},
+			{
+				"src": "/images/switchy/3.webp",
+				"alt": "Switchy supported AI providers and job listing platforms"
+			},
+			{
+				"src": "/images/switchy/4.webp",
+				"alt": "Switchy local installation instructions with clone, install and build commands"
+			},
+			{
+				"src": "/images/switchy/5.webp",
+				"alt": "Switchy dashboard showing new jobs, high matches, applications and tracked companies"
+			},
+			{
+				"src": "/images/switchy/6.webp",
+				"alt": "Switchy jobs page with search filters, match scores and application statuses"
+			},
+			{
+				"src": "/images/switchy/7.webp",
+				"alt": "Switchy companies page listing tracked employers, providers and scrape status"
+			}
 		],
 		"liveUrl": "https://switchy.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Switchy",
 		"stack": ["Next", "Typescript", "AI SDK", "Shadcn", "SQLite"]
 	},
 	{
+		"slug": "finara",
 		"title": "Finara",
-		"description": "AI-powered financial assistant for personal finance management",
+		"description": "An AI-assisted wealth management dashboard that tracks holdings, transactions, allocation and performance, then turns natural-language goals into actionable portfolio recommendations.",
+		"updatedAt": "2026-01-05",
 		"images": [
-			"/images/finara/2.png",
-			"/images/finara/1.png",
-			"/images/finara/3.png",
-			"/images/finara/4.png",
-			"/images/finara/5.png",
-			"/images/finara/6.png"
+			{
+				"src": "/images/finara/2.webp",
+				"alt": "Finara portfolio command center with AI investment guidance, performance charts and asset allocation"
+			},
+			{
+				"src": "/images/finara/1.webp",
+				"alt": "Finara landing page introducing AI-powered wealth management"
+			},
+			{
+				"src": "/images/finara/3.webp",
+				"alt": "Finara account creation form with Google sign-in and profile fields"
+			},
+			{
+				"src": "/images/finara/4.webp",
+				"alt": "Finara growth portfolio overview alongside an AI recommendation conversation"
+			},
+			{
+				"src": "/images/finara/5.webp",
+				"alt": "Finara portfolio analytics with allocation charts, transactions and asset performance"
+			},
+			{
+				"src": "/images/finara/6.webp",
+				"alt": "Finara holdings table with values, profit and loss metrics and trade actions"
+			}
 		],
 		"liveUrl": "https://finara.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Finara-v2",
 		"stack": ["Next", "Typescript", "Shadcn", "Postgres", "AI SDK"]
 	},
 	{
+		"slug": "detube",
 		"title": "DeTube",
-		"description": "A Decentralized Video Streaming Platform Powered by Solana Blockchain.",
+		"description": "A decentralized video streaming platform on Solana that combines creator subscriptions, token-based tips, wallet balances, video uploads and playback in a familiar media experience.",
+		"updatedAt": "2024-10-05",
 		"images": [
-			"/images/detube/1.png",
-			"/images/detube/2.png",
-			"/images/detube/3.png",
-			"/images/detube/4.png",
-			"/images/detube/5.png"
+			{
+				"src": "/images/detube/1.webp",
+				"alt": "DeTube login page with email, GitHub and Google authentication options"
+			},
+			{
+				"src": "/images/detube/2.webp",
+				"alt": "DeTube video player with creator subscription, token tips and supporter rankings"
+			},
+			{
+				"src": "/images/detube/3.webp",
+				"alt": "DeTube home feed showing subscriptions, wallet balance and a grid of videos"
+			},
+			{
+				"src": "/images/detube/4.webp",
+				"alt": "DeTube confirmation dialog after sending a Solana token tip to a creator"
+			},
+			{
+				"src": "/images/detube/5.webp",
+				"alt": "DeTube wallet page for depositing Solana tokens"
+			}
 		],
 		"liveUrl": "https://detube.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/DeTube",
 		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
 	},
 	{
+		"slug": "web-crawler",
 		"title": "Web Crawler",
-		"description": "A JavaScript-based web crawler for automated data extraction.",
+		"description": "A crawl-report viewer that maps routes, links, forms, browser storage and API traffic from automated Puppeteer scans, helping developers inspect application behavior and export structured reports.",
+		"updatedAt": "2026-02-07",
 		"images": [
-			"/images/crawler/3.png",
-			"/images/crawler/2.png",
-			"/images/crawler/1.png",
-			"/images/crawler/4.png",
-			"/images/crawler/5.png",
-			"/images/crawler/6.png"
+			{
+				"src": "/images/crawler/3.webp",
+				"alt": "Crawl Viewer report selection page with application and report controls"
+			},
+			{
+				"src": "/images/crawler/2.webp",
+				"alt": "Crawl Viewer summary for DeTube with route tree, links, API calls and storage counts"
+			},
+			{
+				"src": "/images/crawler/1.webp",
+				"alt": "Crawl Viewer route report showing page metadata, link totals, forms and storage usage"
+			},
+			{
+				"src": "/images/crawler/4.webp",
+				"alt": "Crawl Viewer details for cookies and captured API requests"
+			},
+			{
+				"src": "/images/crawler/5.webp",
+				"alt": "Crawl Viewer expanded API call with query, request headers and response data"
+			},
+			{
+				"src": "/images/crawler/6.webp",
+				"alt": "Crawl Viewer report showing detected forms, local storage and session storage"
+			}
 		],
 		"liveUrl": "https://crawl-viewer.vercel.app/",
 		"repoUrl": null,
 		"stack": ["Javascript", "Node.js", "Puppeteer", "React"]
 	},
 	{
+		"slug": "passm",
 		"title": "Passm",
-		"description": "A CLI password manager",
-		"images": ["/images/passm/1.png", "/images/passm/2.png", "/images/passm/3.png"],
+		"description": "A Rust-powered CLI password manager with a companion download site, providing master-password initialization and fast commands to add, list and retrieve encrypted credentials.",
+		"updatedAt": "2025-01-15",
+		"images": [
+			{
+				"src": "/images/passm/1.webp",
+				"alt": "Passm terminal demo initializing the vault and adding a password entry"
+			},
+			{
+				"src": "/images/passm/2.webp",
+				"alt": "Passm CLI landing page describing secure terminal-based password management"
+			},
+			{
+				"src": "/images/passm/3.webp",
+				"alt": "Passm download page with Windows, macOS and Linux installers"
+			}
+		],
 		"liveUrl": "https://passm.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Passm",
 		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
 	},
 	{
+		"slug": "trushield",
 		"title": "TruShield",
-		"description": "A landing page for a pen testing service providing startup company",
+		"description": "A responsive cybersecurity services site presenting network, API, mobile and web penetration-testing offerings with clear methodology, remediation benefits and lead-capture forms.",
+		"updatedAt": "2025-03-29",
 		"images": [
-			"/images/trushield/1.png",
-			"/images/trushield/2.png",
-			"/images/trushield/3.png",
-			"/images/trushield/4.png"
+			{
+				"src": "/images/trushield/1.webp",
+				"alt": "TruShield services page featuring network, API and mobile security assessments"
+			},
+			{
+				"src": "/images/trushield/2.webp",
+				"alt": "TruShield landing page promoting professional penetration testing"
+			},
+			{
+				"src": "/images/trushield/3.webp",
+				"alt": "TruShield benefits covering comprehensive testing, methodology, reporting and remediation"
+			},
+			{
+				"src": "/images/trushield/4.webp",
+				"alt": "TruShield contact page with message form and security team details"
+			}
 		],
 		"liveUrl": "https://trushield.vercel.app/",
 		"repoUrl": null,
 		"stack": ["React", "Javascript", "Tailwind CSS"]
 	},
 	{
+		"slug": "samraksha",
 		"title": "Samraksha",
-		"description": "MERN stack application with QR Code implementation for the management of student's movements in and out of the hostel and managing attendance.",
+		"description": "A MERN hostel movement and attendance system that registers students and staff, manages classrooms and timetables, and uses QR scanning to record entries and exits.",
+		"updatedAt": "2024-01-18",
 		"images": [
-			"/images/samraksha/1.png",
-			"/images/samraksha/2.png",
-			"/images/samraksha/3.png",
-			"/images/samraksha/4.png"
+			{
+				"src": "/images/samraksha/1.webp",
+				"alt": "Samraksha management login page"
+			},
+			{
+				"src": "/images/samraksha/2.webp",
+				"alt": "Samraksha admin dashboard for registering users, classrooms and timetables"
+			},
+			{
+				"src": "/images/samraksha/3.webp",
+				"alt": "Samraksha QR scanner used to record hostel movement"
+			},
+			{
+				"src": "/images/samraksha/4.webp",
+				"alt": "Samraksha student registration form"
+			}
 		],
 		"liveUrl": "https://samraksha-test.onrender.com/",
 		"repoUrl": "https://github.com/Chandresh726/samraksha",
 		"stack": ["React", "MongoDB", "Express", "Node.js", "Javascript"]
 	},
 	{
+		"slug": "portfolio",
 		"title": "Portfolio",
-		"description": "Developer Portfolio Page build using Next.js",
+		"description": "My Next.js portfolio presenting software projects, professional experience, technical skills and contact links through responsive themes and carefully tuned interactive motion.",
+		"updatedAt": "2026-07-19",
 		"images": [
-			"/images/portfolio/1.png",
-			"/images/portfolio/2.png",
-			"/images/portfolio/3.png",
-			"/images/portfolio/4.png"
+			{
+				"src": "/images/portfolio/1.webp",
+				"alt": "Previous portfolio landing page with introduction and developer illustration"
+			},
+			{
+				"src": "/images/portfolio/2.webp",
+				"alt": "Previous portfolio projects section with DeTube, Passm and Samraksha cards"
+			},
+			{
+				"src": "/images/portfolio/3.webp",
+				"alt": "Previous portfolio technologies section grouped by programming, web, DevOps and tools"
+			},
+			{
+				"src": "/images/portfolio/4.webp",
+				"alt": "Previous portfolio about section with illustrated portrait and biography"
+			}
 		],
 		"liveUrl": "https://portfolio.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/Portfolio",
 		"stack": ["Next", "Tailwind CSS", "Javascript"]
 	},
 	{
+		"slug": "sun-minerals",
 		"title": "Sun Minerals",
-		"description": "Single Page React Application",
+		"description": "A responsive company website for an Indonesian coal supplier, combining a product-focused landing page, company information and a direct sales enquiry flow.",
+		"updatedAt": "2023-08-31",
 		"images": [
-			"/images/sun_minerals/1.png",
-			"/images/sun_minerals/2.png",
-			"/images/sun_minerals/3.png"
+			{
+				"src": "/images/sun_minerals/1.webp",
+				"alt": "Sun Minerals company overview describing its Indonesian coal supply network"
+			},
+			{
+				"src": "/images/sun_minerals/2.webp",
+				"alt": "Sun Minerals landing page featuring Indonesian coal operations"
+			},
+			{
+				"src": "/images/sun_minerals/3.webp",
+				"alt": "Sun Minerals sales enquiry form displayed over the landing page"
+			}
 		],
 		"liveUrl": "https://coal-site.vercel.app/",
 		"repoUrl": "https://github.com/Chandresh726/CoalSite",
 		"stack": ["React", "Javascript"]
 	},
 	{
+		"slug": "kisan",
 		"title": "KISAN",
-		"description": "Web application based on Flask, MongoDB, and ReactJS for farmers, private sectors, and government to help farmers with their grievances, provide farmers with information about in-demand crops and view statistics of crops prices in different states and post blogs.",
+		"description": "A Flask, MongoDB and React portal connecting farmers, private organizations and government services through grievance support, crop-demand insights, regional pricing statistics and community publishing.",
+		"updatedAt": "2024-01-18",
 		"images": [],
 		"liveUrl": null,
 		"repoUrl": "https://github.com/Chandresh726/Lexicon-Agriculture_Portal",

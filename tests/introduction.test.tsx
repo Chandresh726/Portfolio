@@ -9,9 +9,13 @@ vi.mock("app/sections/introduction/DisplayLottie", () => ({
 afterEach(() => vi.unstubAllEnvs());
 
 describe("WelcomeSection", () => {
-	it("renders the staged intro entrance and a layout-stable Lottie stage", () => {
+	it("renders the complete hero in one coordinated entrance", () => {
 		const { container } = render(<WelcomeSection />);
-		expect(container.querySelector("h1")).toHaveClass("intro-reveal", "intro-reveal--1");
+		expect(container.querySelector(".hero-copy-motion")).toContainElement(
+			container.querySelector("h1")
+		);
+		expect(container.querySelector(".hero-motion")).toHaveTextContent(/been on earth for/);
+		expect(container.querySelectorAll(".hero-motion")).toHaveLength(1);
 		expect(container.querySelector(".intro-lottie-stage")).toBeInTheDocument();
 	});
 

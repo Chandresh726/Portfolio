@@ -1,7 +1,7 @@
 {
 	"name": "Chandresh Kumar | Portfolio",
 	"short_name": "Chandresh Portfolio",
-	"description": "Portfolio website of Chandresh Kumar - Software Developer, Frontend Developer, and Web3 Developer",
+	"description": "Portfolio of Chandresh Kumar, a software engineer building scalable web platforms, developer tools and AI-assisted products.",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#000000",
@@ -9,9 +9,22 @@
 	"orientation": "portrait-primary",
 	"icons": [
 		{
-			"src": "/favicon.png",
+			"src": "/icon-192.png",
 			"type": "image/png",
-			"sizes": "32x32"
+			"sizes": "192x192",
+			"purpose": "any"
+		},
+		{
+			"src": "/icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any"
+		},
+		{
+			"src": "/icon-maskable-512.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
 		}
 	]
 }

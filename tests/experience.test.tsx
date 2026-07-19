@@ -8,20 +8,33 @@ vi.mock("next/image", () => ({
 }));
 
 describe("ExperienceSection", () => {
-	it("exposes disclosure state and native mouse, Enter, and Space behavior", async () => {
+	it("server-renders every description while preserving disclosure behavior", async () => {
 		const user = userEvent.setup();
 		render(<ExperienceAccordion />);
 		const buttons = screen.getAllByRole("button", { name: /at/i });
-		const button = buttons[1];
-		expect(button).toHaveAttribute("aria-expanded", "false");
-		expect(button).toHaveAttribute("aria-controls", expect.stringMatching(/-details$/));
 
-		await user.click(button);
-		expect(button).toHaveAttribute("aria-expanded", "true");
-		button.focus();
+		expect(buttons[0]).toHaveAttribute("aria-expanded", "true");
+		expect(buttons[1]).toHaveAttribute("aria-expanded", "false");
+		expect(buttons[1]).toHaveAttribute("aria-controls", expect.stringMatching(/-details$/));
+		expect(screen.getByText("Eligibility MCP server")).toBeInTheDocument();
+		expect(screen.getByText("FastMCP")).toBeInTheDocument();
+		expect(screen.getByText("Instant Unlock")).toBeInTheDocument();
+		expect(screen.getByText(/20\+ RESTful APIs/i)).toBeInTheDocument();
+		expect(screen.getByText("Instant Unlock").closest("li")).toHaveClass("experience-detail-item");
+		expect(screen.getByText("Instant Unlock").closest("li")).toHaveStyle({
+			"--experience-item-index": "0"
+		});
+
+		await user.click(buttons[1]);
+		expect(buttons[1]).toHaveAttribute("aria-expanded", "true");
+		expect(screen.getByRole("region", { name: /Associate Software Engineer/i })).toHaveClass(
+			"grid-rows-[1fr]",
+			"opacity-100"
+		);
+		buttons[1].focus();
 		await user.keyboard("{Enter}");
-		expect(button).toHaveAttribute("aria-expanded", "false");
+		expect(buttons[1]).toHaveAttribute("aria-expanded", "false");
 		await user.keyboard(" ");
-		expect(button).toHaveAttribute("aria-expanded", "true");
+		expect(buttons[1]).toHaveAttribute("aria-expanded", "true");
 	});
 });

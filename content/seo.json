@@ -1,8 +1,13 @@
 {
 	"author": "Chandresh",
 	"siteTitle": "Portfolio",
-	"description": "Portfolio website of Chandresh Kumar - Software Engineer",
+	"description": "Portfolio of Chandresh Kumar, a software engineer building scalable web platforms, developer tools and AI-assisted products.",
+	"projectsDescription": "Explore software projects by Chandresh Kumar across AI, developer tooling, fintech, Web3 and full-stack web development.",
 	"siteUrl": "https://portfolio.slope726.in/",
+	"socialImage": "/social-card.webp",
+	"socialImageAlt": "Chandresh Kumar portfolio homepage with software engineering introduction and selected work",
+	"homepageUpdatedAt": "2026-07-19",
+	"projectsUpdatedAt": "2026-07-19",
 	"keywords": [
 		"Chandresh Kumar",
 		"Software Developer",
@@ -11,6 +16,5 @@
 		"Portfolio website",
 		"Freelancer",
 		"Web3 Developer"
-	],
-	"socialImage": "https://portfolio.slope726.in/screenshot.webp"
+	]
 }

@@ -12,7 +12,7 @@ export function ConnectMedia() {
 					rel={external ? "noopener noreferrer" : undefined}
 					title={title}
 					aria-label={title}
-					className="text-2xl transition-all duration-300 hover:scale-125 hover:text-[var(--hover-color)]"
+					className="text-2xl transition-[color,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-125 hover:text-[var(--hover-color)] motion-reduce:transform-none motion-reduce:transition-none"
 					style={{ "--hover-color": color } as CSSProperties}
 				>
 					<Icon />

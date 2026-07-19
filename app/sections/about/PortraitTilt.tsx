@@ -4,7 +4,8 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { PortraitArtwork } from "./PortraitArtwork";
 
-const POINTER_QUERY = "(min-width: 768px) and (hover: hover) and (pointer: fine)";
+const POINTER_QUERY =
+	"(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
 const PortraitTiltMotion = dynamic(
 	() => import("./PortraitTiltMotion").then((module) => module.PortraitTiltMotion),
 	{

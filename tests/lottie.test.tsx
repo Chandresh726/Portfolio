@@ -41,6 +41,52 @@ function createMediaQuery(initialMatches: boolean) {
 	};
 }
 
+function mockIntersectionObserver() {
+	let callback: IntersectionObserverCallback | undefined;
+	const disconnect = vi.fn();
+	const OriginalIntersectionObserver = globalThis.IntersectionObserver;
+
+	class TestIntersectionObserver implements IntersectionObserver {
+		root = null;
+		rootMargin = "200px";
+		scrollMargin = "0px";
+		thresholds = [0];
+
+		constructor(observerCallback: IntersectionObserverCallback) {
+			callback = observerCallback;
+		}
+
+		disconnect = disconnect;
+		observe() {}
+		takeRecords() {
+			return [];
+		}
+		unobserve() {}
+	}
+
+	Object.defineProperty(globalThis, "IntersectionObserver", {
+		configurable: true,
+		writable: true,
+		value: TestIntersectionObserver
+	});
+
+	return {
+		setIntersecting(isIntersecting: boolean) {
+			act(() =>
+				callback?.([{ isIntersecting } as IntersectionObserverEntry], {} as IntersectionObserver)
+			);
+		},
+		disconnect,
+		restore() {
+			Object.defineProperty(globalThis, "IntersectionObserver", {
+				configurable: true,
+				writable: true,
+				value: OriginalIntersectionObserver
+			});
+		}
+	};
+}
+
 afterEach(() => vi.restoreAllMocks());
 
 describe("GreetingLottie", () => {
@@ -58,6 +104,7 @@ describe("GreetingLottie", () => {
 				json: async () => animationData
 			} as Response);
 		});
+		const intersection = mockIntersectionObserver();
 		const { unmount } = render(<GreetingLottie animationPath="/lottie/coding.json" />);
 
 		expect(lazyPlayer.moduleEvaluations).not.toHaveBeenCalled();
@@ -65,6 +112,8 @@ describe("GreetingLottie", () => {
 		expect(screen.queryByTestId("deferred-lottie-player")).not.toBeInTheDocument();
 
 		controller.setMatches(true);
+		expect(fetchMock).not.toHaveBeenCalled();
+		intersection.setIntersecting(true);
 		await waitFor(() => expect(screen.getByTestId("deferred-lottie-player")).toBeInTheDocument());
 		expect(lazyPlayer.moduleEvaluations).toHaveBeenCalledTimes(1);
 		expect(lazyPlayer.renders).toHaveBeenCalled();
@@ -84,9 +133,11 @@ describe("GreetingLottie", () => {
 
 		const registeredListener = controller.getChangeListener();
 		unmount();
+		expect(intersection.disconnect).toHaveBeenCalled();
 		expect(controller.mediaQuery.removeEventListener).toHaveBeenCalledWith(
 			"change",
 			registeredListener
 		);
+		intersection.restore();
 	});
 });

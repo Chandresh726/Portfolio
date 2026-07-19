@@ -1,42 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const calculateYears = () => {
-	const birthDate = new Date("2002-05-08T00:00:00");
-	const now = new Date();
-	const ageInYears = (now.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-	return ageInYears.toFixed(8);
-};
+import { calculateAgeYears } from "utils/age";
 
 const UPDATE_INTERVAL_MS = 1_000;
 
-export function AgeCounter() {
-	const [years, setYears] = useState<string | null>(null);
+export function AgeCounter({ initialYears }: { initialYears: string }) {
+	const [years, setYears] = useState(initialYears);
 
 	useEffect(() => {
-		const updateYears = () => setYears(calculateYears());
+		let interval: number | null = null;
+		const updateYears = () => setYears(calculateAgeYears());
+		const stopInterval = () => {
+			if (interval === null) return;
+			window.clearInterval(interval);
+			interval = null;
+		};
+		const startInterval = () => {
+			if (interval !== null || document.visibilityState !== "visible") return;
+			interval = window.setInterval(updateYears, UPDATE_INTERVAL_MS);
+		};
 		const handleVisibilityChange = () => {
-			if (document.visibilityState === "visible") updateYears();
+			if (document.visibilityState === "visible") {
+				updateYears();
+				startInterval();
+			} else {
+				stopInterval();
+			}
 		};
 
 		updateYears();
-		const interval = setInterval(updateYears, UPDATE_INTERVAL_MS);
+		startInterval();
 		document.addEventListener("visibilitychange", handleVisibilityChange);
 
 		return () => {
-			clearInterval(interval);
+			stopInterval();
 			document.removeEventListener("visibilitychange", handleVisibilityChange);
 		};
 	}, []);
-
-	if (years === null) {
-		return (
-			<div className="text-base sm:text-lg lg:text-xl font-medium min-h-[28px]">
-				<span className="tabular-nums opacity-0">been on earth for 00.00000000 years</span>
-			</div>
-		);
-	}
 
 	return (
 		<div className="text-base sm:text-lg lg:text-xl font-medium min-h-[28px]">

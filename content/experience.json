@@ -9,7 +9,8 @@
 		"end": "Present",
 		"description": [
 			"Developing a **full stack B2B SaaS application** that enables clients to validate eligibility strategy changes through automated test execution. Built with **React**, **AWS API Gateway**, and **Python Lambda** functions.",
-			"Led Migration of **20+** client APIs from **APIGEE** proxies to **AWS API Gateway** and **AWS Lambda (Golang)**, improving maintainability, reducing infrastructure costs, and lowering end-to-end API latency by **25%** ."
+			"Built an enterprise-authenticated **Eligibility MCP server** with **FastMCP**, enabling B2B chatbots and aggregator sites to search credit cards, retrieve details, and check user eligibility via MCP tools and Apps UI.",
+			"Led Migration of **20+** client APIs from **APIGEE** proxies to **AWS API Gateway** and **AWS Lambda (Golang)**, improving maintainability, reducing infrastructure costs, and lowering end-to-end API latency by **25%**."
 		]
 	},
 	{

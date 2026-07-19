@@ -3,8 +3,8 @@ import { ExperienceAccordion } from "./ExperienceAccordion";
 
 export function ExperienceSection() {
 	return (
-		<section id="experience" className="section">
-			<HeadingDivider title="Work Experience" />
+		<section id="experience" aria-labelledby="experience-heading" className="section">
+			<HeadingDivider id="experience-heading" title="Work Experience" />
 			<ExperienceAccordion />
 		</section>
 	);
