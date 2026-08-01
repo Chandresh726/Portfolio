@@ -47,13 +47,26 @@ describe("portfolio content contract", () => {
 	it("references optimized local images with contextual alternatives", () => {
 		for (const project of PROJECTS) {
 			for (const image of project.images) {
-				expect(image.src).toMatch(/\.webp$/);
+				for (const imagePath of [image.src, image.darkSrc].filter(Boolean)) {
+					expect(imagePath).toMatch(/\.webp$/);
+					expect(existsSync(path.join(process.cwd(), "public", imagePath as string))).toBe(true);
+				}
 				expect(image.alt.length).toBeGreaterThan(20);
 				expect(image.alt).not.toMatch(/(?:project image|image \d+)$/i);
-				expect(existsSync(path.join(process.cwd(), "public", image.src))).toBe(true);
 			}
 			for (const technology of project.stack) expect(CANONICAL_STACK.has(technology)).toBe(true);
 		}
+	});
+
+	it("keeps the requested featured project order", () => {
+		expect(PROJECTS.slice(0, 6).map((project) => project.slug)).toEqual([
+			"switchy",
+			"finara",
+			"detube",
+			"passm",
+			"web-crawler",
+			"portfolio"
+		]);
 	});
 
 	it("only displays filters that match at least one project", () => {

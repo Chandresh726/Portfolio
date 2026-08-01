@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { MdFullscreen } from "react-icons/md";
+import { ProjectScreenshot } from "components/ui/project-screenshot";
 import { useProjectVisibility } from "context/project_visibility_context";
 import type { ProjectImage } from "types";
 
@@ -144,10 +144,8 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 							}}
 							className="absolute inset-0"
 						>
-							<Image
-								src={images[currentIndex].src}
-								alt={images[currentIndex].alt}
-								fill
+							<ProjectScreenshot
+								image={images[currentIndex]}
 								className="object-cover"
 								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 496px"
 								preload={preload && currentIndex === 0}

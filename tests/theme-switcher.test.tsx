@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { readFileSync } from "node:fs";
 import { renderToString } from "react-dom/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ThemeSwitcher } from "components/ThemeSwitcher";
@@ -32,6 +33,11 @@ describe("ThemeSwitcher", () => {
 		const button = screen.getByRole("button", { name: "Toggle theme" });
 		expect(button.querySelectorAll("svg")).toHaveLength(2);
 		expect(button.firstElementChild).not.toHaveAttribute("style");
+	});
+
+	it("binds dark utilities to the portfolio theme class", () => {
+		const styles = readFileSync("styles/globals.css", "utf8");
+		expect(styles).toContain("@custom-variant dark (&:where(.dark, .dark *));");
 	});
 
 	it("handles and cleans up the shortcut while ignoring editable targets", async () => {

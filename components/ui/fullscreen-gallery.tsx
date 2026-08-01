@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, type PointerEvent, type RefObject } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
+import { ProjectScreenshot } from "components/ui/project-screenshot";
 import {
 	Dialog,
 	DialogClose,
@@ -128,10 +128,8 @@ export default function FullscreenGallery({
 							transition={{ duration: 0.2, ease: "easeOut" }}
 							className="absolute inset-0"
 						>
-							<Image
-								src={images[currentIndex].src}
-								alt={images[currentIndex].alt}
-								fill
+							<ProjectScreenshot
+								image={images[currentIndex]}
 								className="object-contain"
 								sizes="90vw"
 							/>

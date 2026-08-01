@@ -5,8 +5,24 @@ import { ImageCarousel } from "components/ui/image-carousel";
 import { PortraitTilt } from "app/sections/about/PortraitTilt";
 
 vi.mock("next/image", () => ({
-	default: ({ alt, preload }: { alt: string; preload?: boolean }) => (
-		<span role="img" aria-label={alt} data-preload={String(Boolean(preload))} />
+	default: ({
+		alt,
+		className,
+		preload,
+		src
+	}: {
+		alt: string;
+		className?: string;
+		preload?: boolean;
+		src: string;
+	}) => (
+		<span
+			role="img"
+			aria-label={alt}
+			className={className}
+			data-preload={String(Boolean(preload))}
+			data-src={src}
+		/>
 	)
 }));
 
@@ -45,6 +61,22 @@ describe("image loading and carousel lifecycle", () => {
 				"false"
 			)
 		);
+	});
+
+	it("selects paired project screenshots with the portfolio theme", () => {
+		const themedImage = {
+			src: "/light.webp",
+			darkSrc: "/dark.webp",
+			alt: "Theme-aware project dashboard"
+		};
+		render(<ImageCarousel images={[themedImage]} projectTitle="Project" />);
+
+		const renderedImages = screen.getAllByRole("img", { name: themedImage.alt });
+		expect(renderedImages).toHaveLength(2);
+		expect(renderedImages[0]).toHaveAttribute("data-src", themedImage.src);
+		expect(renderedImages[0]).toHaveClass("dark:hidden");
+		expect(renderedImages[1]).toHaveAttribute("data-src", themedImage.darkSrc);
+		expect(renderedImages[1]).toHaveClass("hidden", "dark:block");
 	});
 
 	it("keeps desktop indicators compact while retaining touch-sized targets", () => {

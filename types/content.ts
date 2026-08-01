@@ -2,6 +2,7 @@ import type { ComponentType, CSSProperties, ReactNode, SVGProps } from "react";
 
 export interface ProjectImage {
 	src: string;
+	darkSrc?: string;
 	alt: string;
 }
 

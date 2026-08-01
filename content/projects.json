@@ -3,35 +3,42 @@
 		"slug": "switchy",
 		"title": "Switchy",
 		"description": "A local-first job search command center that scrapes selected companies, scores role fit against a resume, tracks applications, and generates AI-assisted cover letters and referral messages.",
-		"updatedAt": "2026-02-20",
+		"updatedAt": "2026-08-01",
 		"images": [
 			{
 				"src": "/images/switchy/1.webp",
+				"darkSrc": "/images/switchy/dark/1.webp",
 				"alt": "Switchy landing page introducing the local-first job search command center"
 			},
 			{
 				"src": "/images/switchy/2.webp",
-				"alt": "Switchy workflow showing company tracking, resume upload, AI matching and application steps"
+				"darkSrc": "/images/switchy/dark/2.webp",
+				"alt": "Switchy product walkthrough showing the current job search dashboard"
 			},
 			{
 				"src": "/images/switchy/3.webp",
-				"alt": "Switchy supported AI providers and job listing platforms"
+				"darkSrc": "/images/switchy/dark/3.webp",
+				"alt": "Switchy feature grid for scraping, matching, writing, scheduling and privacy"
 			},
 			{
 				"src": "/images/switchy/4.webp",
-				"alt": "Switchy local installation instructions with clone, install and build commands"
+				"darkSrc": "/images/switchy/dark/4.webp",
+				"alt": "Switchy four-step workflow from tracking companies to applying with confidence"
 			},
 			{
 				"src": "/images/switchy/5.webp",
-				"alt": "Switchy dashboard showing new jobs, high matches, applications and tracked companies"
+				"darkSrc": "/images/switchy/dark/5.webp",
+				"alt": "Switchy supported AI providers and job listing platforms"
 			},
 			{
 				"src": "/images/switchy/6.webp",
-				"alt": "Switchy jobs page with search filters, match scores and application statuses"
+				"darkSrc": "/images/switchy/dark/6.webp",
+				"alt": "Switchy quick-start installation panel with the local launch command"
 			},
 			{
 				"src": "/images/switchy/7.webp",
-				"alt": "Switchy companies page listing tracked employers, providers and scrape status"
+				"darkSrc": "/images/switchy/dark/7.webp",
+				"alt": "Switchy frequently asked questions about local data and AI providers"
 			}
 		],
 		"liveUrl": "https://switchy.slope726.in/",
@@ -105,6 +112,29 @@
 		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
 	},
 	{
+		"slug": "passm",
+		"title": "Passm",
+		"description": "A Rust-powered CLI password manager with a companion download site, providing master-password initialization and fast commands to add, list and retrieve encrypted credentials.",
+		"updatedAt": "2026-08-01",
+		"images": [
+			{
+				"src": "/images/passm/1.webp",
+				"alt": "Passm landing page visualizing an encrypted local password vault"
+			},
+			{
+				"src": "/images/passm/2.webp",
+				"alt": "Passm operation sequence for initializing, adding and retrieving credentials"
+			},
+			{
+				"src": "/images/passm/3.webp",
+				"alt": "Passm local security controls and Windows application download section"
+			}
+		],
+		"liveUrl": "https://passm.slope726.in/",
+		"repoUrl": "https://github.com/Chandresh726/Passm",
+		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
+	},
+	{
 		"slug": "web-crawler",
 		"title": "Web Crawler",
 		"description": "A crawl-report viewer that maps routes, links, forms, browser storage and API traffic from automated Puppeteer scans, helping developers inspect application behavior and export structured reports.",
@@ -140,27 +170,31 @@
 		"stack": ["Javascript", "Node.js", "Puppeteer", "React"]
 	},
 	{
-		"slug": "passm",
-		"title": "Passm",
-		"description": "A Rust-powered CLI password manager with a companion download site, providing master-password initialization and fast commands to add, list and retrieve encrypted credentials.",
-		"updatedAt": "2025-01-15",
+		"slug": "portfolio",
+		"title": "Portfolio",
+		"description": "My Next.js portfolio presenting software projects, professional experience, technical skills and contact links through responsive themes and carefully tuned interactive motion.",
+		"updatedAt": "2026-08-01",
 		"images": [
 			{
-				"src": "/images/passm/1.webp",
-				"alt": "Passm terminal demo initializing the vault and adding a password entry"
+				"src": "/images/portfolio/1.webp",
+				"alt": "Portfolio introduction and current work experience in the dark theme"
 			},
 			{
-				"src": "/images/passm/2.webp",
-				"alt": "Passm CLI landing page describing secure terminal-based password management"
+				"src": "/images/portfolio/2.webp",
+				"alt": "Portfolio featured projects grid with current project cards and links"
 			},
 			{
-				"src": "/images/passm/3.webp",
-				"alt": "Passm download page with Windows, macOS and Linux installers"
+				"src": "/images/portfolio/3.webp",
+				"alt": "Portfolio about section with illustrated portrait, biography and education"
+			},
+			{
+				"src": "/images/portfolio/4.webp",
+				"alt": "Portfolio education, technologies, contact and footer at the end of the page"
 			}
 		],
-		"liveUrl": "https://passm.slope726.in/",
-		"repoUrl": "https://github.com/Chandresh726/Passm",
-		"stack": ["Next", "Shadcn", "Typescript", "Rust"]
+		"liveUrl": "https://portfolio.slope726.in/",
+		"repoUrl": "https://github.com/Chandresh726/Portfolio",
+		"stack": ["Next", "Tailwind CSS", "Javascript"]
 	},
 	{
 		"slug": "trushield",
@@ -215,33 +249,6 @@
 		"liveUrl": "https://samraksha-test.onrender.com/",
 		"repoUrl": "https://github.com/Chandresh726/samraksha",
 		"stack": ["React", "MongoDB", "Express", "Node.js", "Javascript"]
-	},
-	{
-		"slug": "portfolio",
-		"title": "Portfolio",
-		"description": "My Next.js portfolio presenting software projects, professional experience, technical skills and contact links through responsive themes and carefully tuned interactive motion.",
-		"updatedAt": "2026-07-19",
-		"images": [
-			{
-				"src": "/images/portfolio/1.webp",
-				"alt": "Previous portfolio landing page with introduction and developer illustration"
-			},
-			{
-				"src": "/images/portfolio/2.webp",
-				"alt": "Previous portfolio projects section with DeTube, Passm and Samraksha cards"
-			},
-			{
-				"src": "/images/portfolio/3.webp",
-				"alt": "Previous portfolio technologies section grouped by programming, web, DevOps and tools"
-			},
-			{
-				"src": "/images/portfolio/4.webp",
-				"alt": "Previous portfolio about section with illustrated portrait and biography"
-			}
-		],
-		"liveUrl": "https://portfolio.slope726.in/",
-		"repoUrl": "https://github.com/Chandresh726/Portfolio",
-		"stack": ["Next", "Tailwind CSS", "Javascript"]
 	},
 	{
 		"slug": "sun-minerals",
