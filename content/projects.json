@@ -84,32 +84,32 @@
 		"slug": "detube",
 		"title": "DeTube",
 		"description": "A decentralized video streaming platform on Solana that combines creator subscriptions, token-based tips, wallet balances, video uploads and playback in a familiar media experience.",
-		"updatedAt": "2024-10-05",
+		"updatedAt": "2026-09-08",
 		"images": [
 			{
 				"src": "/images/detube/1.webp",
-				"alt": "DeTube login page with email, GitHub and Google authentication options"
-			},
-			{
-				"src": "/images/detube/2.webp",
-				"alt": "DeTube video player with creator subscription, token tips and supporter rankings"
-			},
-			{
-				"src": "/images/detube/3.webp",
 				"alt": "DeTube home feed showing subscriptions, wallet balance and a grid of videos"
 			},
 			{
+				"src": "/images/detube/2.webp",
+				"alt": "DeTube video page with subscribe and Thanks actions, likes and Top Supporters rankings"
+			},
+			{
+				"src": "/images/detube/3.webp",
+				"alt": "DeTube login card with email and password fields plus GitHub and Google sign-in options"
+			},
+			{
 				"src": "/images/detube/4.webp",
-				"alt": "DeTube confirmation dialog after sending a Solana token tip to a creator"
+				"alt": "DeTube Thanks dialog for tipping a creator with DTSol, showing balance and amount slider"
 			},
 			{
 				"src": "/images/detube/5.webp",
-				"alt": "DeTube wallet page for depositing Solana tokens"
+				"alt": "DeTube deposit card for topping up SOL balance through a connected wallet"
 			}
 		],
 		"liveUrl": "https://detube.slope726.in/",
 		"repoUrl": "https://github.com/Chandresh726/DeTube",
-		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS"]
+		"stack": ["Next", "Typescript", "AWS", "Solana", "Tailwind CSS", "Shadcn"]
 	},
 	{
 		"slug": "passm",
