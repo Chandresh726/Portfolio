@@ -20,7 +20,30 @@ function ControlledFilter({ onChange }: { onChange: (value: string | undefined) 
 	);
 }
 
+function StatefulCard({ title }: { title: string }) {
+	const [count, setCount] = useState(0);
+	return (
+		<button onClick={() => setCount(count + 1)}>
+			{title}: {count}
+		</button>
+	);
+}
+
 describe("Filter", () => {
+	it("keeps card state attached to its slug when items are reordered", async () => {
+		const user = userEvent.setup();
+		const items = PROJECTS.slice(0, 2).map(({ slug, stack, title }) => ({
+			slug,
+			stack,
+			card: <StatefulCard title={title} />
+		}));
+		const { rerender } = render(<ProjectsExplorer items={items} />);
+		await user.click(screen.getByRole("button", { name: `${PROJECTS[0].title}: 0` }));
+		rerender(<ProjectsExplorer items={[...items].reverse()} />);
+		expect(screen.getByRole("button", { name: `${PROJECTS[0].title}: 1` })).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: `${PROJECTS[1].title}: 0` })).toBeInTheDocument();
+	});
+
 	it("selects a data-backed filter and restores all projects", async () => {
 		const user = userEvent.setup();
 		const onClick = vi.fn();
@@ -39,11 +62,13 @@ describe("Filter", () => {
 	it("filters stable server-rendered project cards", async () => {
 		const user = userEvent.setup();
 		render(
-			<ProjectsExplorer projects={PROJECTS}>
-				{PROJECTS.map((project) => (
-					<article key={project.slug}>{project.title}</article>
-				))}
-			</ProjectsExplorer>
+			<ProjectsExplorer
+				items={PROJECTS.map((project) => ({
+					slug: project.slug,
+					stack: project.stack,
+					card: <article>{project.title}</article>
+				}))}
+			/>
 		);
 
 		await user.click(screen.getByRole("button", { name: "Filter projects by rust" }));

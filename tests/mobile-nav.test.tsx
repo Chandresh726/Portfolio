@@ -9,13 +9,25 @@ vi.mock("next/image", () => ({
 vi.mock("components/ThemeSwitcher", () => ({ ThemeSwitcher: () => <button>Theme</button> }));
 
 describe("MobileNav", () => {
+	it("releases modal global state if navigation unmounts while open", async () => {
+		const user = userEvent.setup();
+		const pointerEvents = document.body.style.pointerEvents;
+		const { unmount } = render(<MobileNav />);
+		await user.click(screen.getByRole("button", { name: "Open menu" }));
+		await screen.findByRole("dialog", { name: "Primary navigation" });
+		expect(document.body).toHaveAttribute("data-scroll-locked");
+		unmount();
+		await waitFor(() => expect(document.body).not.toHaveAttribute("data-scroll-locked"));
+		expect(document.body.style.pointerEvents).toBe(pointerEvents);
+	});
+
 	it("uses modal focus management and restores focus after Escape", async () => {
 		const user = userEvent.setup();
 		render(<MobileNav />);
 		const trigger = screen.getByRole("button", { name: "Open menu" });
 
 		await user.click(trigger);
-		const dialog = screen.getByRole("dialog", { name: "Primary navigation" });
+		const dialog = await screen.findByRole("dialog", { name: "Primary navigation" });
 		const home = screen.getByRole("link", { name: "Home" });
 		expect(dialog).toHaveClass("mobile-menu-panel");
 		expect(home).toHaveFocus();

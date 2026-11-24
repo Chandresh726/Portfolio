@@ -1,10 +1,16 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { warmProjectImage } from "utils/warm-project-image";
 import { ImageCarousel } from "components/ui/image-carousel";
 import { PortraitTilt } from "app/sections/about/PortraitTilt";
 
-vi.mock("next/image", () => ({
+vi.mock("utils/warm-project-image", () => ({ warmProjectImage: vi.fn() }));
+
+beforeEach(() => vi.clearAllMocks());
+
+vi.mock("next/image", async (importOriginal) => ({
+	...(await importOriginal<typeof import("next/image")>()),
 	default: ({
 		alt,
 		className,
@@ -32,6 +38,18 @@ const images = [
 ];
 
 describe("image loading and carousel lifecycle", () => {
+	it("warms only the next screenshot after hover or keyboard focus", () => {
+		const { container } = render(<ImageCarousel images={images} projectTitle="Project" />);
+		expect(warmProjectImage).not.toHaveBeenCalled();
+		const root = container.querySelector(".group\\/carousel") as HTMLElement;
+		fireEvent.mouseEnter(root);
+		expect(warmProjectImage).toHaveBeenCalledTimes(1);
+		expect(warmProjectImage).toHaveBeenCalledWith(images[1], expect.stringContaining("496px"));
+		fireEvent.mouseLeave(root);
+		fireEvent.focus(screen.getByRole("button", { name: "View Project screenshots fullscreen" }));
+		expect(warmProjectImage).toHaveBeenCalledTimes(2);
+	});
+
 	it("does not preload carousel or About images by default", () => {
 		const { unmount } = render(<ImageCarousel images={[images[0]]} projectTitle="Project" />);
 		expect(screen.getByRole("img", { name: images[0].alt })).toHaveAttribute(

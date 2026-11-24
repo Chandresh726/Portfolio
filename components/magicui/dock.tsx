@@ -1,5 +1,7 @@
 "use client";
 
+import * as m from "framer-motion/m";
+
 import {
 	Children,
 	createContext,
@@ -12,9 +14,7 @@ import {
 	useState,
 	type ReactNode
 } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import {
-	motion,
 	useMotionValue,
 	useSpring,
 	useTransform,
@@ -24,7 +24,7 @@ import {
 import { cn } from "utils/cn";
 import { useMediaQuery } from "hooks/use-media-query";
 
-interface DockProps extends VariantProps<typeof dockVariants> {
+interface DockProps {
 	className?: string;
 	magnification?: number;
 	distance?: number;
@@ -43,7 +43,7 @@ const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 const BASE_SIZE = 48;
 const DockContext = createContext<DockContextValue | null>(null);
-const dockVariants = cva("mx-auto w-max h-full p-1 flex items-center rounded-full border");
+const DOCK_CLASS = "mx-auto w-max h-full p-1 flex items-center rounded-full border";
 
 const Dock = forwardRef<HTMLDivElement, DockProps>(
 	(
@@ -93,7 +93,7 @@ const Dock = forwardRef<HTMLDivElement, DockProps>(
 					}}
 					onPointerLeave={() => mouseX.set(Infinity)}
 					{...props}
-					className={cn(dockVariants({ className }), "max-h-14 sm:max-h-none")}
+					className={cn(DOCK_CLASS, className, "max-h-14 sm:max-h-none")}
 				>
 					{children}
 				</div>
@@ -130,7 +130,7 @@ function DockIcon({ className, children, ...props }: DockIconProps) {
 	const width = useSpring(widthTarget, { mass: 0.1, stiffness: 170, damping: 16 });
 
 	return (
-		<motion.div
+		<m.div
 			ref={slotRef}
 			data-dock-enabled={context?.enabled ? "true" : "false"}
 			style={{ width: context?.enabled ? width : BASE_SIZE }}
@@ -140,7 +140,7 @@ function DockIcon({ className, children, ...props }: DockIconProps) {
 			<div className="relative z-10 flex size-12 flex-none items-center justify-center rounded-full">
 				{children}
 			</div>
-		</motion.div>
+		</m.div>
 	);
 }
 DockIcon.displayName = "DockIcon";

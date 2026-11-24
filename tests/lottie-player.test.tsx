@@ -15,7 +15,7 @@ vi.mock("framer-motion", () => ({
 }));
 
 vi.mock("lottie-react", () => ({
-	Lottie: ({
+	LottieLight: ({
 		src,
 		lottieRef,
 		subscriptions

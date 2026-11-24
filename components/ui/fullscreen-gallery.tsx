@@ -1,7 +1,9 @@
 "use client";
 
-import { useRef, type PointerEvent, type RefObject } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import * as m from "framer-motion/m";
+
+import { useEffect, useRef, type PointerEvent, type RefObject } from "react";
+import { AnimatePresence } from "framer-motion";
 import { IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 import { ProjectScreenshot } from "components/ui/project-screenshot";
 import {
@@ -11,6 +13,8 @@ import {
 	DialogDescription,
 	DialogTitle
 } from "components/ui/dialog";
+import { warmProjectImage } from "utils/warm-project-image";
+import { useDocumentVisible } from "hooks/use-document-visible";
 import type { ProjectImage } from "types";
 
 interface FullscreenGalleryProps {
@@ -32,6 +36,11 @@ export default function FullscreenGallery({
 	onOpenChange,
 	triggerRef
 }: FullscreenGalleryProps) {
+	const documentVisible = useDocumentVisible();
+	useEffect(() => {
+		if (open && documentVisible && images.length > 1)
+			warmProjectImage(images[(currentIndex + 1) % images.length], "90vw");
+	}, [currentIndex, documentVisible, images, open]);
 	const closeRef = useRef<HTMLButtonElement>(null);
 	const pointerStart = useRef<{ x: number; y: number } | null>(null);
 
@@ -120,7 +129,7 @@ export default function FullscreenGallery({
 					}}
 				>
 					<AnimatePresence mode="sync" initial={false}>
-						<motion.div
+						<m.div
 							key={images[currentIndex].src}
 							initial={{ opacity: 0, scale: 0.98 }}
 							animate={{ opacity: 1, scale: 1 }}
@@ -133,7 +142,7 @@ export default function FullscreenGallery({
 								className="object-contain"
 								sizes="90vw"
 							/>
-						</motion.div>
+						</m.div>
 					</AnimatePresence>
 				</div>
 

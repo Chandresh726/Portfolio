@@ -19,7 +19,7 @@ export interface FilterButtonProps {
 }
 
 export interface FilterProps {
-	projects: Project[];
+	projects: Pick<Project, "stack">[];
 	activeFilter?: string;
 	onClick: (category: string | undefined) => void;
 }

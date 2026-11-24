@@ -1,8 +1,12 @@
 "use client";
 
+import * as m from "framer-motion/m";
+
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import dynamic from "next/dynamic";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, useReducedMotion } from "framer-motion";
+import { warmProjectImage } from "utils/warm-project-image";
+import { useDocumentVisible } from "hooks/use-document-visible";
 import { MdFullscreen } from "react-icons/md";
 import { ProjectScreenshot } from "components/ui/project-screenshot";
 import { useProjectVisibility } from "context/project_visibility_context";
@@ -16,6 +20,8 @@ interface ImageCarouselProps {
 	preload?: boolean;
 }
 
+const CAROUSEL_SIZES = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 496px";
+
 const controlsClass =
 	"opacity-0 pointer-events-none group-hover/carousel:opacity-100 group-hover/carousel:pointer-events-auto group-focus-within/carousel:opacity-100 group-focus-within/carousel:pointer-events-auto [@media(hover:none)]:opacity-100 [@media(hover:none)]:pointer-events-auto transition-opacity duration-200";
 
@@ -26,9 +32,10 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 	const reduceMotion = useReducedMotion();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isHovered, setIsHovered] = useState(false);
+	const [isFocused, setIsFocused] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
 	const [isIntersecting, setIsIntersecting] = useState(true);
-	const [documentVisible, setDocumentVisible] = useState(true);
+	const documentVisible = useDocumentVisible();
 
 	const nextImage = useCallback(() => {
 		if (images.length <= 1) return;
@@ -37,6 +44,7 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 
 	const openFullscreen = (event: MouseEvent<HTMLButtonElement>) => {
 		fullscreenTriggerRef.current = event.currentTarget;
+		warmProjectImage(images[currentIndex], "90vw");
 		setIsFullscreen(true);
 	};
 
@@ -58,13 +66,6 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 		);
 		observer.observe(element);
 		return () => observer.disconnect();
-	}, []);
-
-	useEffect(() => {
-		const updateVisibility = () => setDocumentVisible(document.visibilityState === "visible");
-		updateVisibility();
-		document.addEventListener("visibilitychange", updateVisibility);
-		return () => document.removeEventListener("visibilitychange", updateVisibility);
 	}, []);
 
 	useEffect(() => {
@@ -92,6 +93,28 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 		reduceMotion
 	]);
 
+	useEffect(() => {
+		if (
+			(!isHovered && !isFocused) ||
+			isFullscreen ||
+			!isProjectVisible ||
+			!isIntersecting ||
+			!documentVisible ||
+			images.length < 2
+		)
+			return;
+		warmProjectImage(images[(currentIndex + 1) % images.length], CAROUSEL_SIZES);
+	}, [
+		currentIndex,
+		documentVisible,
+		images,
+		isFocused,
+		isFullscreen,
+		isHovered,
+		isIntersecting,
+		isProjectVisible
+	]);
+
 	if (images.length === 0) {
 		return (
 			<div className="relative w-full h-full bg-surface-muted flex-center rounded-t-xl">
@@ -105,6 +128,10 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 			<div
 				ref={rootRef}
 				className="group/carousel relative w-full h-full"
+				onFocusCapture={() => setIsFocused(true)}
+				onBlurCapture={(event) => {
+					if (!event.currentTarget.contains(event.relatedTarget)) setIsFocused(false);
+				}}
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
@@ -133,7 +160,7 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 					aria-label={`View ${projectTitle} screenshots fullscreen`}
 				>
 					<AnimatePresence mode="sync" initial={false}>
-						<motion.span
+						<m.span
 							key={images[currentIndex].src}
 							initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
 							animate={{ opacity: 1, scale: 1 }}
@@ -147,10 +174,10 @@ export function ImageCarousel({ images, projectTitle, preload = false }: ImageCa
 							<ProjectScreenshot
 								image={images[currentIndex]}
 								className="object-cover"
-								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 496px"
+								sizes={CAROUSEL_SIZES}
 								preload={preload && currentIndex === 0}
 							/>
-						</motion.span>
+						</m.span>
 					</AnimatePresence>
 				</button>
 

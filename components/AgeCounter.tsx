@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useDocumentVisible } from "hooks/use-document-visible";
 import { calculateAgeYears } from "utils/age";
 
 const UPDATE_INTERVAL_MS = 1_000;
@@ -8,36 +9,15 @@ const UPDATE_INTERVAL_MS = 1_000;
 export function AgeCounter({ initialYears }: { initialYears: string }) {
 	const [years, setYears] = useState(initialYears);
 
+	const documentVisible = useDocumentVisible();
+
 	useEffect(() => {
-		let interval: number | null = null;
+		if (!documentVisible) return;
 		const updateYears = () => setYears(calculateAgeYears());
-		const stopInterval = () => {
-			if (interval === null) return;
-			window.clearInterval(interval);
-			interval = null;
-		};
-		const startInterval = () => {
-			if (interval !== null || document.visibilityState !== "visible") return;
-			interval = window.setInterval(updateYears, UPDATE_INTERVAL_MS);
-		};
-		const handleVisibilityChange = () => {
-			if (document.visibilityState === "visible") {
-				updateYears();
-				startInterval();
-			} else {
-				stopInterval();
-			}
-		};
-
 		updateYears();
-		startInterval();
-		document.addEventListener("visibilitychange", handleVisibilityChange);
-
-		return () => {
-			stopInterval();
-			document.removeEventListener("visibilitychange", handleVisibilityChange);
-		};
-	}, []);
+		const interval = window.setInterval(updateYears, UPDATE_INTERVAL_MS);
+		return () => window.clearInterval(interval);
+	}, [documentVisible]);
 
 	return (
 		<div className="text-base sm:text-lg lg:text-xl font-medium min-h-[28px]">

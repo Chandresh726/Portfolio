@@ -1,7 +1,9 @@
 "use client";
 
+import * as m from "framer-motion/m";
+
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useMotionValue, useSpring } from "framer-motion";
 import { PortraitArtwork } from "./PortraitArtwork";
 
 export function PortraitTiltMotion() {
@@ -17,7 +19,7 @@ export function PortraitTiltMotion() {
 	};
 
 	return (
-		<motion.div
+		<m.div
 			className="relative"
 			style={{ x, y }}
 			onPointerEnter={(event) => {
@@ -35,6 +37,6 @@ export function PortraitTiltMotion() {
 			onPointerCancel={reset}
 		>
 			<PortraitArtwork />
-		</motion.div>
+		</m.div>
 	);
 }

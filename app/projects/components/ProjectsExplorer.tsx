@@ -1,7 +1,9 @@
 "use client";
 
-import { Children, useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
+import * as m from "framer-motion/m";
+
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useInView, useReducedMotion, type Variants } from "framer-motion";
 import { ProjectVisibilityProvider } from "context/project_visibility_context";
 import { useMediaQuery } from "hooks/use-media-query";
 import { Filter } from "./Filter";
@@ -21,13 +23,11 @@ const cardVariants: Variants = {
 	})
 };
 
-export function ProjectsExplorer({
-	projects,
-	children
-}: {
-	projects: Project[];
-	children: ReactNode;
-}) {
+interface ExplorerItem extends Pick<Project, "slug" | "stack"> {
+	card: ReactNode;
+}
+
+export function ProjectsExplorer({ items }: { items: ExplorerItem[] }) {
 	const [selectedCategory, setSelectedCategory] = useState<string | undefined>();
 	const [displayedCategory, setDisplayedCategory] = useState<string | undefined>();
 	const [gridVisible, setGridVisible] = useState(true);
@@ -36,8 +36,7 @@ export function ProjectsExplorer({
 	const inView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px", amount: 0.12 });
 	const reduceMotion = useReducedMotion();
 	const columnCount = (useMediaQuery("(min-width: 768px)") ?? false) ? 2 : 1;
-	const projectCards = Children.toArray(children);
-	const visibleCount = projects.filter(
+	const visibleCount = items.filter(
 		(project) => displayedCategory === undefined || project.stack.includes(displayedCategory)
 	).length;
 
@@ -70,7 +69,7 @@ export function ProjectsExplorer({
 	return (
 		<>
 			<Filter
-				projects={projects}
+				projects={items}
 				activeFilter={selectedCategory}
 				onClick={(category) => {
 					setHasEntered(true);
@@ -80,7 +79,7 @@ export function ProjectsExplorer({
 			<p className="sr-only" aria-live="polite">
 				{visibleCount} {visibleCount === 1 ? "project" : "projects"} shown
 			</p>
-			<motion.div
+			<m.div
 				animate={{ opacity: gridVisible ? 1 : 0, y: gridVisible ? 0 : 8 }}
 				transition={{
 					duration: reduceMotion ? 0 : gridVisible ? 0.34 : 0.18,
@@ -89,7 +88,7 @@ export function ProjectsExplorer({
 				aria-busy={!gridVisible}
 			>
 				<div ref={gridRef} className="grid min-w-0 grid-cols-1 md:grid-cols-2 gap-8 w-full">
-					{projects.map((project, index) => {
+					{items.map((project, index) => {
 						const visible =
 							displayedCategory === undefined || project.stack.includes(displayedCategory);
 						const initial = !hasEntered;
@@ -98,7 +97,7 @@ export function ProjectsExplorer({
 
 						return (
 							<ProjectVisibilityProvider key={project.slug} visible={visible}>
-								<motion.div
+								<m.div
 									className="project-motion-card min-w-0"
 									hidden={!visible}
 									custom={{ delay, initial }}
@@ -106,13 +105,13 @@ export function ProjectsExplorer({
 									initial="hidden"
 									animate={inView ? "visible" : "hidden"}
 								>
-									{projectCards[index]}
-								</motion.div>
+									{project.card}
+								</m.div>
 							</ProjectVisibilityProvider>
 						);
 					})}
 				</div>
-			</motion.div>
+			</m.div>
 		</>
 	);
 }

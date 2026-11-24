@@ -5,41 +5,38 @@ import type { ReactNode } from "react";
 
 const motionState = vi.hoisted(() => ({ reduced: false }));
 
-vi.mock("framer-motion", () => ({
-	useReducedMotion: () => motionState.reduced,
-	motion: {
-		div: ({
-			children,
-			initial,
-			whileInView,
-			viewport,
-			variants,
-			custom,
-			...props
-		}: Record<string, unknown> & { children?: ReactNode }) => {
-			const visible = variants && (variants as { visible?: unknown }).visible;
-			const resolvedVisible =
-				typeof visible === "function" ? visible(custom) : (visible as Record<string, unknown>);
-			const transition =
-				typeof resolvedVisible === "object" && resolvedVisible
-					? (resolvedVisible as { transition?: { delay?: number } }).transition
-					: undefined;
+vi.mock("framer-motion/m", () => ({
+	div: ({
+		children,
+		initial,
+		whileInView,
+		viewport,
+		variants,
+		custom,
+		...props
+	}: Record<string, unknown> & { children?: ReactNode }) => {
+		const visible = variants && (variants as { visible?: unknown }).visible;
+		const resolvedVisible =
+			typeof visible === "function" ? visible(custom) : (visible as Record<string, unknown>);
+		const transition =
+			typeof resolvedVisible === "object" && resolvedVisible
+				? (resolvedVisible as { transition?: { delay?: number } }).transition
+				: undefined;
 
-			return (
-				<div
-					data-initial={String(initial)}
-					data-while-in-view={String(whileInView)}
-					data-once={String((viewport as { once?: boolean } | undefined)?.once)}
-					data-margin={(viewport as { margin?: string } | undefined)?.margin}
-					data-amount={(viewport as { amount?: number } | undefined)?.amount}
-					data-transition-delay={transition?.delay}
-					data-delay={String(custom ?? "")}
-					{...props}
-				>
-					{children}
-				</div>
-			);
-		}
+		return (
+			<div
+				data-initial={String(initial)}
+				data-while-in-view={String(whileInView)}
+				data-once={String((viewport as { once?: boolean } | undefined)?.once)}
+				data-margin={(viewport as { margin?: string } | undefined)?.margin}
+				data-amount={(viewport as { amount?: number } | undefined)?.amount}
+				data-transition-delay={transition?.delay}
+				data-delay={String(custom ?? "")}
+				{...props}
+			>
+				{children}
+			</div>
+		);
 	}
 }));
 

@@ -1,7 +1,9 @@
 "use client";
 
+import * as m from "framer-motion/m";
+
 import { Children, type ReactNode } from "react";
-import { motion, type Variants } from "framer-motion";
+import { type Variants } from "framer-motion";
 import { cn } from "utils/cn";
 import { useMediaQuery } from "hooks/use-media-query";
 
@@ -44,7 +46,7 @@ interface RevealProps {
 
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
 	return (
-		<motion.div
+		<m.div
 			className={cn("motion-reveal", className)}
 			custom={delay}
 			variants={revealVariants}
@@ -53,7 +55,7 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
 			viewport={VIEWPORT}
 		>
 			{children}
-		</motion.div>
+		</m.div>
 	);
 }
 
@@ -78,7 +80,7 @@ function RevealGroupContent({
 	columnCount
 }: RevealGroupContentProps) {
 	return (
-		<motion.div
+		<m.div
 			className={cn("motion-reveal-group", className)}
 			variants={groupVariants}
 			initial="hidden"
@@ -86,16 +88,16 @@ function RevealGroupContent({
 			viewport={VIEWPORT}
 		>
 			{Children.toArray(children).map((child, index) => (
-				<motion.div
+				<m.div
 					key={index}
 					className={cn("motion-reveal-item min-w-0", itemClassName)}
 					custom={{ index, columns: columnCount }}
 					variants={stackItemVariants}
 				>
 					{child}
-				</motion.div>
+				</m.div>
 			))}
-		</motion.div>
+		</m.div>
 	);
 }
 

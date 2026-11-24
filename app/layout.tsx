@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import { AppFooter, AppMetadata, JsonLd } from "components";
 import { ScrollProgress } from "components/layout/scroll-progress";
-import { Navigation } from "components/layout/navigation";
+import { ResponsiveNav } from "components/layout/responsive-nav";
 import { RouteScrollReset } from "components/layout/route-scroll-reset";
 import "styles/globals.css";
 import { ThemeContext } from "context";
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps) {
 						{children}
 					</main>
 					<AppFooter />
-					<Navigation />
+					<ResponsiveNav />
 					<Analytics />
 					<SpeedInsights />
 				</ThemeContext>

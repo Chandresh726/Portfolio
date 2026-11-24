@@ -5,7 +5,6 @@ import * as React from "react";
 import { cn } from "utils/cn";
 
 const Dialog = DialogPrimitive.Root;
-const DialogTrigger = DialogPrimitive.Trigger;
 const DialogClose = DialogPrimitive.Close;
 const DialogTitle = DialogPrimitive.Title;
 const DialogDescription = DialogPrimitive.Description;
@@ -47,4 +46,4 @@ const DialogContent = React.forwardRef<
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
-export { Dialog, DialogTrigger, DialogClose, DialogContent, DialogTitle, DialogDescription };
+export { Dialog, DialogClose, DialogContent, DialogTitle, DialogDescription };

@@ -7,11 +7,13 @@ export default function Page() {
 	return (
 		<section id="projects" aria-labelledby="projects-heading" className="section">
 			<HeadingDivider as="h1" id="projects-heading" title="Projects" />
-			<ProjectsExplorer projects={PROJECTS}>
-				{PROJECTS.map((project) => (
-					<ProjectItem key={project.slug} project={project} />
-				))}
-			</ProjectsExplorer>
+			<ProjectsExplorer
+				items={PROJECTS.map((project) => ({
+					slug: project.slug,
+					stack: project.stack,
+					card: <ProjectItem project={project} />
+				}))}
+			/>
 		</section>
 	);
 }

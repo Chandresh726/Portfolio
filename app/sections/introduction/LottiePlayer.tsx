@@ -1,15 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useDocumentVisible } from "hooks/use-document-visible";
 import { useReducedMotion } from "framer-motion";
-import { Lottie, type LottieHandle } from "lottie-react";
+import { LottieLight, type LottieHandle } from "lottie-react";
 
 export default function LottiePlayer({ animationData }: { animationData: object }) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const lottieRef = useRef<LottieHandle>(null);
 	const reduceMotion = useReducedMotion();
 	const [isIntersecting, setIsIntersecting] = useState(true);
-	const [documentVisible, setDocumentVisible] = useState(true);
+	const documentVisible = useDocumentVisible();
 
 	const syncPlayback = useCallback(() => {
 		if (reduceMotion) {
@@ -28,18 +29,11 @@ export default function LottiePlayer({ animationData }: { animationData: object 
 		return () => observer.disconnect();
 	}, []);
 
-	useEffect(() => {
-		const updateVisibility = () => setDocumentVisible(document.visibilityState === "visible");
-		updateVisibility();
-		document.addEventListener("visibilitychange", updateVisibility);
-		return () => document.removeEventListener("visibilitychange", updateVisibility);
-	}, []);
-
 	useEffect(syncPlayback, [syncPlayback]);
 
 	return (
 		<div ref={containerRef} className="w-full">
-			<Lottie
+			<LottieLight
 				lottieRef={lottieRef}
 				loop
 				autoplay={false}

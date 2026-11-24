@@ -2,8 +2,7 @@
 
 import { Dock, DockIcon } from "components/magicui/dock";
 import { ThemeSwitcher } from "components/ThemeSwitcher";
-import { buttonVariants } from "components/ui/button";
-import { Separator } from "components/ui/separator";
+import { NAV_ICON_BUTTON_CLASS } from "components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "components/ui/tooltip";
 import { cn } from "utils/cn";
 import Link from "next/link";
@@ -39,7 +38,7 @@ export function DockNav() {
 									<Link
 										href={item.href}
 										className={cn(
-											buttonVariants({ variant: "ghost", size: "icon" }),
+											NAV_ICON_BUTTON_CLASS,
 											"relative size-12 transition-[background-color] hover:bg-surface-interactive"
 										)}
 									>
@@ -54,7 +53,7 @@ export function DockNav() {
 						</DockIcon>
 					))}
 
-					<Separator orientation="vertical" className="h-full opacity-30 mx-1" />
+					<span aria-hidden="true" className="h-full w-px shrink-0 bg-divider opacity-30 mx-1" />
 
 					{SOCIAL_MEDIA.map((item) => (
 						<DockIcon key={item.href}>
@@ -65,7 +64,7 @@ export function DockNav() {
 										target={item.external ? "_blank" : undefined}
 										rel={item.external ? "noopener noreferrer" : undefined}
 										className={cn(
-											buttonVariants({ variant: "ghost", size: "icon" }),
+											NAV_ICON_BUTTON_CLASS,
 											"relative size-12 transition-colors duration-300 hover:bg-surface-interactive hover:text-[var(--hover-color)]"
 										)}
 										style={{ "--hover-color": item.color } as CSSProperties}
@@ -81,7 +80,7 @@ export function DockNav() {
 						</DockIcon>
 					))}
 
-					<Separator orientation="vertical" className="h-full opacity-30 mx-1" />
+					<span aria-hidden="true" className="h-full w-px shrink-0 bg-divider opacity-30 mx-1" />
 
 					<DockIcon>
 						<Tooltip>
