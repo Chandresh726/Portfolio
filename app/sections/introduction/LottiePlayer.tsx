@@ -2,18 +2,18 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import Lottie, { type LottieRefCurrentProps } from "lottie-react";
+import { Lottie, type LottieHandle } from "lottie-react";
 
 export default function LottiePlayer({ animationData }: { animationData: object }) {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const lottieRef = useRef<LottieRefCurrentProps>(null);
+	const lottieRef = useRef<LottieHandle>(null);
 	const reduceMotion = useReducedMotion();
 	const [isIntersecting, setIsIntersecting] = useState(true);
 	const [documentVisible, setDocumentVisible] = useState(true);
 
 	const syncPlayback = useCallback(() => {
 		if (reduceMotion) {
-			lottieRef.current?.goToAndStop(0, true);
+			lottieRef.current?.stop();
 			return;
 		}
 		if (isIntersecting && documentVisible) lottieRef.current?.play();
@@ -43,8 +43,9 @@ export default function LottiePlayer({ animationData }: { animationData: object 
 				lottieRef={lottieRef}
 				loop
 				autoplay={false}
-				animationData={animationData}
-				onDOMLoaded={syncPlayback}
+				src={animationData}
+				className="w-full aspect-square"
+				subscriptions={{ ready: syncPlayback }}
 			/>
 		</div>
 	);

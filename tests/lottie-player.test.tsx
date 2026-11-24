@@ -1,12 +1,13 @@
 import { act, render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import LottiePlayer from "app/sections/introduction/LottiePlayer";
 
 const playback = vi.hoisted(() => ({
 	play: vi.fn(),
 	pause: vi.fn(),
-	goToAndStop: vi.fn(),
-	reducedMotion: false
+	stop: vi.fn(),
+	reducedMotion: false,
+	ready: undefined as (() => void) | undefined
 }));
 
 vi.mock("framer-motion", () => ({
@@ -14,18 +15,18 @@ vi.mock("framer-motion", () => ({
 }));
 
 vi.mock("lottie-react", () => ({
-	default: ({
-		animationData,
+	Lottie: ({
+		src,
 		lottieRef,
-		onDOMLoaded
+		subscriptions
 	}: {
-		animationData: object;
+		src: object;
 		lottieRef: { current: unknown };
-		onDOMLoaded?: () => void;
+		subscriptions?: { ready: () => void };
 	}) => {
 		lottieRef.current = playback;
-		onDOMLoaded?.();
-		return <div data-testid="lottie-renderer" data-animation={JSON.stringify(animationData)} />;
+		playback.ready = subscriptions?.ready;
+		return <div data-testid="lottie-renderer" data-animation={JSON.stringify(src)} />;
 	}
 }));
 
@@ -56,7 +57,16 @@ beforeEach(() => {
 	vi.stubGlobal("IntersectionObserver", ControllableIntersectionObserver);
 });
 
+afterEach(() => vi.restoreAllMocks());
+
 describe("LottiePlayer", () => {
+	it("resumes playback when the v3 renderer finishes loading", () => {
+		render(<LottiePlayer animationData={{ layers: [] }} />);
+		playback.play.mockClear();
+		act(() => playback.ready?.());
+		expect(playback.play).toHaveBeenCalledOnce();
+	});
+
 	it("renders supplied animation data without a second entrance animation", () => {
 		const animationData = { layers: [{ name: "coding" }] };
 		const { container } = render(<LottiePlayer animationData={animationData} />);
@@ -68,6 +78,8 @@ describe("LottiePlayer", () => {
 
 	it("plays only while visible and pauses when offscreen or the tab is hidden", () => {
 		const visibility = vi.spyOn(document, "visibilityState", "get").mockReturnValue("visible");
+		const addListener = vi.spyOn(document, "addEventListener");
+		const removeListener = vi.spyOn(document, "removeEventListener");
 		const { unmount } = render(<LottiePlayer animationData={{ layers: [] }} />);
 		expect(playback.play).toHaveBeenCalled();
 
@@ -96,12 +108,16 @@ describe("LottiePlayer", () => {
 
 		unmount();
 		expect(disconnect).toHaveBeenCalled();
+		const visibilityListener = addListener.mock.calls.find(
+			([event]) => event === "visibilitychange"
+		)?.[1];
+		expect(removeListener).toHaveBeenCalledWith("visibilitychange", visibilityListener);
 	});
 
 	it("stops on the first frame when reduced motion is requested", () => {
 		playback.reducedMotion = true;
 		render(<LottiePlayer animationData={{ layers: [] }} />);
-		expect(playback.goToAndStop).toHaveBeenCalledWith(0, true);
+		expect(playback.stop).toHaveBeenCalled();
 		expect(playback.play).not.toHaveBeenCalled();
 	});
 });

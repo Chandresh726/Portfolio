@@ -4,14 +4,16 @@ A personal portfolio built with Next.js, React, TypeScript, and Tailwind CSS. It
 
 ## Prerequisites
 
-- Node.js 22
-- pnpm 11.9.0 through Corepack
+- Node.js 26.13.1 or newer in the 26 LTS line
+- pnpm 11.9.0, the version required by `AGENTS.md`
 
 ## Local setup
 
 ```bash
-corepack enable
-corepack prepare pnpm@11.9.0 --activate
+nvm install
+nvm use
+# With pnpm already installed:
+pnpm self-update 11.9.0
 pnpm install --frozen-lockfile
 cp .env.example .env.local
 pnpm dev
@@ -34,6 +36,10 @@ pnpm dev
 | `pnpm format`       | Format supported source and documentation files |
 | `pnpm format:check` | Verify formatting without writing               |
 | `pnpm check`        | Run the complete handoff gate                   |
+
+## Dependency updates
+
+Use `pnpm outdated` to check releases and `pnpm update --latest` to upgrade, then run `pnpm check`. Review major-version migration guides and keep peer dependencies compatible. TypeScript stays on `~6.0.3` because typescript-eslint 8.74.0 requires TypeScript below 6.1; revisit this constraint when the linter supports TypeScript 7. pnpm stays at 11.9.0 to match `AGENTS.md`.
 
 ## Editing portfolio content
 
